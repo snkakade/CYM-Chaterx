@@ -32,6 +32,7 @@ export function Footer() {
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} CharterX. All rights reserved.</p>
         <p>CharterX is a trading name of Collabrative Yatch Managemnet Limited.</p>
+        <a href="/admin/login">Admin Login</a>
         <a href="#top">Back to top</a>
       </div>
     </footer>

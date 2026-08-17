@@ -1,0 +1,12 @@
+{
+  "liveServer.settings.root": "/",
+  "remote.autoForwardPorts": true,
+  "remote.restoreForwardedPorts": true,
+  "remote.portsAttributes": {
+    "3000": {
+      "label": "CharterX Client Review",
+      "onAutoForward": "silent",
+      "protocol": "http"
+    }
+  }
+}

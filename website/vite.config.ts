@@ -3,8 +3,8 @@ import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
 
-const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
-  "00000000-0000-4000-8000-000000000000";
+const CHARTERX_PRODUCTION_DATABASE_ID =
+  "f0c38218-1ddd-4dba-acea-6ce038a697ec";
 
 const { d1, r2 } = hostingConfig;
 
@@ -19,7 +19,8 @@ const localBindingConfig = {
         {
           binding: d1,
           database_name: process.env.CLOUDFLARE_D1_DATABASE_NAME ?? "charterx-production",
-          database_id: process.env.CLOUDFLARE_D1_DATABASE_ID ?? SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+          database_id:
+            process.env.CLOUDFLARE_D1_DATABASE_ID ?? CHARTERX_PRODUCTION_DATABASE_ID,
         },
       ]
     : [],

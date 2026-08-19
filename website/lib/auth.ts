@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
-import { pbkdf2Sync } from "node:crypto";
 import { getDatabase, getRuntimeEnv, recordAudit } from "./database";
 
 export const SESSION_COOKIE = "charterx_admin";
 const SESSION_SECONDS = 60 * 60 * 8;
+const PBKDF2_ITERATIONS = 100_000;
 const encoder = new TextEncoder();
 
 type AdminSession = {
@@ -40,12 +40,11 @@ export async function verifyPassword(password: string, storedHash: string) {
   const [algorithm, iterationText, saltText, expectedText] = storedHash.split("$");
   if (algorithm !== "pbkdf2_sha256") return false;
   const iterations = Number(iterationText);
-  if (!Number.isInteger(iterations) || iterations < 210_000) return false;
+  if (iterations !== PBKDF2_ITERATIONS) return false;
   const salt = base64UrlDecode(saltText);
   const expected = base64UrlDecode(expectedText);
-  const actual = new Uint8Array(
-    pbkdf2Sync(password, salt, iterations, expected.length, "sha256"),
-  );
+  const key = await crypto.subtle.importKey("raw", encoder.encode(password), "PBKDF2", false, ["deriveBits"]);
+  const actual = new Uint8Array(await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt, iterations }, key, expected.length * 8));
   return constantTimeEqual(actual, expected);
 }
 

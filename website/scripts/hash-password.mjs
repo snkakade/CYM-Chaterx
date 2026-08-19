@@ -5,7 +5,7 @@ if (!password || password.length < 12) {
   console.error('Usage: npm run admin:hash-password -- "a-password-of-at-least-12-characters"');
   process.exitCode = 1;
 } else {
-  const iterations = 210_000;
+  const iterations = 100_000;
   const salt = randomBytes(18);
   const key = await webcrypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
   const derived = new Uint8Array(await webcrypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt, iterations }, key, 256));

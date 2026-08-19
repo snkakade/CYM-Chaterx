@@ -38,7 +38,7 @@ Place the result in an ignored `.dev.vars` file:
 
 ```dotenv
 ADMIN_EMAIL="owner@example.com"
-ADMIN_PASSWORD_HASH="pbkdf2_sha256$210000$..."
+ADMIN_PASSWORD_HASH="pbkdf2_sha256$100000$..."
 SESSION_SECRET="at-least-32-random-characters"
 ```
 
@@ -69,7 +69,7 @@ The local D1 schema initializes automatically. The source-of-truth migration is 
 
 ## Security model
 
-- PBKDF2-SHA256 password hashing with 210,000 iterations and a per-password salt
+- PBKDF2-SHA256 password hashing with Cloudflare's supported 100,000-iteration maximum and a per-password salt
 - HMAC-signed, eight-hour, HTTP-only sessions
 - `Secure` cookies on HTTPS and `SameSite=Strict`
 - Server-side authorization on every protected page, write endpoint, and export

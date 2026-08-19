@@ -41,6 +41,8 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /Live preview of the CharterX OTA Management page/);
   assert.match(html, /Replace with verified client attribution/);
   assert.match(html, /Loading CharterX/);
+  assert.match(html, /hero-media-caption/);
+  assert.match(html, /Built ashore · Working worldwide/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 
@@ -57,6 +59,8 @@ test("all primary pages return branded HTML with one page heading", async () => 
     assert.match(html, /name="description"/, route);
     assert.match(html, /property="og:title"/, route);
     assert.match(html, /name="twitter:card"/, route);
+    assert.match(html, /hero-media-caption/, route);
+    assert.match(html, /Built ashore · Working worldwide/, route);
   }
 });
 

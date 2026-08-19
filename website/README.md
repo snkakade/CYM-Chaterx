@@ -11,6 +11,7 @@ The `revamped` branch contains the refined editorial direction. It keeps the est
 - A once-per-session GSAP yacht loading sequence with reduced-motion fallback
 - A quieter cream, deep-petrol, copper, and sea-glass colour system
 - Larger spacing and a restrained sans-serif-led type hierarchy
+- A unified editorial split-hero system across every public page
 - Two locally hosted, muted yacht films with accessible play/pause controls
 - Prepared testimonial/proof positions that must be replaced with verified client quotes before launch
 - A lazy-loaded, sandboxed live preview of the OTA Management experience

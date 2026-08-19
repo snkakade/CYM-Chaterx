@@ -18,8 +18,8 @@ export function AdminLogin() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email: form.get("email"), password: form.get("password") }),
       });
-      const result = await response.json() as { error?: string };
-      if (!response.ok) throw new Error(result.error || "Unable to sign in.");
+      const result = await response.json().catch(() => null) as { error?: string } | null;
+      if (!response.ok) throw new Error(result?.error || "Unable to sign in. Please try again.");
       window.location.assign("/admin");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Unable to sign in.");

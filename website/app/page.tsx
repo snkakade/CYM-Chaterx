@@ -32,7 +32,7 @@ export default function Home() {
         description="We help yacht and boat owners increase bookings, improve visibility and grow revenue through professional yacht management, OTA distribution, dedicated sales and customer support, website optimization and digital marketing."
         image="/images/hero-sailing-poster.webp"
         imageAlt="Sailing yacht cutting through deep blue Mediterranean water"
-        video="/videos/charterx-sailing-hero-1080.mp4"
+        video="/videos/charterx-sailing-hero-2k.mp4"
         videoMobile="/videos/charterx-sailing.mp4"
         videoPosition="35% center"
         videoMobilePosition="38% center"

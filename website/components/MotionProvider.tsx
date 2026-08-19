@@ -3,11 +3,32 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function MotionProvider() {
   useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lenis: Lenis | null = null;
+    const updateLenis = (time: number) => lenis?.raf(time * 1000);
+
+    if (!reducedMotion) {
+      lenis = new Lenis({
+        duration: 1.05,
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+        touchMultiplier: 1,
+        anchors: false,
+        allowNestedScroll: true,
+        autoToggle: true,
+      });
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(updateLenis);
+      gsap.ticker.lagSmoothing(0);
+    }
+
     const mm = gsap.matchMedia();
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -94,7 +115,8 @@ export function MotionProvider() {
       const root = document.documentElement;
       const previousBehavior = root.style.scrollBehavior;
       root.style.scrollBehavior = "auto";
-      window.scrollTo({ top: targetTop(target), behavior: "auto" });
+      if (lenis) lenis.scrollTo(target, { offset: -(document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 0) - 12, immediate: true });
+      else window.scrollTo({ top: targetTop(target), behavior: "auto" });
       root.style.scrollBehavior = previousBehavior;
     };
 
@@ -108,10 +130,14 @@ export function MotionProvider() {
 
       event.preventDefault();
       window.history.pushState(null, "", hash);
-      window.scrollTo({
-        top: targetTop(target),
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-      });
+      if (lenis) {
+        lenis.scrollTo(target, {
+          offset: -(document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 0) - 12,
+          duration: 1.05,
+        });
+      } else {
+        window.scrollTo({ top: targetTop(target), behavior: "auto" });
+      }
       if (hash === "#main-content") target.focus({ preventScroll: true });
     };
 
@@ -126,6 +152,9 @@ export function MotionProvider() {
       window.clearTimeout(refreshTimer);
       window.removeEventListener("hashchange", alignHashTarget);
       document.removeEventListener("click", onAnchorClick);
+      gsap.ticker.remove(updateLenis);
+      lenis?.destroy();
+      gsap.ticker.lagSmoothing(500, 33);
       mm.revert();
     };
   }, []);

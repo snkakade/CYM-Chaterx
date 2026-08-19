@@ -39,6 +39,9 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /charterx-yacht-aerial\.mp4/);
   assert.match(html, /charterx-yacht-wake\.mp4/);
   assert.match(html, /charterx-sailing-hero-2k\.mp4/);
+  assert.match(html, /charterx-sunset-yacht\.webp/);
+  assert.match(html, /charterx-classic-yacht-detail\.webp/);
+  assert.match(html, /charterx-ocean-texture\.mp4/);
   assert.match(html, /media="\(max-width: 899px\)"/);
   assert.match(html, /Live preview of the CharterX OTA Management page/);
   assert.match(html, /Replace with verified client attribution/);

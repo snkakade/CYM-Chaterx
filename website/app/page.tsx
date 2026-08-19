@@ -5,6 +5,7 @@ import { CommercialEngine } from "@/components/CommercialEngine";
 import { CinematicStories } from "@/components/CinematicStories";
 import { FinalCTA } from "@/components/FinalCTA";
 import { GrowthEngine } from "@/components/GrowthEngine";
+import { HomeMediaStory } from "@/components/HomeMediaStory";
 import { PageHero } from "@/components/PageHero";
 import { LiveWebsitePreview } from "@/components/LiveWebsitePreview";
 import { SectionLabel } from "@/components/SectionLabel";
@@ -58,6 +59,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <HomeMediaStory />
 
       <section className="positioning-section section-shell">
         <div className="positioning-copy reveal-item">

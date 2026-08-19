@@ -86,6 +86,7 @@ test("About page uses the dedicated marina hero film", async () => {
   const html = await response.text();
   assert.match(html, /charterx-marina-hero-hq\.mp4/);
   assert.match(html, /charterx-marina-mobile\.mp4/);
+  assert.match(html, /charterx-yacht-deck\.webp/);
 });
 
 test("Revenue Growth page uses the marina hero film", async () => {

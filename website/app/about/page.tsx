@@ -39,7 +39,7 @@ export default function AboutPage() {
           <p>Owners and operators carry the responsibility of safety, service, crew, maintenance, and the guest experience. The growth work around the vessel is often left fragmented across platforms, agencies, inboxes, and reactive decisions.</p>
           <p>We bring those commercial disciplines together ashore—so the yacht team can stay focused on operating an exceptional asset.</p>
         </div>
-        <AnimatedImageReveal src="/images/sales-support.webp" alt="A marine hospitality professional supporting enquiries from a marina office" />
+        <AnimatedImageReveal src="/images/charterx-yacht-deck.webp" alt="Elevated view across the guest decks of a luxury motor yacht in calm water" />
       </section>
       <VideoFeature
         src="/videos/charterx-ocean-texture.mp4"

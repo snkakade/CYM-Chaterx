@@ -1,5 +1,5 @@
 body:has(.admin-page){background:#eef1f2;color:#10202d}
-body:has(.admin-page):after,body:has(.admin-page)>.site-header,body:has(.admin-page)>.mobile-menu,body:has(.admin-page)>.skip-link,body:has(.admin-page)>.site-footer{display:none}
+body:has(.admin-page):after,body:has(.admin-page)>.site-header,body:has(.admin-page)>.mobile-menu,body:has(.admin-page)>.skip-link,body:has(.admin-page)>.site-footer,body:has(.admin-page)>.cookie-consent{display:none}
 body:has(.admin-page)>main{min-height:100svh}
 .admin-page{--admin-bg:#eef1f2;--admin-panel:#fff;--admin-ink:#10202d;--admin-muted:#6c7a84;--admin-line:#dce2e4;--admin-navy:#07131f;--admin-teal:#167f75;--admin-gold:#c9a45d;font-family:var(--font-body),sans-serif}
 .admin-page *{box-sizing:border-box}

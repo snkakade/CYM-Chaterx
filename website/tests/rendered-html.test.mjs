@@ -31,6 +31,11 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /og:image/);
   assert.match(html, /twitter:card/);
   assert.match(html, /rel="canonical"/);
+  assert.equal((html.match(/data-google-tag="G-G01ETXS1PF"/g) ?? []).length, 1);
+  assert.match(html, /googletagmanager\.com\/gtag\/js\?id=G-G01ETXS1PF/);
+  assert.match(html, /G-G01ETXS1PF/);
+  assert.match(html, /gtag\('consent', 'default'/);
+  assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 

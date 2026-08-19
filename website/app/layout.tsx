@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { CookieConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
 import "./globals.css";
@@ -34,6 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body
         id="top"
       >
@@ -42,6 +47,7 @@ export default function RootLayout({
         <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
         <MotionProvider />
+        <CookieConsent />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

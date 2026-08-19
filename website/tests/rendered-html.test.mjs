@@ -88,6 +88,14 @@ test("About page uses the dedicated marina hero film", async () => {
   assert.match(html, /charterx-marina-mobile\.mp4/);
 });
 
+test("Revenue Growth page uses the marina hero film", async () => {
+  const worker = await createWorker();
+  const response = await render(worker, "/revenue-growth");
+  const html = await response.text();
+  assert.match(html, /charterx-marina-hero-hq\.mp4/);
+  assert.match(html, /charterx-marina-mobile\.mp4/);
+});
+
 test("navigation uses resilient document links", async () => {
   const files = ["Header.tsx", "Footer.tsx", "Logo.tsx", "ButtonLink.tsx", "ServiceCard.tsx", "InsightCard.tsx"];
 

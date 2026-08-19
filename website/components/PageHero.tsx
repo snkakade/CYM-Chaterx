@@ -11,6 +11,7 @@ type PageHeroProps = {
   image?: string;
   imageAlt?: string;
   video?: string;
+  videoMobile?: string;
   videoPosition?: string;
   videoMobilePosition?: string;
   primaryLabel?: string;
@@ -29,6 +30,7 @@ export function PageHero({
   image = "/images/hero-yacht.webp",
   imageAlt = "Luxury yacht in a calm marina at blue hour",
   video,
+  videoMobile,
   videoPosition,
   videoMobilePosition,
   primaryLabel = "Get Started",
@@ -45,6 +47,7 @@ export function PageHero({
         {video ? (
           <AmbientVideo
             src={video}
+            mobileSrc={videoMobile}
             poster={image}
             label={imageAlt}
             position={videoPosition}

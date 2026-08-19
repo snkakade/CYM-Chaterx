@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 type AmbientVideoProps = {
   src: string;
+  mobileSrc?: string;
   poster: string;
   label: string;
   className?: string;
@@ -15,6 +16,7 @@ type AmbientVideoProps = {
 
 export function AmbientVideo({
   src,
+  mobileSrc,
   poster,
   label,
   className = "",
@@ -89,6 +91,7 @@ export function AmbientVideo({
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       >
+        {mobileSrc && <source src={mobileSrc} type="video/mp4" media="(max-width: 899px)" />}
         <source src={src} type="video/mp4" />
       </video>
       <button

@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import { AnimatedImageReveal } from "@/components/AnimatedImageReveal";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CommercialEngine } from "@/components/CommercialEngine";
+import { CinematicStories } from "@/components/CinematicStories";
 import { FinalCTA } from "@/components/FinalCTA";
 import { GrowthEngine } from "@/components/GrowthEngine";
 import { PageHero } from "@/components/PageHero";
+import { LiveWebsitePreview } from "@/components/LiveWebsitePreview";
 import { SectionLabel } from "@/components/SectionLabel";
 import { ServiceCard } from "@/components/ServiceCard";
 import { YachtGrowthScore } from "@/components/YachtGrowthScore";
+import { TestimonialSection } from "@/components/TestimonialSection";
 import { services } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
@@ -21,13 +24,14 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <>
+    <div className="revamp-home">
       <PageHero
         label="Commercial Growth · Built Ashore"
         title="Turn Your Yacht Into a"
         italic="High-Performing Business"
         description="We help yacht and boat owners increase bookings, improve visibility and grow revenue through professional yacht management, OTA distribution, dedicated sales and customer support, website optimization and digital marketing."
         secondaryLabel="Explore Services"
+        revamp
       />
       <div className="hero-trust-strip hero-trust">
         <p>For yacht owners, charter operators, boat rental businesses, and marine hospitality brands.</p>
@@ -71,6 +75,8 @@ export default function Home() {
 
       <GrowthEngine />
 
+      <CinematicStories />
+
       <section className="split-feature section-shell">
         <AnimatedImageReveal src="/images/revenue-optimization.webp" alt="Luxury yacht in a marina with a restrained performance graph overlay" />
         <div className="split-feature-copy reveal-item">
@@ -83,7 +89,9 @@ export default function Home() {
       </section>
 
       <YachtGrowthScore />
+      <TestimonialSection />
+      <LiveWebsitePreview />
       <FinalCTA />
-    </>
+    </div>
   );
 }

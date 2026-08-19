@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
+import { YachtLoader } from "@/components/YachtLoader";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://charterx.example.com";
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body
         id="top"
       >
+        <YachtLoader />
         <a className="skip-link" href="#main-content">Skip to content</a>
         <Header />
         <main id="main-content" tabIndex={-1}>{children}</main>

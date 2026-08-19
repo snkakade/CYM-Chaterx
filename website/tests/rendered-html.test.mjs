@@ -36,6 +36,11 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /G-G01ETXS1PF/);
   assert.match(html, /gtag\('consent', 'default'/);
   assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
+  assert.match(html, /yacht-passage\.mp4/);
+  assert.match(html, /yacht-arc\.mp4/);
+  assert.match(html, /Live preview of the CharterX OTA Management page/);
+  assert.match(html, /Replace with verified client attribution/);
+  assert.match(html, /Loading CharterX/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 

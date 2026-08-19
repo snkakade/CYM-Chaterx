@@ -14,6 +14,7 @@ type PageHeroProps = {
   secondaryLabel?: string;
   secondaryHref?: string;
   compact?: boolean;
+  revamp?: boolean;
 };
 
 export function PageHero({
@@ -28,10 +29,11 @@ export function PageHero({
   secondaryLabel,
   secondaryHref = "/services",
   compact = false,
+  revamp = false,
 }: PageHeroProps) {
   const titleLines = title.split("|");
   return (
-    <section className={`page-hero ${compact ? "page-hero--compact" : ""}`}>
+    <section className={`page-hero ${compact ? "page-hero--compact" : ""} ${revamp ? "page-hero--revamp" : ""}`}>
       <div className="hero-media">
         <Image src={image} alt={imageAlt} fill priority sizes="100vw" />
         <div className="hero-shade" />

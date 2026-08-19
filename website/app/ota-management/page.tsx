@@ -5,6 +5,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
+import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { otaFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
@@ -53,6 +54,15 @@ export default function OTAManagementPage() {
           </div>
         </div>
       </section>
+
+      <VideoPlaceholder
+        label="OTA distribution"
+        title="From discovery to a confident enquiry."
+        direction="Slow aerial passage beside a premium motor yacht, with generous open water and no visible branding."
+        poster="/images/hero-yacht.webp"
+        posterAlt="Luxury motor yacht at blue hour used as a temporary video poster"
+        fileName="ota-yacht-passage-4k.mp4"
+      />
 
       <section className="managed-section section-shell" id="what-we-manage">
         <div className="section-heading-grid reveal-item">

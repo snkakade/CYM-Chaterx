@@ -490,3 +490,67 @@ h1 em,h2 em{font-style:normal;font-weight:650;color:var(--champagne-500)}
   .revamp-home .page-hero .hero-media{height:min(98vw,28rem)}
   .revamp-home .page-hero .hero-media img{object-position:54% 68%}
 }
+
+/* Replacement-film slots: poster-only until approved 4K footage is supplied. */
+.video-placeholder{padding-top:clamp(3rem,6vw,6rem);padding-bottom:clamp(3rem,6vw,6rem)}
+.video-placeholder-frame{
+  position:relative;
+  min-height:clamp(30rem,53vw,46rem);
+  overflow:hidden;
+  background:var(--navy-900);
+  color:var(--white);
+}
+.video-placeholder-frame>img{object-position:center;filter:saturate(.62) contrast(1.04)}
+.video-placeholder-shade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(7,19,21,.86),rgba(7,19,21,.34) 58%,rgba(7,19,21,.12)),linear-gradient(0deg,rgba(7,19,21,.48),transparent 55%);
+}
+.video-placeholder-frame:after{
+  position:absolute;
+  inset:1rem;
+  border:1px solid rgba(255,255,255,.2);
+  content:"";
+  pointer-events:none;
+}
+.video-placeholder-copy{
+  position:absolute;
+  z-index:2;
+  bottom:clamp(3rem,7vw,6.5rem);
+  left:clamp(2rem,6vw,6rem);
+  width:min(55rem,70%);
+}
+.video-placeholder-copy>span,.video-placeholder-spec{
+  font-family:var(--font-mono),monospace;
+  font-size:.58rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.video-placeholder-copy>span{color:var(--champagne-400)}
+.video-placeholder-copy h2{margin:1.3rem 0 1.2rem;font-size:clamp(2.7rem,5.3vw,5.9rem)}
+.video-placeholder-copy p{max-width:42rem;margin:0;color:rgba(255,255,255,.7);font-size:1rem;line-height:1.7}
+.video-placeholder-play{
+  position:absolute;
+  z-index:2;
+  right:clamp(2rem,5vw,5rem);
+  bottom:clamp(3rem,6vw,6rem);
+  display:grid;
+  width:4.5rem;
+  height:4.5rem;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:50%;
+  backdrop-filter:blur(8px);
+}
+.video-placeholder-play svg{width:1.4rem;fill:none;stroke:currentColor;stroke-width:1.4}
+.video-placeholder-spec{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;color:#788581}
+.video-placeholder-spec code{font:inherit;color:var(--navy-900);text-transform:none}
+
+@media(max-width:620px){
+  .video-placeholder-frame{min-height:34rem}
+  .video-placeholder-frame>img{object-position:center}
+  .video-placeholder-copy{right:2rem;bottom:7rem;left:2rem;width:auto}
+  .video-placeholder-copy h2{font-size:clamp(2.55rem,12vw,4rem)}
+  .video-placeholder-play{right:2rem;bottom:2rem;width:3.5rem;height:3.5rem}
+  .video-placeholder-spec{align-items:flex-start;flex-direction:column;letter-spacing:.08em}
+}

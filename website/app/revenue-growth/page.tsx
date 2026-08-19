@@ -5,6 +5,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { RevenueDashboardVisual } from "@/components/RevenueDashboardVisual";
 import { SectionLabel } from "@/components/SectionLabel";
+import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -45,6 +46,14 @@ export default function RevenueGrowthPage() {
         </div>
         <RevenueDashboardVisual />
       </section>
+      <VideoPlaceholder
+        label="Revenue in motion"
+        title="A stronger operating rhythm leaves a clearer wake."
+        direction="Elevated aft view of a yacht underway at first light, with a long symmetrical wake and restrained camera movement."
+        poster="/images/yacht-wake.webp"
+        posterAlt="Yacht wake disappearing toward the horizon used as a temporary video poster"
+        fileName="revenue-yacht-wake-4k.mp4"
+      />
       <section className="revenue-levers section-shell" id="revenue-levers">
         <div className="revenue-lever-heading reveal-item"><SectionLabel index="02">Six revenue levers</SectionLabel><h2>Where performance is <em>won quietly.</em></h2></div>
         <div className="lever-list">

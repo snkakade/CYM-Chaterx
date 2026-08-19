@@ -3,6 +3,7 @@ import { AnimatedImageReveal } from "@/components/AnimatedImageReveal";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
+import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -34,6 +35,14 @@ export default function AboutPage() {
         </div>
         <AnimatedImageReveal src="/images/sales-support.webp" alt="A marine hospitality professional supporting enquiries from a marina office" />
       </section>
+      <VideoPlaceholder
+        label="Built ashore"
+        title="Commercial care, delivered with the same calm as the operation onboard."
+        direction="Tactile yacht details and discreet ashore operations: teak, polished fittings, navigation displays, and considered human service."
+        poster="/images/sales-support.webp"
+        posterAlt="Marine hospitality workspace used as a temporary video poster"
+        fileName="about-charterx-details-4k.mp4"
+      />
       <section className="beliefs-section section-shell" id="philosophy">
         <div className="section-heading-grid reveal-item"><SectionLabel index="02">What we believe</SectionLabel><h2>Calm growth is built on <em>clear principles.</em></h2><p>Our work is commercially sharp, but never detached from the realities of operating a vessel and protecting a premium guest experience.</p></div>
         <div className="belief-grid">

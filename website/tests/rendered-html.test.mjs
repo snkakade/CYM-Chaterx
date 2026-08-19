@@ -63,7 +63,7 @@ test("all primary pages return branded HTML with one page heading", async () => 
     assert.match(html, /name="twitter:card"/, route);
     assert.match(html, /hero-media-caption/, route);
     assert.match(html, /ambient-video/, route);
-    assert.match(html, /hero-2k\.mp4/, route);
+    assert.match(html, /hero-(?:2k|hq)\.mp4/, route);
     assert.match(html, /Pause[^<]*film|Play[^<]*film/, route);
     assert.match(html, /Built ashore · Working worldwide/, route);
   }
@@ -77,6 +77,15 @@ test("OTA page includes accessible FAQ controls and FAQ schema", async () => {
   assert.match(html, /aria-hidden="true"/);
   assert.match(html, /FAQPage/);
   assert.match(html, /What is yacht OTA management\?/);
+  assert.match(html, /charterx-city-yacht-hero-2k\.mp4/);
+});
+
+test("About page uses the dedicated marina hero film", async () => {
+  const worker = await createWorker();
+  const response = await render(worker, "/about");
+  const html = await response.text();
+  assert.match(html, /charterx-marina-hero-hq\.mp4/);
+  assert.match(html, /charterx-marina-mobile\.mp4/);
 });
 
 test("navigation uses resilient document links", async () => {

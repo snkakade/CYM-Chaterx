@@ -30,6 +30,8 @@ export default function Home() {
         title="Turn Your Yacht Into a"
         italic="High-Performing Business"
         description="We help yacht and boat owners increase bookings, improve visibility and grow revenue through professional yacht management, OTA distribution, dedicated sales and customer support, website optimization and digital marketing."
+        image="/images/hero-yacht-v2.webp"
+        imageAlt="Modern luxury motor yacht cruising through calm Mediterranean water at sunrise"
         secondaryLabel="Explore Services"
         revamp
       />

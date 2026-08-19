@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
-import { VideoPlaceholder } from "@/components/VideoPlaceholder";
+import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -35,6 +35,7 @@ export default function DigitalMarketingPage() {
         description="A refined website is only valuable when the right guests can find it, understand the experience, trust the operator, and take the next step."
         image="/images/website-optimization.webp"
         imageAlt="Premium yacht booking website displayed on a laptop"
+        video="/videos/charterx-ocean-texture.mp4"
         primaryLabel="Review My Website"
         secondaryLabel="Explore Digital Services"
         secondaryHref="#digital-capabilities"
@@ -48,13 +49,15 @@ export default function DigitalMarketingPage() {
           <ButtonLink href="/contact">Request a Digital Review</ButtonLink>
         </div>
       </section>
-      <VideoPlaceholder
+      <VideoFeature
+        src="/videos/charterx-sailing.mp4"
         label="Digital presence"
         title="The experience should feel considered before the guest steps aboard."
         direction="Quiet close-ups of yacht details, polished surfaces, water reflections, and a guest browsing a refined charter website."
         poster="/images/website-optimization.webp"
-        posterAlt="Premium yacht website on a laptop used as a temporary video poster"
-        fileName="digital-guest-journey-4k.mp4"
+        posterAlt="Sailing yacht moving through clear blue water"
+        position="35% center"
+        mobilePosition="38% center"
       />
       <section className="capabilities section-shell" id="digital-capabilities">
         <div className="section-heading-grid reveal-item"><SectionLabel index="02">Digital capabilities</SectionLabel><h2>Every layer of a stronger <em>direct presence.</em></h2><p>Use the full programme or start with the commercial layer creating the most friction today.</p></div>

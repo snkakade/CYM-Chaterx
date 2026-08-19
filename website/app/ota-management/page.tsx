@@ -5,7 +5,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
-import { VideoPlaceholder } from "@/components/VideoPlaceholder";
+import { VideoFeature } from "@/components/VideoFeature";
 import { otaFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
@@ -31,6 +31,9 @@ export default function OTAManagementPage() {
         description="Professional yacht and boat rental listing management across the platforms that shape discovery, enquiries, and booking intent."
         image="/images/ota-dashboard.webp"
         imageAlt="Premium abstract yacht OTA listing dashboard"
+        video="/videos/charterx-sailing.mp4"
+        videoPosition="35% center"
+        videoMobilePosition="38% center"
         primaryLabel="Improve My Listings"
         secondaryLabel="See What We Manage"
         secondaryHref="#what-we-manage"
@@ -55,13 +58,14 @@ export default function OTAManagementPage() {
         </div>
       </section>
 
-      <VideoPlaceholder
+      <VideoFeature
+        src="/videos/charterx-yacht-aerial.mp4"
         label="OTA distribution"
         title="From discovery to a confident enquiry."
         direction="Slow aerial passage beside a premium motor yacht, with generous open water and no visible branding."
         poster="/images/hero-yacht.webp"
-        posterAlt="Luxury motor yacht at blue hour used as a temporary video poster"
-        fileName="ota-yacht-passage-4k.mp4"
+        posterAlt="Aerial film of a luxury yacht at sunset"
+        position="35% center"
       />
 
       <section className="managed-section section-shell" id="what-we-manage">

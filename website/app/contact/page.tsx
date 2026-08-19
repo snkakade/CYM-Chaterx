@@ -22,6 +22,7 @@ export default function ContactPage() {
         description="Share your vessel, market, current booking setup, and growth goals. We’ll review where we can help improve visibility, inquiries, and revenue."
         image="/images/yacht-wake.webp"
         imageAlt="A calm yacht wake disappearing into the dawn horizon"
+        video="/videos/charterx-yacht-wake.mp4"
         primaryLabel="Start Your Enquiry"
         primaryHref="#enquiry-form"
         secondaryLabel="Book a Strategy Call"

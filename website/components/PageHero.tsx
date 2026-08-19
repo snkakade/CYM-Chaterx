@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AmbientVideo } from "./AmbientVideo";
 import { ButtonLink } from "./ButtonLink";
 import { SectionLabel } from "./SectionLabel";
 
@@ -9,6 +10,9 @@ type PageHeroProps = {
   description: string;
   image?: string;
   imageAlt?: string;
+  video?: string;
+  videoPosition?: string;
+  videoMobilePosition?: string;
   primaryLabel?: string;
   primaryHref?: string;
   secondaryLabel?: string;
@@ -24,6 +28,9 @@ export function PageHero({
   description,
   image = "/images/hero-yacht.webp",
   imageAlt = "Luxury yacht in a calm marina at blue hour",
+  video,
+  videoPosition,
+  videoMobilePosition,
   primaryLabel = "Get Started",
   primaryHref = "/contact",
   secondaryLabel,
@@ -35,7 +42,17 @@ export function PageHero({
   return (
     <section className={`page-hero ${compact ? "page-hero--compact" : ""} ${revamp ? "page-hero--revamp" : ""}`}>
       <div className="hero-media">
-        <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 899px) calc(100vw - 2.5rem), 44vw" />
+        {video ? (
+          <AmbientVideo
+            src={video}
+            poster={image}
+            label={imageAlt}
+            position={videoPosition}
+            mobilePosition={videoMobilePosition}
+          />
+        ) : (
+          <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 899px) calc(100vw - 2.5rem), 44vw" />
+        )}
         <div className="hero-shade" />
         <div className="hero-media-caption">
           <span>CharterX</span>

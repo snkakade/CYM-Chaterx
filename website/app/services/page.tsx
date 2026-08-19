@@ -78,6 +78,9 @@ export default function ServicesPage() {
         title="One Team."
         italic="Your Complete Yacht Growth Partner."
         description="From getting your yacht listed on the right platforms to generating leads and converting them into bookings, we provide the people, systems and expertise needed to grow your business."
+        video="/videos/charterx-yacht-aerial.mp4"
+        videoPosition="35% center"
+        videoMobilePosition="35% center"
         secondaryLabel="View Our Approach"
         secondaryHref="#service-overview"
       />

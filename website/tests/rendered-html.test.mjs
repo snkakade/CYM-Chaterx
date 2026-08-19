@@ -36,8 +36,8 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /G-G01ETXS1PF/);
   assert.match(html, /gtag\('consent', 'default'/);
   assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
-  assert.match(html, /yacht-passage\.mp4/);
-  assert.match(html, /yacht-arc\.mp4/);
+  assert.match(html, /charterx-yacht-aerial\.mp4/);
+  assert.match(html, /charterx-yacht-wake\.mp4/);
   assert.match(html, /Live preview of the CharterX OTA Management page/);
   assert.match(html, /Replace with verified client attribution/);
   assert.match(html, /Loading CharterX/);
@@ -60,6 +60,8 @@ test("all primary pages return branded HTML with one page heading", async () => 
     assert.match(html, /property="og:title"/, route);
     assert.match(html, /name="twitter:card"/, route);
     assert.match(html, /hero-media-caption/, route);
+    assert.match(html, /ambient-video/, route);
+    assert.match(html, /Pause[^<]*film|Play[^<]*film/, route);
     assert.match(html, /Built ashore · Working worldwide/, route);
   }
 });

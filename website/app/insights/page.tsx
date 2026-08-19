@@ -23,6 +23,7 @@ export default function InsightsPage() {
         description="Practical thinking for owners and operators navigating booking platforms, enquiry conversion, direct demand, pricing, and digital performance."
         image="/images/search-visibility.webp"
         imageAlt="Aerial coastline with a subtle visibility grid"
+        video="/videos/charterx-ocean-texture.mp4"
         primaryLabel="Explore Latest Insights"
         primaryHref="#insight-library"
         secondaryLabel="Request a Growth Review"

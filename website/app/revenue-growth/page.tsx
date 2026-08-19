@@ -5,7 +5,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { RevenueDashboardVisual } from "@/components/RevenueDashboardVisual";
 import { SectionLabel } from "@/components/SectionLabel";
-import { VideoPlaceholder } from "@/components/VideoPlaceholder";
+import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -34,6 +34,7 @@ export default function RevenueGrowthPage() {
         description="Revenue improves when pricing, availability, content, response, channel mix, and direct bookings work as one commercial operating system."
         image="/images/revenue-optimization.webp"
         imageAlt="Luxury yacht at dawn with a subtle revenue curve"
+        video="/videos/charterx-yacht-wake.mp4"
         primaryLabel="Build My Revenue System"
         secondaryLabel="Explore the Levers"
         secondaryHref="#revenue-levers"
@@ -46,13 +47,13 @@ export default function RevenueGrowthPage() {
         </div>
         <RevenueDashboardVisual />
       </section>
-      <VideoPlaceholder
+      <VideoFeature
+        src="/videos/charterx-yacht-wake.mp4"
         label="Revenue in motion"
         title="A stronger operating rhythm leaves a clearer wake."
         direction="Elevated aft view of a yacht underway at first light, with a long symmetrical wake and restrained camera movement."
         poster="/images/yacht-wake.webp"
-        posterAlt="Yacht wake disappearing toward the horizon used as a temporary video poster"
-        fileName="revenue-yacht-wake-4k.mp4"
+        posterAlt="Top-down aerial film of a yacht drawing a curved wake"
       />
       <section className="revenue-levers section-shell" id="revenue-levers">
         <div className="revenue-lever-heading reveal-item"><SectionLabel index="02">Six revenue levers</SectionLabel><h2>Where performance is <em>won quietly.</em></h2></div>

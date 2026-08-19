@@ -32,6 +32,9 @@ export default function Home() {
         description="We help yacht and boat owners increase bookings, improve visibility and grow revenue through professional yacht management, OTA distribution, dedicated sales and customer support, website optimization and digital marketing."
         image="/images/hero-yacht-v2.webp"
         imageAlt="Modern luxury motor yacht cruising through calm Mediterranean water at sunrise"
+        video="/videos/charterx-yacht-aerial.mp4"
+        videoPosition="35% center"
+        videoMobilePosition="35% center"
         secondaryLabel="Explore Services"
         revamp
       />

@@ -491,7 +491,41 @@ h1 em,h2 em{font-style:normal;font-weight:650;color:var(--champagne-500)}
   .revamp-home .page-hero .hero-media img{object-position:54% 68%}
 }
 
-/* Replacement-film slots: poster-only until approved 4K footage is supplied. */
+/* Shared ambient film treatment: optimized, silent, pausable, and motion-aware. */
+.ambient-video{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:var(--video-position,center);
+}
+.ambient-video-toggle{
+  position:absolute;
+  z-index:4;
+  top:1.5rem;
+  right:1.5rem;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  padding:.55rem .75rem;
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:100px;
+  background:rgba(7,19,21,.5);
+  backdrop-filter:blur(9px);
+  color:var(--white);
+  font-family:var(--font-mono),monospace;
+  font-size:.5rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.ambient-video-toggle i{width:.38rem;height:.38rem;border-radius:50%;background:var(--aqua-400);box-shadow:0 0 0 .24rem rgba(84,214,198,.12)}
+.ambient-video-toggle[aria-pressed="true"] i{background:var(--champagne-400);box-shadow:0 0 0 .24rem rgba(215,183,122,.12)}
+.page-hero .hero-media .ambient-video{filter:saturate(.78) contrast(1.04)}
+
+/* Full-width editorial films. */
 .video-placeholder{padding-top:clamp(3rem,6vw,6rem);padding-bottom:clamp(3rem,6vw,6rem)}
 .video-placeholder-frame{
   position:relative;
@@ -500,7 +534,7 @@ h1 em,h2 em{font-style:normal;font-weight:650;color:var(--champagne-500)}
   background:var(--navy-900);
   color:var(--white);
 }
-.video-placeholder-frame>img{object-position:center;filter:saturate(.62) contrast(1.04)}
+.video-placeholder-frame>.ambient-video{filter:saturate(.7) contrast(1.04)}
 .video-placeholder-shade{
   position:absolute;
   inset:0;
@@ -529,28 +563,15 @@ h1 em,h2 em{font-style:normal;font-weight:650;color:var(--champagne-500)}
 .video-placeholder-copy>span{color:var(--champagne-400)}
 .video-placeholder-copy h2{margin:1.3rem 0 1.2rem;font-size:clamp(2.7rem,5.3vw,5.9rem)}
 .video-placeholder-copy p{max-width:42rem;margin:0;color:rgba(255,255,255,.7);font-size:1rem;line-height:1.7}
-.video-placeholder-play{
-  position:absolute;
-  z-index:2;
-  right:clamp(2rem,5vw,5rem);
-  bottom:clamp(3rem,6vw,6rem);
-  display:grid;
-  width:4.5rem;
-  height:4.5rem;
-  place-items:center;
-  border:1px solid rgba(255,255,255,.42);
-  border-radius:50%;
-  backdrop-filter:blur(8px);
-}
-.video-placeholder-play svg{width:1.4rem;fill:none;stroke:currentColor;stroke-width:1.4}
+.video-placeholder-frame>.ambient-video-toggle{top:auto;right:clamp(2rem,5vw,5rem);bottom:clamp(3rem,6vw,6rem)}
 .video-placeholder-spec{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;color:#788581}
-.video-placeholder-spec code{font:inherit;color:var(--navy-900);text-transform:none}
 
 @media(max-width:620px){
+  .ambient-video{object-position:var(--video-mobile-position,var(--video-position,center))}
+  .page-hero .ambient-video-toggle{top:1.05rem;right:1.05rem}
   .video-placeholder-frame{min-height:34rem}
-  .video-placeholder-frame>img{object-position:center}
   .video-placeholder-copy{right:2rem;bottom:7rem;left:2rem;width:auto}
   .video-placeholder-copy h2{font-size:clamp(2.55rem,12vw,4rem)}
-  .video-placeholder-play{right:2rem;bottom:2rem;width:3.5rem;height:3.5rem}
+  .video-placeholder-frame>.ambient-video-toggle{top:auto;right:2rem;bottom:2rem}
   .video-placeholder-spec{align-items:flex-start;flex-direction:column;letter-spacing:.08em}
 }

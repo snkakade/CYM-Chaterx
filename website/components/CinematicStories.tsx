@@ -5,13 +5,13 @@ import { SectionLabel } from "./SectionLabel";
 
 const films = [
   {
-    src: "/videos/yacht-passage.mp4",
+    src: "/videos/charterx-yacht-aerial.mp4",
     poster: "/images/yacht-wake.webp",
     label: "The passage",
     title: "A calm guest journey, from first search to final confirmation.",
   },
   {
-    src: "/videos/yacht-arc.mp4",
+    src: "/videos/charterx-yacht-wake.mp4",
     poster: "/images/hero-yacht.webp",
     label: "The operation",
     title: "Commercial detail managed ashore, without disrupting life onboard.",
@@ -97,7 +97,7 @@ export function CinematicStories() {
           </figure>
         ))}
       </div>
-      <p className="media-credit">Yacht footage: Mikhail Nilov / Pexels.</p>
+      <p className="media-credit">Yacht footage: Pexels contributors. Source details are recorded in the project video notes.</p>
     </section>
   );
 }

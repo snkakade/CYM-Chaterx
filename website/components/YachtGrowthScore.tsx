@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import { gsap } from "gsap";
 import { ArrowIcon } from "./ArrowIcon";
 import { SectionLabel } from "./SectionLabel";
+import { GROWTH_SCORE_STORAGE_KEY, type GrowthScorePayload } from "@/utils/growthScore";
 
 const questions = [
   "Is your yacht listed on more than one booking platform?",
@@ -52,12 +53,27 @@ export function YachtGrowthScore() {
       ? "You have useful foundations in place, with clear room to connect your channels, enquiry process, and revenue decisions more closely."
       : "Your setup is active and commercially aware. The next opportunity is likely in refinement, measurement, and the consistency of your operating rhythm.";
 
+  const saveScore = () => {
+    const payload: GrowthScorePayload = {
+      score,
+      total: questions.length,
+      state,
+      answers: questions.map((question, index) => ({ question, answer: answers[index] ? "Yes" : "Not yet" })),
+    };
+    window.sessionStorage.setItem(GROWTH_SCORE_STORAGE_KEY, JSON.stringify(payload));
+  };
+
   return (
-    <section className="score-section">
+    <section className="score-section" id="yacht-growth-score">
       <div className="score-intro reveal-item">
         <SectionLabel tone="light">Yacht Growth Score</SectionLabel>
         <h2>Where is your business <em>losing momentum?</em></h2>
-        <p>Seven clear questions. One useful snapshot of the visibility, conversion, and operating gaps around your yacht.</p>
+        <p>A focused commercial diagnostic that maps the visibility, conversion, pricing, and follow-up systems around your yacht.</p>
+        <div className="score-orbit" aria-hidden="true">
+          <div><strong>{isComplete ? score : current}</strong><span>of 7 signals</span></div>
+          {questions.map((_, index) => <i className={index < current || isComplete ? "is-active" : ""} key={index} style={{ "--score-dot": index } as CSSProperties} />)}
+        </div>
+        <div className="score-lenses" aria-label="Areas reviewed"><span>Visibility</span><span>Conversion</span><span>Pricing</span><span>Follow-up</span></div>
         <div className="score-meta"><span>≈ 60 seconds</span><span>No email required</span><span>No inflated promises</span></div>
       </div>
       <div className="score-card reveal-item">
@@ -80,11 +96,11 @@ export function YachtGrowthScore() {
           ) : (
             <div className="score-result">
               <span className="score-result-label">Your growth state</span>
-              <h3>{state}</h3>
+              <div className="score-result-heading"><div><strong>{score}</strong><span>/ {questions.length}</span></div><h3>{state}</h3></div>
               <p>{body}</p>
               <p className="score-guidance">Your setup may have visibility and conversion gaps. A structured review can show where bookings are being lost.</p>
               <div>
-                <a className="button button--primary" href="/contact?source=growth-score"><span>Request a Growth Review</span><ArrowIcon /></a>
+                <a className="button button--primary" href="/contact?source=growth-score#enquiry-form" onClick={saveScore}><span>Request a Growth Review</span><ArrowIcon /></a>
                 <button className="score-reset" type="button" onClick={reset}>Retake score</button>
               </div>
             </div>

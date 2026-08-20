@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { growthSteps } from "@/data/site";
 import { SectionLabel } from "./SectionLabel";
+import { GrowthStepIcon } from "./GrowthStepIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +40,7 @@ export function GrowthEngine() {
   }, []);
 
   return (
-    <section className="growth-engine" ref={root}>
+    <section className="growth-engine" id="growth-engine" ref={root}>
       <div className="growth-engine-intro">
         <SectionLabel tone="light">The operating rhythm</SectionLabel>
         <h2>The Yacht <em>Growth Engine</em></h2>
@@ -52,7 +53,7 @@ export function GrowthEngine() {
             <p className="growth-verb">{step.verb}</p>
             <h3>{step.title}</h3>
             <p>{step.body}</p>
-            <div className="growth-compass" aria-hidden="true"><i /><i /></div>
+            <div className="growth-step-icon"><GrowthStepIcon step={step.verb} /></div>
           </article>
         ))}
       </div>

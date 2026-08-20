@@ -34,7 +34,7 @@ export default function PrivacyPage() {
           <section><h2>Storage, sharing, and retention</h2><p>Enquiry and operational data may be stored using service providers that support our website and business systems, including Cloudflare infrastructure. We share information only where needed to operate the service, respond to you, comply with law, or protect legitimate interests. We retain information only for as long as it remains reasonably necessary for those purposes.</p></section>
           <section><h2>Your choices and rights</h2><p>Depending on where you live, you may have rights to access, correct, delete, restrict, or object to the use of your personal information. You may also withdraw analytics consent through Cookie Preferences. To make a privacy request, use the CharterX contact form and state that your message concerns privacy.</p></section>
           <section><h2>Security and updates</h2><p>We use proportionate technical and organisational safeguards, but no internet service can guarantee absolute security. We may update this policy as the website, services, or legal requirements change. The effective date above identifies the current version.</p></section>
-          <a className="privacy-contact" href="/contact">Contact CharterX about privacy</a>
+          <a className="privacy-contact" href="/contact#enquiry-form">Contact CharterX about privacy</a>
         </div>
       </div>
     </article>

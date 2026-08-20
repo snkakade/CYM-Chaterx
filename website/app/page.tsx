@@ -99,7 +99,7 @@ export default function Home() {
           <h2>Your yacht is already an asset. Give it a <em>growth system.</em></h2>
           <p>Commercial performance rarely comes from one isolated change. We connect how your yacht is positioned, found, enquired about, booked, and improved over time.</p>
           <ul className="check-list"><li>A clearer channel strategy</li><li>More consistent enquiry ownership</li><li>Better decisions around pricing and demand</li><li>A direct-booking path you can strengthen</li></ul>
-          <ButtonLink href="/contact">Tell Us About Your Yacht</ButtonLink>
+          <ButtonLink href="/contact#enquiry-form">Tell Us About Your Yacht</ButtonLink>
         </div>
       </section>
 

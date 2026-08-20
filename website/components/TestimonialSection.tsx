@@ -23,7 +23,7 @@ export function TestimonialSection() {
         <SectionLabel index="06">Client proof</SectionLabel>
         <h2>Trust is built in the <em>operating detail.</em></h2>
         <p>Three prepared proof positions keep this section credible until CharterX has approved, attributable client feedback.</p>
-        <a href="/contact">Share a client reference <ArrowIcon /></a>
+        <a href="/contact#enquiry-form">Share a client reference <ArrowIcon /></a>
       </div>
       <div className="testimonial-grid">
         {proofSlots.map((item, index) => (

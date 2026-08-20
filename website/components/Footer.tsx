@@ -13,7 +13,7 @@ export function Footer() {
       <div className="footer-top">
         <div className="footer-promise">
           <Logo />
-          <h2>You operate the yacht.<br /><em>We help grow the business.</em></h2>
+          <h2>You operate the yacht.<br /><em>We grow the business.</em></h2>
         </div>
         <div className="footer-links">
           <div>
@@ -24,8 +24,8 @@ export function Footer() {
             <p className="footer-label">Company</p>
             <a href="/about">About</a>
             <a href="/insights">Insights</a>
-            <a href="/contact">Contact</a>
-            <a href="/contact#strategy-call">Book a Strategy Call</a>
+            <a href="/contact#enquiry-form">Contact</a>
+            <a href="/contact#enquiry-form">Book a Strategy Call</a>
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ export function PageHero({
   videoPosition,
   videoMobilePosition,
   primaryLabel = "Get Started",
-  primaryHref = "/contact",
+  primaryHref = "/contact#enquiry-form",
   secondaryLabel,
   secondaryHref = "/services",
   compact = false,

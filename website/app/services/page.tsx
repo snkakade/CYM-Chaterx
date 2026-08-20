@@ -35,7 +35,7 @@ const detailSections = [
     image: "/images/sales-support.webp",
     alt: "Marine hospitality concierge supporting a yacht enquiry at blue hour",
     items: ["Inquiry handling", "Lead follow-up", "Guest questions", "Quote coordination", "Booking assistance", "Pipeline tracking", "Response templates", "CRM-style enquiry management"],
-    cta: ["Discuss Sales Support", "/contact"],
+    cta: ["Discuss Sales Support", "/contact#enquiry-form"],
   },
   {
     id: "digital-presence",

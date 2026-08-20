@@ -74,7 +74,7 @@ export default function RevenueGrowthPage() {
             <SectionLabel index="03" tone="light">Monthly optimization loop</SectionLabel>
             <h2>Review. Decide. Act. <em>Measure.</em></h2>
             <p>We turn scattered performance signals into a consistent monthly view of what deserves attention next.</p>
-            <ButtonLink href="/contact">Request a Revenue Review</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form">Request a Revenue Review</ButtonLink>
           </div>
           <div className="loop-visual reveal-item" aria-label="Monthly optimization loop diagram">
             {[["01", "Review"], ["02", "Decide"], ["03", "Act"], ["04", "Measure"]].map(([number, label]) => <div key={label}><span>{number}</span><strong>{label}</strong></div>)}

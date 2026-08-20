@@ -28,7 +28,7 @@ export default function InsightsPage() {
         primaryLabel="Explore Latest Insights"
         primaryHref="#insight-library"
         secondaryLabel="Request a Growth Review"
-        secondaryHref="/contact"
+        secondaryHref="/contact#enquiry-form"
         compact
       />
       <section className="insights-library section-shell" id="insight-library">

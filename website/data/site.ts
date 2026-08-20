@@ -41,7 +41,7 @@ export const services = [
   },
   {
     number: "06",
-    slug: "/contact",
+    slug: "/contact#enquiry-form",
     eyebrow: "Complete Partnership",
     title: "Complete Yacht Growth Partnership",
     description: "From platform distribution to lead conversion, we provide the people, systems and expertise needed to grow your yacht business.",

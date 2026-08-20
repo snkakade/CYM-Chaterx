@@ -124,5 +124,18 @@ test("navigation uses resilient document links", async () => {
 
   const header = await readFile(new URL("../components/Header.tsx", import.meta.url), "utf8");
   assert.match(header, /href=\{link\.href\}/);
-  assert.match(header, /href="\/contact"/);
+  assert.match(header, /href="\/contact#enquiry-form"/);
+});
+
+test("growth score carries diagnostic answers into the enquiry form", async () => {
+  const score = await readFile(new URL("../components/YachtGrowthScore.tsx", import.meta.url), "utf8");
+  const form = await readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8");
+  const footer = await readFile(new URL("../components/Footer.tsx", import.meta.url), "utf8");
+
+  assert.match(score, /sessionStorage\.setItem\(GROWTH_SCORE_STORAGE_KEY/);
+  assert.match(score, /\/contact\?source=growth-score#enquiry-form/);
+  assert.match(form, /sessionStorage\.getItem\(GROWTH_SCORE_STORAGE_KEY/);
+  assert.match(form, /formatGrowthScoreNotes\(payload\)/);
+  assert.match(footer, /We grow the business\./);
+  assert.doesNotMatch(footer, /We help grow the business\./);
 });

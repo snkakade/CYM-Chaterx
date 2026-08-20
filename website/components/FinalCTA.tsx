@@ -11,8 +11,8 @@ export function FinalCTA() {
         <h2>Ready to grow your <em>yacht business?</em></h2>
         <p>Tell us about your yacht, your market and your current setup. We’ll show you where we can help increase your visibility, bookings and revenue.</p>
         <div>
-          <ButtonLink href="/contact">Get Started</ButtonLink>
-          <ButtonLink href="/contact#strategy-call" variant="light">Book a Strategy Call</ButtonLink>
+          <ButtonLink href="/contact#enquiry-form">Get Started</ButtonLink>
+          <ButtonLink href="/contact#enquiry-form" variant="light">Book a Strategy Call</ButtonLink>
         </div>
       </div>
     </section>

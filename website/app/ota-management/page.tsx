@@ -83,7 +83,7 @@ export default function OTAManagementPage() {
           <SectionLabel index="04">Our OTA process</SectionLabel>
           <h2>From listing audit to <em>ongoing improvement.</em></h2>
           <p>Optimization begins with clarity, then becomes a repeatable commercial rhythm.</p>
-          <ButtonLink href="/contact">Request an OTA Review</ButtonLink>
+          <ButtonLink href="/contact#enquiry-form">Request an OTA Review</ButtonLink>
         </div>
         <ol className="process-list">
           {[["Audit", "Review content, pricing, availability, enquiry flow, and platform consistency."], ["Position", "Clarify your vessel’s audience, value, and competitive frame."], ["Improve", "Implement the priority listing, photo, calendar, and response changes."], ["Operate", "Maintain availability, enquiries, promotions, and review signals."], ["Refine", "Use performance signals to guide the next practical improvements."]].map(([title, copy], index) => <li className="reveal-item" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}

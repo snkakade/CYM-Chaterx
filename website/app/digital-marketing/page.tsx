@@ -49,7 +49,7 @@ export default function DigitalMarketingPage() {
           <SectionLabel index="01">From search to enquiry</SectionLabel>
           <h2>Beautiful is the standard. <em>Commercially useful is the goal.</em></h2>
           <p>Your website, organic visibility, paid search, landing pages, and tracking should make one coherent journey. We connect the visual experience to genuine guest intent.</p>
-          <ButtonLink href="/contact">Request a Digital Review</ButtonLink>
+          <ButtonLink href="/contact#enquiry-form">Request a Digital Review</ButtonLink>
         </div>
       </section>
       <VideoFeature

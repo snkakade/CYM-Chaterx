@@ -50,7 +50,7 @@ export default async function InsightArticle({ params }: Props) {
             <ul><li>Is the vessel positioned for a clear guest and occasion?</li><li>Do your listings and website answer the practical questions that delay an enquiry?</li><li>Can your team trace a lead from source through to booking value?</li><li>Does each lost enquiry lead to a useful operating insight?</li></ul>
             <h2 id="next">A practical next step</h2>
             <p>Choose one part of the journey and review it as a guest would. Record the friction without solving it immediately. The pattern will usually reveal a tighter, more commercially useful priority than a broad redesign or another disconnected campaign.</p>
-            <ButtonLink href="/contact">Request a Growth Review</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form">Request a Growth Review</ButtonLink>
           </div>
         </div>
       </article>

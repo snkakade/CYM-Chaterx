@@ -30,7 +30,7 @@ export default function AboutPage() {
         primaryLabel="Meet Our Approach"
         primaryHref="#philosophy"
         secondaryLabel="Tell Us About Your Yacht"
-        secondaryHref="/contact"
+        secondaryHref="/contact#enquiry-form"
       />
       <section className="about-origin section-shell">
         <div className="about-origin-copy reveal-item">

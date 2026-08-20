@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { SectionLabel } from "./SectionLabel";
 
 const films = [
@@ -20,8 +20,6 @@ const films = [
 
 export function CinematicStories() {
   const root = useRef<HTMLElement>(null);
-  const manuallyPaused = useRef(new Set<number>());
-  const [paused, setPaused] = useState([false, false]);
 
   useEffect(() => {
     const section = root.current;
@@ -31,15 +29,13 @@ export function CinematicStories() {
 
     if (reducedMotion) {
       videos.forEach((video) => video.pause());
-      setPaused(videos.map(() => true));
       return;
     }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const video = entry.target as HTMLVideoElement;
-        const index = Number(video.dataset.filmIndex);
-        if (entry.isIntersecting && !manuallyPaused.current.has(index)) void video.play().catch(() => undefined);
+        if (entry.isIntersecting) void video.play().catch(() => undefined);
         else video.pause();
       });
     }, { threshold: 0.2 });
@@ -47,20 +43,6 @@ export function CinematicStories() {
     videos.forEach((video) => observer.observe(video));
     return () => observer.disconnect();
   }, []);
-
-  function toggleFilm(index: number) {
-    const video = root.current?.querySelector<HTMLVideoElement>(`video[data-film-index="${index}"]`);
-    if (!video) return;
-    if (video.paused) {
-      manuallyPaused.current.delete(index);
-      void video.play().catch(() => undefined);
-      setPaused((current) => current.map((value, itemIndex) => itemIndex === index ? false : value));
-    } else {
-      manuallyPaused.current.add(index);
-      video.pause();
-      setPaused((current) => current.map((value, itemIndex) => itemIndex === index ? true : value));
-    }
-  }
 
   return (
     <section className="cinematic-stories section-shell" ref={root}>
@@ -80,15 +62,9 @@ export function CinematicStories() {
                 preload="metadata"
                 poster={film.poster}
                 aria-label={film.title}
-                data-film-index={index}
-                onPlay={() => setPaused((current) => current.map((value, itemIndex) => itemIndex === index ? false : value))}
-                onPause={() => setPaused((current) => current.map((value, itemIndex) => itemIndex === index ? true : value))}
               >
                 <source src={film.src} type="video/mp4" />
               </video>
-              <button type="button" className="film-status" onClick={() => toggleFilm(index)} aria-label={`${paused[index] ? "Play" : "Pause"} ${film.label} video`}>
-                <i /> {paused[index] ? "Play film" : "Playing silently"}
-              </button>
             </div>
             <figcaption>
               <span>{film.label}</span>

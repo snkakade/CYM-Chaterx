@@ -29,12 +29,18 @@ export function Footer() {
           </div>
         </div>
       </div>
+      <div className="footer-utility">
+        <p>Privacy &amp; access</p>
+        <nav aria-label="Privacy and access links">
+          <a href="/privacy">Privacy Policy</a>
+          <button type="button" data-cookie-preferences>Cookie Preferences</button>
+          <a href="/admin/login">Admin Login</a>
+        </nav>
+      </div>
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} CharterX. All rights reserved.</p>
         <p>CharterX is a trading name of Collabrative Yatch Managemnet Limited.</p>
-        <button type="button" data-cookie-preferences>Cookie Preferences</button>
         <a className="footer-credit" href="https://shreyashkakade.com/websites" target="_blank" rel="noreferrer">Designed by Shreyash K</a>
-        <a href="/admin/login">Admin Login</a>
         <a href="#top">Back to top</a>
       </div>
     </footer>

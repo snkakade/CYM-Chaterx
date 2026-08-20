@@ -40,7 +40,7 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
   assert.match(html, /charterx-yacht-aerial\.mp4/);
   assert.match(html, /charterx-yacht-wake\.mp4/);
-  assert.match(html, /charterx-sailing-hero-2k\.mp4/);
+  assert.match(html, /charterx-marina-hero-hq\.mp4/);
   assert.match(html, /charterx-sunset-yacht\.webp/);
   assert.match(html, /charterx-classic-yacht-detail\.webp/);
   assert.match(html, /charterx-ocean-texture\.mp4/);
@@ -50,6 +50,7 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /Loading CharterX/);
   assert.match(html, /hero-media-caption/);
   assert.match(html, /Built ashore · Working worldwide/);
+  assert.doesNotMatch(html, /ambient-video-toggle|film-status|Pause film|Play film/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 
@@ -69,7 +70,7 @@ test("all primary pages return branded HTML with one page heading", async () => 
     assert.match(html, /hero-media-caption/, route);
     assert.match(html, /ambient-video/, route);
     assert.match(html, /hero-(?:2k|hq)\.mp4/, route);
-    assert.match(html, /Pause[^<]*film|Play[^<]*film/, route);
+    assert.doesNotMatch(html, /ambient-video-toggle|Pause[^<]*film|Play[^<]*film/, route);
     assert.match(html, /Built ashore · Working worldwide/, route);
   }
 });
@@ -94,12 +95,23 @@ test("About page uses the dedicated marina hero film", async () => {
   assert.match(html, /charterx-yacht-deck\.webp/);
 });
 
-test("Revenue Growth page uses the marina hero film", async () => {
+test("Revenue Growth page uses the sailing hero film", async () => {
   const worker = await createWorker();
   const response = await render(worker, "/revenue-growth");
   const html = await response.text();
-  assert.match(html, /charterx-marina-hero-hq\.mp4/);
-  assert.match(html, /charterx-marina-mobile\.mp4/);
+  assert.match(html, /charterx-sailing-hero-2k\.mp4/);
+  assert.match(html, /charterx-sailing\.mp4/);
+});
+
+test("Privacy policy is published and linked from the footer", async () => {
+  const worker = await createWorker();
+  const response = await render(worker, "/privacy");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Privacy Policy/);
+  assert.match(html, /Information we collect/);
+  assert.match(html, /Cookie Preferences/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
 });
 
 test("navigation uses resilient document links", async () => {

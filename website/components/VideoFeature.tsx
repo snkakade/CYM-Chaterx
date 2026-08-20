@@ -41,7 +41,7 @@ export function VideoFeature({
       </div>
       <div className="video-placeholder-spec" aria-hidden="true">
         <span>CharterX film</span>
-        <span>Playing silently · Pause available</span>
+        <span>Silent film · Motion-aware</span>
       </div>
     </section>
   );

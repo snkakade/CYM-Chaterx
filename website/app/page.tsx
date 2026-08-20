@@ -31,12 +31,12 @@ export default function Home() {
         title="Turn Your Yacht Into a"
         italic="High-Performing Business"
         description="We help yacht and boat owners increase bookings, improve visibility and grow revenue through professional yacht management, OTA distribution, dedicated sales and customer support, website optimization and digital marketing."
-        image="/images/hero-sailing-poster.webp"
-        imageAlt="Sailing yacht cutting through deep blue Mediterranean water"
-        video="/videos/charterx-sailing-hero-2k.mp4"
-        videoMobile="/videos/charterx-sailing.mp4"
-        videoPosition="35% center"
-        videoMobilePosition="38% center"
+        image="/images/hero-marina-poster.webp"
+        imageAlt="Motor yachts moving through a contemporary marina"
+        video="/videos/charterx-marina-hero-hq.mp4"
+        videoMobile="/videos/charterx-marina-mobile.mp4"
+        videoPosition="center center"
+        videoMobilePosition="center center"
         secondaryLabel="Explore Services"
         revamp
       />
@@ -60,6 +60,8 @@ export default function Home() {
         </div>
       </section>
 
+      <YachtGrowthScore />
+
       <HomeMediaStory />
 
       <section className="positioning-section section-shell">
@@ -70,7 +72,11 @@ export default function Home() {
           <p className="positioning-signoff">You operate the yacht. We help grow the business.</p>
           <ButtonLink href="/services" variant="text">See how we work</ButtonLink>
         </div>
-        <CommercialEngine />
+        <div className="positioning-visual reveal-item">
+          <div className="positioning-visual-head"><span>Commercial engine</span><p>One joined operating view</p></div>
+          <CommercialEngine />
+          <div className="positioning-visual-foot"><span>Built ashore</span><span>Working worldwide</span></div>
+        </div>
       </section>
 
       <section className="services-preview section-shell">
@@ -97,7 +103,6 @@ export default function Home() {
         </div>
       </section>
 
-      <YachtGrowthScore />
       <TestimonialSection />
       <LiveWebsitePreview />
       <FinalCTA />

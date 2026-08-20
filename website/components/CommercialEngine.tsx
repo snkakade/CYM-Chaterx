@@ -16,7 +16,7 @@ export function CommercialEngine() {
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const timeline = gsap.timeline({
-          scrollTrigger: { trigger: root.current, start: "top 72%", once: true },
+          scrollTrigger: { trigger: root.current, start: "top 90%", once: true },
         });
         timeline
           .fromTo(".engine-path", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power2.inOut" })

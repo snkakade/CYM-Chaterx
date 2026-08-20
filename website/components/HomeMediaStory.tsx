@@ -30,6 +30,8 @@ export function HomeMediaStory() {
             src="/videos/charterx-ocean-texture.mp4"
             poster="/images/hero-ocean-poster.webp"
             label="Sunlight moving across a calm ocean surface"
+            position="left center"
+            mobilePosition="left center"
             preload="none"
           />
           <figcaption><span>03</span> The operating rhythm</figcaption>

@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type AmbientVideoProps = {
   src: string;
@@ -25,8 +25,6 @@ export function AmbientVideo({
   preload = "metadata",
 }: AmbientVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const manuallyPaused = useRef(false);
-  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -36,7 +34,7 @@ export function AmbientVideo({
     let inView = true;
 
     const syncPlayback = () => {
-      if (reducedMotion.matches || !inView || manuallyPaused.current) {
+      if (reducedMotion.matches || !inView) {
         video.pause();
         return;
       }
@@ -59,51 +57,25 @@ export function AmbientVideo({
     };
   }, []);
 
-  function togglePlayback() {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      manuallyPaused.current = false;
-      void video.play().catch(() => undefined);
-    } else {
-      manuallyPaused.current = true;
-      video.pause();
-    }
-  }
-
   const style = {
     "--video-position": position,
     "--video-mobile-position": mobilePosition ?? position,
   } as CSSProperties;
 
   return (
-    <>
-      <video
-        ref={videoRef}
-        className={`ambient-video ${className}`.trim()}
-        muted
-        loop
-        playsInline
-        preload={preload}
-        poster={poster}
-        aria-label={label}
-        style={style}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-      >
-        {mobileSrc && <source src={mobileSrc} type="video/mp4" media="(max-width: 899px)" />}
-        <source src={src} type="video/mp4" />
-      </video>
-      <button
-        type="button"
-        className="ambient-video-toggle"
-        onClick={togglePlayback}
-        aria-label={`${playing ? "Pause" : "Play"} ${label}`}
-        aria-pressed={!playing}
-      >
-        <i aria-hidden="true" />
-        <span>{playing ? "Pause film" : "Play film"}</span>
-      </button>
-    </>
+    <video
+      ref={videoRef}
+      className={`ambient-video ${className}`.trim()}
+      muted
+      loop
+      playsInline
+      preload={preload}
+      poster={poster}
+      aria-label={label}
+      style={style}
+    >
+      {mobileSrc && <source src={mobileSrc} type="video/mp4" media="(max-width: 899px)" />}
+      <source src={src} type="video/mp4" />
+    </video>
   );
 }

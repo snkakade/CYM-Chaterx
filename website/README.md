@@ -4,6 +4,20 @@ CharterX is a premium yacht-growth website with a private commercial operations 
 
 The public website covers OTA distribution, sales support, digital presence, SEO/SEM, listing quality, and revenue strategy. The protected `/admin` area receives website enquiries, manages follow-ups, creates CYM CharterX invoices, records invoice status, exports records, and keeps an audit trail.
 
+## Revamped design branch
+
+The `revamped` branch contains the refined editorial direction. It keeps the established page structure and adds:
+
+- A once-per-session GSAP yacht loading sequence with reduced-motion fallback
+- A quieter cream, deep-petrol, copper, and sea-glass colour system
+- Larger spacing and a restrained sans-serif-led type hierarchy
+- A unified editorial split-hero system across every public page
+- Two locally hosted, muted yacht films with accessible play/pause controls
+- Prepared testimonial/proof positions that must be replaced with verified client quotes before launch
+- A lazy-loaded, sandboxed live preview of the OTA Management experience
+
+The film files and their source notes are in `public/videos/`. Replace them with CharterX-owned footage when available.
+
 ## Requirements and local development
 
 - Node.js 22.13 or newer
@@ -116,6 +130,7 @@ Use encrypted Cloudflare secrets rather than plaintext Wrangler `vars` for crede
 - `lib/` — authentication, database access, validation, invoice, lead, and audit logic
 - `data/` — editable public services, FAQs, insights, and growth steps
 - `public/images/` — WebP imagery and social preview
+- `public/videos/` — optimised maritime clips and source notes
 - `public/fonts/` — self-hosted Source Serif 4, Source Sans 3, and IBM Plex Mono font system
 - `scripts/` — password-hash utility
 

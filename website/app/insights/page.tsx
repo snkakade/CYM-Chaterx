@@ -21,12 +21,14 @@ export default function InsightsPage() {
         label="Insights & Resources"
         title="A clearer view of |yacht business growth."
         description="Practical thinking for owners and operators navigating booking platforms, enquiry conversion, direct demand, pricing, and digital performance."
-        image="/images/search-visibility.webp"
-        imageAlt="Aerial coastline with a subtle visibility grid"
+        image="/images/hero-ocean-poster.webp"
+        imageAlt="Calm open water viewed from above"
+        video="/videos/charterx-ocean-texture-hero-2k.mp4"
+        videoMobile="/videos/charterx-ocean-texture.mp4"
         primaryLabel="Explore Latest Insights"
         primaryHref="#insight-library"
         secondaryLabel="Request a Growth Review"
-        secondaryHref="/contact"
+        secondaryHref="/contact#enquiry-form"
         compact
       />
       <section className="insights-library section-shell" id="insight-library">

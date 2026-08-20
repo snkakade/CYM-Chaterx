@@ -3,6 +3,7 @@ import { AnimatedImageReveal } from "@/components/AnimatedImageReveal";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
+import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -20,10 +21,16 @@ export default function AboutPage() {
         label="Built Ashore"
         title="Commercial structure for |assets built to move."
         description="CharterX exists for yacht owners who want more than maintenance. They want visibility, better enquiries, commercial structure, and a clearer route to revenue."
+        image="/images/hero-marina-poster.webp"
+        imageAlt="Motor yachts moving through a contemporary marina"
+        video="/videos/charterx-marina-hero-hq.mp4"
+        videoMobile="/videos/charterx-marina-mobile.mp4"
+        videoPosition="center center"
+        videoMobilePosition="center center"
         primaryLabel="Meet Our Approach"
         primaryHref="#philosophy"
         secondaryLabel="Tell Us About Your Yacht"
-        secondaryHref="/contact"
+        secondaryHref="/contact#enquiry-form"
       />
       <section className="about-origin section-shell">
         <div className="about-origin-copy reveal-item">
@@ -32,8 +39,16 @@ export default function AboutPage() {
           <p>Owners and operators carry the responsibility of safety, service, crew, maintenance, and the guest experience. The growth work around the vessel is often left fragmented across platforms, agencies, inboxes, and reactive decisions.</p>
           <p>We bring those commercial disciplines together ashore—so the yacht team can stay focused on operating an exceptional asset.</p>
         </div>
-        <AnimatedImageReveal src="/images/sales-support.webp" alt="A marine hospitality professional supporting enquiries from a marina office" />
+        <AnimatedImageReveal src="/images/charterx-yacht-deck.webp" alt="Elevated view across the guest decks of a luxury motor yacht in calm water" />
       </section>
+      <VideoFeature
+        src="/videos/charterx-ocean-texture.mp4"
+        label="Built ashore"
+        title="Commercial care, delivered with the same calm as the operation onboard."
+        direction="Tactile yacht details and discreet ashore operations: teak, polished fittings, navigation displays, and considered human service."
+        poster="/images/sales-support.webp"
+        posterAlt="Calm ocean surface moving in soft natural light"
+      />
       <section className="beliefs-section section-shell" id="philosophy">
         <div className="section-heading-grid reveal-item"><SectionLabel index="02">What we believe</SectionLabel><h2>Calm growth is built on <em>clear principles.</em></h2><p>Our work is commercially sharp, but never detached from the realities of operating a vessel and protecting a premium guest experience.</p></div>
         <div className="belief-grid">

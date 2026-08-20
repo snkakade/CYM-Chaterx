@@ -75,7 +75,7 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <a className="header-cta" href="/contact">Get Started <ArrowIcon /></a>
+          <a className="header-cta" href="/contact#enquiry-form">Get Started <ArrowIcon /></a>
           <button
             className={`menu-toggle ${isOpen ? "is-open" : ""}`}
             type="button"
@@ -97,8 +97,8 @@ export function Header() {
           ))}
         </nav>
         <div className="mobile-menu-footer">
-          <p>You operate the yacht.<br />We help grow the business.</p>
-          <a className="button button--primary" href="/contact" tabIndex={isOpen ? 0 : -1} onClick={() => setIsOpen(false)}>
+          <p>You operate the yacht.<br />We grow the business.</p>
+          <a className="button button--primary" href="/contact#enquiry-form" tabIndex={isOpen ? 0 : -1} onClick={() => setIsOpen(false)}>
             <span>Book a Strategy Call</span><ArrowIcon />
           </a>
         </div>

@@ -5,6 +5,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { RevenueDashboardVisual } from "@/components/RevenueDashboardVisual";
 import { SectionLabel } from "@/components/SectionLabel";
+import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -31,8 +32,12 @@ export default function RevenueGrowthPage() {
         label="Yacht Revenue Strategy"
         title="Build a smarter revenue |system around your yacht."
         description="Revenue improves when pricing, availability, content, response, channel mix, and direct bookings work as one commercial operating system."
-        image="/images/revenue-optimization.webp"
-        imageAlt="Luxury yacht at dawn with a subtle revenue curve"
+        image="/images/hero-sailing-poster.webp"
+        imageAlt="Sailing yacht cutting through deep blue Mediterranean water"
+        video="/videos/charterx-sailing-hero-2k.mp4"
+        videoMobile="/videos/charterx-sailing.mp4"
+        videoPosition="35% center"
+        videoMobilePosition="38% center"
         primaryLabel="Build My Revenue System"
         secondaryLabel="Explore the Levers"
         secondaryHref="#revenue-levers"
@@ -45,6 +50,14 @@ export default function RevenueGrowthPage() {
         </div>
         <RevenueDashboardVisual />
       </section>
+      <VideoFeature
+        src="/videos/charterx-yacht-wake.mp4"
+        label="Revenue in motion"
+        title="A stronger operating rhythm leaves a clearer wake."
+        direction="Elevated aft view of a yacht underway at first light, with a long symmetrical wake and restrained camera movement."
+        poster="/images/yacht-wake.webp"
+        posterAlt="Top-down aerial film of a yacht drawing a curved wake"
+      />
       <section className="revenue-levers section-shell" id="revenue-levers">
         <div className="revenue-lever-heading reveal-item"><SectionLabel index="02">Six revenue levers</SectionLabel><h2>Where performance is <em>won quietly.</em></h2></div>
         <div className="lever-list">
@@ -61,7 +74,7 @@ export default function RevenueGrowthPage() {
             <SectionLabel index="03" tone="light">Monthly optimization loop</SectionLabel>
             <h2>Review. Decide. Act. <em>Measure.</em></h2>
             <p>We turn scattered performance signals into a consistent monthly view of what deserves attention next.</p>
-            <ButtonLink href="/contact">Request a Revenue Review</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form">Request a Revenue Review</ButtonLink>
           </div>
           <div className="loop-visual reveal-item" aria-label="Monthly optimization loop diagram">
             {[["01", "Review"], ["02", "Decide"], ["03", "Act"], ["04", "Measure"]].map(([number, label]) => <div key={label}><span>{number}</span><strong>{label}</strong></div>)}

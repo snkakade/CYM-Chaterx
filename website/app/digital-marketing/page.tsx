@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
+import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
@@ -32,8 +33,12 @@ export default function DigitalMarketingPage() {
         label="Yacht Digital Marketing"
         title="Your digital presence should |work like a sales asset."
         description="A refined website is only valuable when the right guests can find it, understand the experience, trust the operator, and take the next step."
-        image="/images/website-optimization.webp"
-        imageAlt="Premium yacht booking website displayed on a laptop"
+        image="/images/hero-yacht-wake-poster.webp"
+        imageAlt="Top-down aerial view of a yacht moving through dark blue water"
+        video="/videos/charterx-yacht-wake-hero-2k.mp4"
+        videoMobile="/videos/charterx-yacht-wake.mp4"
+        videoPosition="left center"
+        videoMobilePosition="left center"
         primaryLabel="Review My Website"
         secondaryLabel="Explore Digital Services"
         secondaryHref="#digital-capabilities"
@@ -44,9 +49,19 @@ export default function DigitalMarketingPage() {
           <SectionLabel index="01">From search to enquiry</SectionLabel>
           <h2>Beautiful is the standard. <em>Commercially useful is the goal.</em></h2>
           <p>Your website, organic visibility, paid search, landing pages, and tracking should make one coherent journey. We connect the visual experience to genuine guest intent.</p>
-          <ButtonLink href="/contact">Request a Digital Review</ButtonLink>
+          <ButtonLink href="/contact#enquiry-form">Request a Digital Review</ButtonLink>
         </div>
       </section>
+      <VideoFeature
+        src="/videos/charterx-sailing.mp4"
+        label="Digital presence"
+        title="The experience should feel considered before the guest steps aboard."
+        direction="Quiet close-ups of yacht details, polished surfaces, water reflections, and a guest browsing a refined charter website."
+        poster="/images/website-optimization.webp"
+        posterAlt="Sailing yacht moving through clear blue water"
+        position="35% center"
+        mobilePosition="38% center"
+      />
       <section className="capabilities section-shell" id="digital-capabilities">
         <div className="section-heading-grid reveal-item"><SectionLabel index="02">Digital capabilities</SectionLabel><h2>Every layer of a stronger <em>direct presence.</em></h2><p>Use the full programme or start with the commercial layer creating the most friction today.</p></div>
         <div className="capability-grid">

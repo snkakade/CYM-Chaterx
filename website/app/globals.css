@@ -253,6 +253,28 @@ h2{font-size:clamp(2.8rem,5.1vw,5.9rem)}
 @media(max-width:899px){.footer-top{grid-template-columns:1fr}.score-orbit{margin-top:2.5rem}.score-result-heading{align-items:flex-start;flex-direction:column}}
 @media(max-width:620px){.growth-step-icon{right:1rem;bottom:1.5rem;width:4.8rem;height:4.8rem}.growth-step-icon svg{width:2.9rem;height:2.9rem}.site-footer{padding-top:2rem}.footer-promise h2{margin-top:1rem;font-size:2.15rem}.footer-top{gap:1.5rem;padding-bottom:1.15rem}.footer-links{gap:1rem}.footer-links>div{gap:.28rem}.footer-label{margin-bottom:.25rem}.footer-utility{gap:.55rem;padding:.65rem 0}.footer-utility nav{align-items:center;flex-direction:row;gap:.55rem 1rem}.footer-bottom{display:grid;grid-template-columns:1fr auto;padding-top:.65rem}.footer-bottom p:nth-child(2){grid-column:1/-1;grid-row:2}.score-orbit{width:12.5rem;height:12.5rem}.score-orbit>i{transform:rotate(var(--angle)) translateY(-6.25rem)}.score-result-heading strong{font-size:4.5rem}}
 
+/* Keep the desktop diagnostic completely visible in one viewport. */
+@media(min-width:900px){
+  .revamp-home .score-section{min-height:calc(100svh - 4.6rem);gap:clamp(3rem,6vw,7rem);align-items:center;padding-top:clamp(4.75rem,7vh,6.25rem);padding-bottom:clamp(3.5rem,6vh,5rem)}
+  .revamp-home .score-intro h2{max-width:38rem;margin:1.2rem 0 .8rem;font-size:clamp(3.1rem,4.2vw,4.9rem);line-height:.98}
+  .revamp-home .score-intro>p{max-width:34rem;font-size:.92rem;line-height:1.65}
+  .revamp-home .score-orbit{width:11.5rem;height:11.5rem;margin:1.5rem 0 1.25rem}
+  .revamp-home .score-orbit strong{font-size:3.6rem}
+  .revamp-home .score-orbit>i{transform:rotate(var(--angle)) translateY(-5.75rem)}
+  .revamp-home .score-lenses{grid-template-columns:repeat(4,minmax(0,1fr));max-width:38rem}
+  .revamp-home .score-lenses span{padding:.58rem .65rem;font-size:.48rem}
+  .revamp-home .score-meta{margin-top:1rem}
+  .revamp-home .score-meta span{padding:.35rem .58rem;font-size:.49rem}
+  .revamp-home .score-card{align-self:center;min-height:0;padding:1.1rem}
+  .revamp-home .score-progress{padding-bottom:1rem}
+  .revamp-home .score-panel{min-height:25rem;padding:2.2rem 2rem 1.5rem}
+  .revamp-home .score-question-number{font-size:3.7rem;line-height:1}
+  .revamp-home .score-panel h3{margin:.2rem 0 .75rem;font-size:clamp(2.25rem,3vw,3.25rem);line-height:1.02}
+  .revamp-home .score-choices{margin-top:2rem}
+  .revamp-home .score-result-heading{margin:.6rem 0 1rem}
+  .revamp-home .score-result-heading strong{font-size:4.4rem}
+}
+
 /* Honest proof positions: premium layout without invented people or brands. */
 .testimonial-section{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(4rem,9vw,10rem);padding-top:clamp(8rem,12vw,13rem);padding-bottom:clamp(8rem,12vw,13rem)}
 .testimonial-intro{position:sticky;top:8rem;align-self:start}

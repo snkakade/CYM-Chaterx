@@ -77,6 +77,10 @@ export function YachtGrowthScore() {
         <div className="score-meta"><span>≈ 60 seconds</span><span>No email required</span><span>No inflated promises</span></div>
       </div>
       <div className="score-card reveal-item">
+        <div className="score-interactive-label">
+          <span><i aria-hidden="true" />Interactive assessment</span>
+          <small>Select one answer to continue</small>
+        </div>
         <div className="score-progress">
           <span>{isComplete ? "Complete" : `Question ${current + 1} of ${questions.length}`}</span>
           <div><i style={{ width: `${(Math.min(current, questions.length) / questions.length) * 100}%` }} /></div>
@@ -89,8 +93,8 @@ export function YachtGrowthScore() {
               <h3>{questions[current]}</h3>
               <p>Choose the answer that best reflects your current operating setup.</p>
               <div className="score-choices">
-                <button type="button" onClick={() => answer(true)}>Yes <ArrowIcon direction="right" /></button>
-                <button type="button" onClick={() => answer(false)}>Not yet <ArrowIcon direction="right" /></button>
+                <button type="button" onClick={() => answer(true)}><span><small>Option A</small><strong>Yes</strong></span><span className="score-choice-action">Choose <ArrowIcon direction="right" /></span></button>
+                <button type="button" onClick={() => answer(false)}><span><small>Option B</small><strong>Not yet</strong></span><span className="score-choice-action">Choose <ArrowIcon direction="right" /></span></button>
               </div>
             </>
           ) : (

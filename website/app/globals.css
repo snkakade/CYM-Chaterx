@@ -240,6 +240,18 @@ h2{font-size:clamp(2.8rem,5.1vw,5.9rem)}
 .score-lenses span:before{display:inline-block;width:.4rem;height:.4rem;margin-right:.6rem;border-radius:50%;background:var(--aqua-400);content:""}
 .score-result-heading{display:flex;align-items:end;gap:1.4rem;margin:.8rem 0 1.5rem}.score-result-heading>div{display:flex;align-items:baseline;min-width:max-content}.score-result-heading strong{font-family:var(--font-display);font-size:5.5rem;font-weight:400;line-height:.8;color:var(--champagne-500)}.score-result-heading span{color:var(--slate-500);font-family:var(--font-mono);font-size:.65rem}.score-result-heading h3{margin:0}
 .score-imported{display:block;margin:.25rem 0 .7rem;padding:.75rem .9rem;border-left:2px solid var(--aqua-500);background:rgba(78,148,139,.08);color:var(--ocean-700);font-size:.72rem;font-weight:500;line-height:1.5}
+.score-card{position:relative;border:1px solid rgba(196,154,103,.5);box-shadow:0 2rem 6rem rgba(7,19,21,.2),inset 0 0 0 1px rgba(255,255,255,.75)}
+.score-card:before{position:absolute;top:-1px;left:-1px;width:5.5rem;height:3px;background:linear-gradient(90deg,var(--champagne-500),var(--aqua-500));content:""}
+.score-interactive-label{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.1rem 0 .9rem;margin-bottom:1rem;border-bottom:1px solid var(--line);font-family:var(--font-mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase}
+.score-interactive-label>span{display:flex;align-items:center;color:var(--ocean-700);font-weight:500}.score-interactive-label i{width:.5rem;height:.5rem;margin-right:.55rem;border-radius:50%;background:var(--aqua-500);box-shadow:0 0 0 0 rgba(78,148,139,.42);animation:score-pulse 2s ease-out infinite}
+.score-interactive-label small{color:var(--champagne-500);font:inherit}
+@keyframes score-pulse{0%{box-shadow:0 0 0 0 rgba(78,148,139,.42)}70%,100%{box-shadow:0 0 0 .55rem rgba(78,148,139,0)}}
+.score-choices button{position:relative;align-items:center;overflow:hidden;min-height:5.25rem;background:rgba(255,255,255,.38)}
+.score-choices button:before{position:absolute;inset:0;background:linear-gradient(110deg,rgba(145,201,192,.16),transparent 62%);content:"";opacity:0;transition:opacity .3s}
+.score-choices button>span{position:relative;z-index:1}.score-choices button>span:first-child{display:flex;flex-direction:column;gap:.12rem}.score-choices button small{font-family:var(--font-mono);font-size:.48rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--champagne-500)}.score-choices button strong{font-size:1rem;font-weight:600}
+.score-choice-action{display:flex;align-items:center;gap:.7rem;font-family:var(--font-mono);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase}.score-choice-action .arrow-icon{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--navy-900);color:var(--white);transition:background .3s,transform .3s}
+.score-choices button:hover:before,.score-choices button:focus-visible:before{opacity:1}.score-choices button:hover .score-choice-action .arrow-icon,.score-choices button:focus-visible .score-choice-action .arrow-icon{transform:translateX(.28rem)}
+.score-choices button:first-child{border-color:rgba(78,148,139,.5);background:rgba(78,148,139,.08)}.score-choices button:last-child{border-color:rgba(196,154,103,.48);background:rgba(196,154,103,.07)}.score-choices button:hover .score-choice-action .arrow-icon,.score-choices button:focus-visible .score-choice-action .arrow-icon{background:var(--champagne-400);color:var(--navy-950)}
 
 /* Full-width, shorter closing section. */
 .site-footer{padding:2.75rem var(--page-pad) 1rem}
@@ -266,7 +278,7 @@ h2{font-size:clamp(2.8rem,5.1vw,5.9rem)}
   .revamp-home .score-meta{margin-top:1rem}
   .revamp-home .score-meta span{padding:.35rem .58rem;font-size:.49rem}
   .revamp-home .score-card{align-self:center;min-height:0;padding:1.1rem}
-  .revamp-home .score-progress{padding-bottom:1rem}
+  .revamp-home .score-progress{padding-bottom:1rem;border-bottom:0}
   .revamp-home .score-panel{min-height:25rem;padding:2.2rem 2rem 1.5rem}
   .revamp-home .score-question-number{font-size:3.7rem;line-height:1}
   .revamp-home .score-panel h3{margin:.2rem 0 .75rem;font-size:clamp(2.25rem,3vw,3.25rem);line-height:1.02}

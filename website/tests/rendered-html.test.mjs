@@ -28,6 +28,8 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /Yacht Growth Score/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /Collabrative Yatch Managemnet Limited/);
+  assert.match(html, /Designed by Shreyash K/);
+  assert.match(html, /https:\/\/shreyashkakade\.com\/websites/);
   assert.match(html, /og:image/);
   assert.match(html, /twitter:card/);
   assert.match(html, /rel="canonical"/);

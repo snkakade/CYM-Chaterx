@@ -75,7 +75,7 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <a className="header-cta" href="/contact#enquiry-form">Get Started <ArrowIcon /></a>
+          <a className="button button--primary" href="/contact#enquiry-form">Get a Quote <ArrowIcon /></a>
           <button
             className={`menu-toggle ${isOpen ? "is-open" : ""}`}
             type="button"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Montserrat, Inter } from "next/font/google";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Footer } from "@/components/Footer";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -8,6 +9,18 @@ import { YachtLoader } from "@/components/YachtLoader";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://charterx.example.com";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -42,6 +55,7 @@ export default function RootLayout({
       </head>
       <body
         id="top"
+        className={`${montserrat.variable} ${inter.variable}`}
       >
         <YachtLoader />
         <a className="skip-link" href="#main-content">Skip to content</a>

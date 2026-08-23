@@ -24,7 +24,7 @@ export default function AboutPage() {
         description="We support yacht owners and operators with the business systems around the vessel: visibility, listings, enquiry handling, website performance, search, and revenue strategy."
         image="/images/hero-marina-poster.webp"
         imageAlt="Motor yachts moving through a contemporary marina"
-        video="/videos/charterx-marina-hero-hq.mp4"
+        video="/videos/charterx-marina-web.mp4"
         videoMobile="/videos/charterx-marina-mobile.mp4"
         videoPosition="center center"
         videoMobilePosition="center center"

@@ -66,6 +66,7 @@ export function Header() {
 
     if (isOpen) {
       document.body.classList.add("menu-open");
+      menu.scrollTop = 0;
       gsap.set(menu, { display: "flex" });
       const timeline = gsap.timeline();
       timeline
@@ -183,7 +184,7 @@ export function Header() {
         <nav aria-label="Mobile navigation">
           {mobileLinks.map((link, index) => (
             <a className="mobile-nav-link" href={link.href} key={link.href} tabIndex={isOpen ? 0 : -1} onClick={() => setIsOpen(false)}>
-              <span>0{index + 1}</span>{link.label}
+              <span>{String(index + 1).padStart(2, "0")}</span>{link.label}
             </a>
           ))}
         </nav>

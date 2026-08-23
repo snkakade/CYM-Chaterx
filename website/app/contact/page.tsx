@@ -22,7 +22,7 @@ export default function ContactPage() {
         description="Share your vessel, market, current platforms, and commercial goals. We will review where we can help improve visibility, enquiries, and booking performance."
         image="/images/hero-yacht-wake-poster.webp"
         imageAlt="Top-down aerial view of a yacht drawing a curved wake"
-        video="/videos/charterx-yacht-wake-hero-2k.mp4"
+        video="/videos/charterx-yacht-wake.mp4"
         videoMobile="/videos/charterx-yacht-wake.mp4"
         primaryLabel="Start Your Enquiry"
         primaryHref="#enquiry-form"

@@ -80,7 +80,7 @@ export default function ServicesPage() {
         description="We provide the expertise, systems, and people to maximize your yacht's booking revenue."
         image="/images/hero-aerial-poster.webp"
         imageAlt="Luxury motor yacht resting in calm water at sunset"
-        video="/videos/charterx-yacht-aerial-hero-2k.mp4"
+        video="/videos/charterx-yacht-aerial.mp4"
         videoMobile="/videos/charterx-yacht-aerial.mp4"
         videoPosition="35% center"
         videoMobilePosition="35% center"

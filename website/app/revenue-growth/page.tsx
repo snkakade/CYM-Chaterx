@@ -35,7 +35,7 @@ export default function RevenueGrowthPage() {
         description="We help yacht businesses move away from reactive pricing and scattered channel decisions towards a clearer, more controlled commercial process."
         image="/images/hero-sailing-poster.webp"
         imageAlt="Sailing yacht cutting through deep blue Mediterranean water"
-        video="/videos/charterx-sailing-hero-2k.mp4"
+        video="/videos/charterx-sailing.mp4"
         videoMobile="/videos/charterx-sailing.mp4"
         videoPosition="35% center"
         videoMobilePosition="38% center"

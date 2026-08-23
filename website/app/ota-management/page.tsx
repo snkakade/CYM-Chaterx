@@ -31,7 +31,7 @@ export default function OTAManagementPage() {
         description="We manage and improve your yacht listings across relevant booking platforms, so your vessel is presented clearly, priced thoughtfully, and supported by a better enquiry process."
         image="/images/hero-city-yacht-poster.webp"
         imageAlt="Motor yacht passing a waterfront skyline in open blue water"
-        video="/videos/charterx-city-yacht-hero-2k.mp4"
+        video="/videos/charterx-city-yacht-web.mp4"
         videoMobile="/videos/charterx-city-yacht-mobile.mp4"
         videoPosition="center center"
         videoMobilePosition="center center"

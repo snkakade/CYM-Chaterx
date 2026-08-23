@@ -34,7 +34,7 @@ export default function DigitalMarketingPage() {
         description="We improve yacht websites, landing pages, SEO, paid search, enquiry tracking, and campaign foundations so your digital presence supports real commercial outcomes."
         image="/images/hero-yacht-wake-poster.webp"
         imageAlt="Top-down aerial view of a yacht moving through dark blue water"
-        video="/videos/charterx-yacht-wake-hero-2k.mp4"
+        video="/videos/charterx-yacht-wake.mp4"
         videoMobile="/videos/charterx-yacht-wake.mp4"
         videoPosition="left center"
         videoMobilePosition="left center"

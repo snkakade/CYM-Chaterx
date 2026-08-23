@@ -23,7 +23,7 @@ export default function InsightsPage() {
         description="Practical advice for owners and operators navigating booking platforms and digital performance."
         image="/images/hero-ocean-poster.webp"
         imageAlt="Calm open water viewed from above"
-        video="/videos/charterx-ocean-texture-hero-2k.mp4"
+        video="/videos/charterx-ocean-texture.mp4"
         videoMobile="/videos/charterx-ocean-texture.mp4"
         primaryLabel="Explore Latest Insights"
         primaryHref="#insight-library"

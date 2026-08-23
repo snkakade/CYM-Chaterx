@@ -23,13 +23,11 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Turn Your Yacht Into a/);
-  assert.match(html, /High-Performing Business/);
-  assert.match(html, /Yacht Growth Score/);
+  assert.match(html, /More bookings/);
+  assert.match(html, /Less drift/);
+  assert.match(html, /Check your growth score/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /Collabrative Yatch Managemnet Limited/);
-  assert.match(html, /Designed by Shreyash K/);
-  assert.match(html, /https:\/\/shreyashkakade\.com\/websites/);
   assert.match(html, /og:image/);
   assert.match(html, /twitter:card/);
   assert.match(html, /rel="canonical"/);
@@ -38,18 +36,10 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /G-G01ETXS1PF/);
   assert.match(html, /gtag\('consent', 'default'/);
   assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
-  assert.match(html, /charterx-yacht-aerial\.mp4/);
-  assert.match(html, /charterx-yacht-wake\.mp4/);
   assert.match(html, /charterx-marina-hero-hq\.mp4/);
   assert.match(html, /charterx-sunset-yacht\.webp/);
-  assert.match(html, /charterx-classic-yacht-detail\.webp/);
-  assert.match(html, /charterx-ocean-texture\.mp4/);
-  assert.match(html, /media="\(max-width: 899px\)"/);
-  assert.match(html, /Live preview of the CharterX OTA Management page/);
-  assert.match(html, /Replace with verified client attribution/);
+  assert.match(html, /charterx-yacht-deck\.webp/);
   assert.match(html, /Loading CharterX/);
-  assert.match(html, /hero-media-caption/);
-  assert.match(html, /Built ashore · Working worldwide/);
   assert.doesNotMatch(html, /ambient-video-toggle|film-status|Pause film|Play film/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
@@ -136,6 +126,5 @@ test("growth score carries diagnostic answers into the enquiry form", async () =
   assert.match(score, /\/contact\?source=growth-score#enquiry-form/);
   assert.match(form, /sessionStorage\.getItem\(GROWTH_SCORE_STORAGE_KEY/);
   assert.match(form, /formatGrowthScoreNotes\(payload\)/);
-  assert.match(footer, /We grow the business\./);
-  assert.doesNotMatch(footer, /We help grow the business\./);
+  assert.match(footer, /One commercial system for a yacht business that moves with purpose\./);
 });

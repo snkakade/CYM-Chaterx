@@ -129,16 +129,20 @@ export function LanguageSelector() {
     
     // Recover selected language from cookie on mount
     const match = document.cookie.match(/(?:^|;)\s*googtrans=([^;]*)/);
+    let selectedTimer: number | undefined;
     if (match && match[1]) {
       const parts = match[1].split('/');
       const code = parts[parts.length - 1];
       const lang = languages.find(l => l.code === code);
       if (lang) {
-        setSelected(lang);
+        selectedTimer = window.setTimeout(() => setSelected(lang), 0);
       }
     }
 
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      if (selectedTimer !== undefined) window.clearTimeout(selectedTimer);
+    };
   }, []);
 
   return (

@@ -6,7 +6,6 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
 import { YachtLoader } from "@/components/YachtLoader";
-import { ChatWidget } from "@/components/ChatWidget";
 import { GoogleTranslate } from "@/components/GoogleTranslate";
 import "./globals.css";
 
@@ -26,19 +25,19 @@ const interBody = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "CharterX | Yacht Growth & Management", template: "%s | CharterX" },
-  description: "Commercial growth for yacht and boat owners through OTA management, sales support, website optimization, digital marketing, and revenue strategy.",
+  title: { default: "CharterX | More Bookings. Less Drift.", template: "%s | CharterX" },
+  description: "One focused commercial growth system for yacht listings, pricing, enquiries and digital visibility.",
   keywords: ["yacht management", "yacht business growth", "yacht OTA management", "boat rental management", "yacht revenue management", "yacht digital marketing"],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_GB",
     siteName: "CharterX",
-    title: "Turn Your Yacht Into a High-Performing Business",
-    description: "You operate the yacht. We help grow the business.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "CharterX — Turn Your Yacht Into a High-Performing Business" }],
+    title: "More Bookings. Less Drift.",
+    description: "One commercial growth system for yacht businesses.",
+    images: [{ url: "/og-v2.png", width: 1200, height: 630, alt: "CharterX — More bookings. Less drift." }],
   },
-  twitter: { card: "summary_large_image", title: "CharterX", description: "Yacht Growth & Management", images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title: "CharterX — More Bookings. Less Drift.", description: "One commercial growth system for yacht businesses.", images: ["/og-v2.png"] },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -67,7 +66,6 @@ export default function RootLayout({
         <Footer />
         <MotionProvider />
         <CookieConsent />
-        <ChatWidget />
         <GoogleTranslate />
         <script
           type="application/ld+json"

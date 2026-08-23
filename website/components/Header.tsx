@@ -18,7 +18,6 @@ const aboutSubLinks = [
   { href: "/about", label: "Story" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
-  { href: "/admin", label: "Admin Login" },
 ];
 
 const mobileLinks = [
@@ -32,7 +31,6 @@ const mobileLinks = [
   { href: "/about", label: "Story" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
-  { href: "/admin", label: "Admin Login" },
 ];
 
 export function Header() {
@@ -163,7 +161,7 @@ export function Header() {
           {/* Right: Language Dropdown + CTA Button */}
           <div className="header-right">
             <LanguageSelector />
-            <a className="button button--aqua-cta" href="/contact#enquiry-form">BOOK STRATEGY CALL</a>
+            <a className="button button--aqua-cta" href="/contact#enquiry-form">GET A GROWTH PLAN</a>
           </div>
 
           {/* Mobile toggle */}
@@ -190,9 +188,9 @@ export function Header() {
           ))}
         </nav>
         <div className="mobile-menu-footer">
-          <p>You operate the yacht.<br />We grow the business.</p>
+          <p>More bookings.<br />Less drift.</p>
           <a className="button button--primary" href="/contact#enquiry-form" tabIndex={isOpen ? 0 : -1} onClick={() => setIsOpen(false)}>
-            <span>Book a Strategy Call</span><ArrowIcon />
+            <span>Get a Growth Plan</span><ArrowIcon />
           </a>
         </div>
       </div>

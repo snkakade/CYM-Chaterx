@@ -72,8 +72,8 @@ export function ContactForm() {
       <div className="form-success" role="status">
         <span aria-hidden="true">✓</span>
         <p className="kicker">Enquiry received</p>
-        <h2>Thank you. Your yacht is on our radar.</h2>
-        <p>Your enquiry has reached the CharterX commercial desk. We’ll review your vessel, market, and current setup before responding.</p>
+        <h2>Thank you. We have received your enquiry.</h2>
+        <p>We will review your details and come back with the next suitable step.</p>
         {reference && <p className="form-reference">Reference: {reference}</p>}
         <button type="button" onClick={() => { setSubmitted(false); setSubmitting(false); }}>Submit another enquiry</button>
       </div>
@@ -88,10 +88,12 @@ export function ContactForm() {
         <label><span>Name *</span><input name="name" type="text" autoComplete="name" required placeholder="Your name" /></label>
         <label><span>Email *</span><input name="email" type="email" autoComplete="email" required placeholder="name@company.com" /></label>
         <label><span>Phone / WhatsApp</span><input name="phone" type="tel" autoComplete="tel" placeholder="Country code + number" /></label>
-        <label><span>Yacht or boat type *</span><input name="vesselType" type="text" required placeholder="e.g. Motor yacht, sailing yacht" /></label>
+        <label><span>Business name</span><input name="businessName" type="text" placeholder="Your operating business name" /></label>
+        <label><span>Yacht or vessel type *</span><input name="vesselType" type="text" required placeholder="e.g. Motor yacht, sailing yacht" /></label>
         <label><span>Location / market *</span><input name="location" type="text" required placeholder="Where do you operate?" /></label>
-        <label><span>Current booking platforms</span><input name="platforms" type="text" placeholder="Platforms or direct only" /></label>
-        <label><span>Website URL</span><input name="website" type="url" placeholder="https://" /></label>
+        <label><span>Current booking platforms</span><input name="platforms" type="text" placeholder="List any booking platforms or OTAs you currently use" /></label>
+        <label><span>Website URL</span><input name="website" type="url" placeholder="Share your current website if you have one" /></label>
+        <label><span>Number of vessels</span><input name="numberOfVessels" type="text" placeholder="e.g. 1 yacht, small fleet" /></label>
         <label>
           <span>Biggest challenge *</span>
           <select name="challenge" required defaultValue="">
@@ -100,13 +102,13 @@ export function ContactForm() {
             <option>Pricing and revenue</option><option>Digital marketing</option><option>Complete growth support</option>
           </select>
         </label>
-        <label><span>Monthly booking goal</span><input name="goal" type="text" placeholder="A realistic target or range" /></label>
+        <label><span>Monthly booking goal</span><input name="goal" type="text" placeholder="A rough target is enough." /></label>
         <label className="field-full"><span>Message / review notes *</span>{scoreImported && <small className="score-imported">Your Yacht Growth Score and answers have been added for our review.</small>}<textarea name="message" rows={scoreImported ? 12 : 5} required value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Tell us about the vessel, current setup, and what you want to improve." /></label>
       </div>
       {error && <p className="form-error" role="alert">{error}</p>}
       <div className="form-submit">
-        <button className="button button--primary" type="submit" disabled={submitting}><span>{submitting ? "Sending Enquiry…" : "Submit Enquiry"}</span><ArrowIcon /></button>
-        <p>By submitting, you agree to be contacted about this enquiry. No automated mailing list.</p>
+        <button className="button button--primary" type="submit" disabled={submitting}><span>{submitting ? "Requesting Review…" : "Request Review"}</span><ArrowIcon /></button>
+        <p>No hard sell. We will review the setup first. We will respond with the most useful next step.</p>
       </div>
     </form>
   );

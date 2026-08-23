@@ -10,14 +10,14 @@ import { otaFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
-  title: "Yacht OTA Management Services | Improve Visibility & Bookings",
-  description: "Professional OTA management for yacht and boat owners. Improve listings, pricing, availability, inquiries, visibility, and bookings across boat-rental and travel platforms.",
+  title: "Yacht OTA Management Services | Listing Optimisation & Enquiry Support",
+  description: "Improve yacht listing quality, platform visibility, pricing, availability, enquiry handling, and ongoing OTA performance with professional yacht OTA management.",
   alternates: { canonical: "/ota-management" },
-  openGraph: { title: "Yacht OTA Management Services", description: "Improve listing quality, visibility, enquiries, and bookings across the right platforms.", url: "/ota-management", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Yacht OTA Management Services", description: "Improve yacht listing visibility, enquiries, and bookings.", images: [twitterImage] },
+  openGraph: { title: "Yacht OTA Management Services | Listing Optimisation & Enquiry Support", description: "Improve yacht listing quality, platform visibility, pricing, availability, enquiry handling, and ongoing OTA performance with professional yacht OTA management.", url: "/ota-management", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "Yacht OTA Management Services", description: "Improve yacht listing quality, platform visibility, pricing, availability, enquiry handling, and ongoing OTA performance with professional yacht OTA management.", images: [twitterImage] },
 };
 
-const managed = ["Platform and profile setup", "Listing copy and content structure", "Photo order and content guidance", "Pricing and seasonal logic", "Availability coordination", "Enquiry monitoring and handoff", "Promotions and visibility tools", "Review and ranking signals", "Performance tracking and refinement"];
+const managed = ["Platform setup", "Listing structure", "Description writing", "Photo order guidance", "Pricing updates", "Calendar accuracy", "Availability coordination", "Guest enquiry monitoring", "Promotion support", "Review and ranking signals", "Performance review", "Ongoing improvements"];
 
 export default function OTAManagementPage() {
   const faqJson = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: otaFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
@@ -25,10 +25,10 @@ export default function OTAManagementPage() {
     <>
       <PageHero
         compact
-        label="Yacht OTA Management"
-        title="Be easier to find. |Stronger to choose."
-        italic="Ready to book."
-        description="Professional yacht and boat rental listing management across the platforms that shape discovery, enquiries, and booking intent."
+        label="OTA Management"
+        title="Make your yacht easier to find"
+        italic="and easier to book."
+        description="We manage and improve your yacht listings across relevant booking platforms, so your vessel is presented clearly, priced thoughtfully, and supported by a better enquiry process."
         image="/images/hero-city-yacht-poster.webp"
         imageAlt="Motor yacht passing a waterfront skyline in open blue water"
         video="/videos/charterx-city-yacht-hero-2k.mp4"
@@ -40,21 +40,21 @@ export default function OTAManagementPage() {
         secondaryHref="#what-we-manage"
       />
       <section className="editorial-intro section-shell">
-        <SectionLabel index="01">What is yacht OTA management?</SectionLabel>
+        <SectionLabel index="01">What OTA Management Means</SectionLabel>
         <div className="editorial-intro-copy reveal-item">
-          <h2>Your listings are not static profiles. They are <em>active sales channels.</em></h2>
-          <p>Yacht OTA management is the ongoing discipline of presenting, pricing, updating, and supporting your vessel across relevant booking platforms. It connects content quality, availability, response speed, and guest confidence.</p>
+          <h2>Your listings are not <em>static profiles.</em></h2>
+          <p>A listing is a sales channel. It needs the right photos, the right order, the right description, the right pricing, accurate availability, quick responses, and regular attention. We manage those details so your yacht does not disappear into a crowded marketplace.</p>
         </div>
       </section>
 
       <section className="underperform-section section-shell">
         <AnimatedImageReveal src="/images/hero-yacht.webp" alt="Luxury motor yacht at blue hour" />
         <div className="underperform-copy reveal-item">
-          <SectionLabel index="02">Why listings underperform</SectionLabel>
-          <h2>Visibility can fade long before the yacht changes.</h2>
-          <p>Incomplete content, unclear pricing, stale calendars, slow replies, weak photo order, and inconsistent platform details create friction for both the guest and the marketplace.</p>
+          <SectionLabel index="02">Why Listings Underperform</SectionLabel>
+          <h2>Most listing problems are small — <em>until they cost bookings.</em></h2>
+          <p>A guest may never tell you why they moved on. It might be a weak first photo, unclear inclusions, slow response, outdated calendar, confusing pricing, or a description that does not match the quality of the yacht. We find and fix those points of friction.</p>
           <div className="friction-list">
-            {["Inconsistent availability", "Unclear value positioning", "Slow enquiry handling", "Weak listing completeness", "No optimization rhythm"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
+            {["Weak first impression", "Poor photo sequence", "Unclear inclusions", "Slow enquiry response", "Inconsistent pricing", "Stale availability", "No review strategy", "No optimisation rhythm"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
           </div>
         </div>
       </section>
@@ -72,21 +72,26 @@ export default function OTAManagementPage() {
       <section className="managed-section section-shell" id="what-we-manage">
         <div className="section-heading-grid reveal-item">
           <SectionLabel index="03">What we manage</SectionLabel>
-          <h2>The details that improve <em>commercial readiness.</em></h2>
-          <p>We establish a consistent operational standard across the guest-facing and performance-facing elements of your listings.</p>
+          <h2>The details that make a yacht <em>commercially ready.</em></h2>
+          <p>We bring structure to the guest-facing and performance-facing parts of your platform presence.</p>
         </div>
         <div className="managed-grid">{managed.map((item, index) => <article className="reveal-item" key={item}><span>0{index + 1}</span><h3>{item}</h3><i /></article>)}</div>
       </section>
 
       <section className="process-section section-shell">
         <div className="process-intro reveal-item">
-          <SectionLabel index="04">Our OTA process</SectionLabel>
-          <h2>From listing audit to <em>ongoing improvement.</em></h2>
-          <p>Optimization begins with clarity, then becomes a repeatable commercial rhythm.</p>
-          <ButtonLink href="/contact#enquiry-form">Request an OTA Review</ButtonLink>
+          <SectionLabel index="04">OTA Process</SectionLabel>
+          <h2>From listing audit to <em>ongoing management.</em></h2>
+          <ButtonLink href="/contact#enquiry-form">Improve My Listings</ButtonLink>
         </div>
         <ol className="process-list">
-          {[["Audit", "Review content, pricing, availability, enquiry flow, and platform consistency."], ["Position", "Clarify your vessel’s audience, value, and competitive frame."], ["Improve", "Implement the priority listing, photo, calendar, and response changes."], ["Operate", "Maintain availability, enquiries, promotions, and review signals."], ["Refine", "Use performance signals to guide the next practical improvements."]].map(([title, copy], index) => <li className="reveal-item" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}
+          {[
+            ["Audit", "We review your current platform presence, content, pricing, availability, and enquiry flow."], 
+            ["Position", "We define how the yacht should be presented based on vessel type, market, guest profile, and value."], 
+            ["Improve", "We update the priority elements that influence trust and enquiry quality."], 
+            ["Manage", "We support the ongoing listing rhythm so information stays accurate and enquiries are handled properly."], 
+            ["Optimise", "We use performance signals to guide practical improvements over time."]
+          ].map(([title, copy], index) => <li className="reveal-item" key={title}><span>0{index + 1}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}
         </ol>
       </section>
 

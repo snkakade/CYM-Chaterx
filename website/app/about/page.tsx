@@ -18,9 +18,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        label="Built Ashore"
-        title="Commercial structure for |assets built to move."
-        description="CharterX exists for yacht owners who want more than maintenance. They want visibility, better enquiries, commercial structure, and a clearer route to revenue."
+        label="About"
+        title="Commercial management for yachts"
+        italic="built to be seen, trusted, and booked."
+        description="We support yacht owners and operators with the business systems around the vessel: visibility, listings, enquiry handling, website performance, search, and revenue strategy."
         image="/images/hero-marina-poster.webp"
         imageAlt="Motor yachts moving through a contemporary marina"
         video="/videos/charterx-marina-hero-hq.mp4"
@@ -34,10 +35,10 @@ export default function AboutPage() {
       />
       <section className="about-origin section-shell">
         <div className="about-origin-copy reveal-item">
-          <SectionLabel index="01">Why we exist</SectionLabel>
-          <h2>Exceptional operations deserve an equally considered <em>commercial engine.</em></h2>
-          <p>Owners and operators carry the responsibility of safety, service, crew, maintenance, and the guest experience. The growth work around the vessel is often left fragmented across platforms, agencies, inboxes, and reactive decisions.</p>
-          <p>We bring those commercial disciplines together ashore—so the yacht team can stay focused on operating an exceptional asset.</p>
+          <SectionLabel index="01">Why We Exist</SectionLabel>
+          <h2>Great yachts deserve better <em>commercial support.</em></h2>
+          <p>Owners already carry enough responsibility: vessel condition, crew, maintenance, safety, guest experience, and operations. The commercial side often becomes fragmented across platforms, inboxes, agencies, spreadsheets, and last-minute decisions.</p>
+          <p>We bring that work into one clearer system.</p>
         </div>
         <AnimatedImageReveal src="/images/charterx-yacht-deck.webp" alt="Elevated view across the guest decks of a luxury motor yacht in calm water" />
       </section>
@@ -50,9 +51,15 @@ export default function AboutPage() {
         posterAlt="Calm ocean surface moving in soft natural light"
       />
       <section className="beliefs-section section-shell" id="philosophy">
-        <div className="section-heading-grid reveal-item"><SectionLabel index="02">What we believe</SectionLabel><h2>Calm growth is built on <em>clear principles.</em></h2><p>Our work is commercially sharp, but never detached from the realities of operating a vessel and protecting a premium guest experience.</p></div>
+        <div className="section-heading-grid reveal-item"><SectionLabel index="02">Philosophy</SectionLabel><h2>Quietly professional. <em>Commercially sharp.</em></h2><p>We believe growth in this market is built through trust, presentation, response quality, and consistency. Not noise. Not inflated promises. Not generic marketing. A yacht business needs calm systems, good judgement, and regular attention to the details that influence bookings.</p></div>
         <div className="belief-grid">
-          {[["Owner time is valuable", "A commercial system should reduce reactive admin, clarify ownership, and make the next decision easier."], ["Trust converts", "Premium guests need prompt, informed answers and a journey that feels considered at every touchpoint."], ["Visibility must be qualified", "More reach is only useful when it brings the right demand for the yacht, market, and operating model."], ["Optimization is a rhythm", "Pricing, listings, channels, content, and response quality improve through consistent review—not one-off activity."], ["Evidence beats theatre", "We avoid inflated promises, vanity metrics, and invented certainty. Useful signals lead to useful action."], ["The owner view comes first", "Every recommendation should respect margin, operations, brand, guest quality, and the realities on board."]].map(([title, copy], index) => <article className="reveal-item" key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
+          {[
+            ["Clarity", "Owners should know what is happening, what is being improved, and why it matters."], 
+            ["Taste", "Premium positioning should feel restrained, confident, and well-edited."], 
+            ["Consistency", "Listings, calendars, prices, responses, and pages need regular care."], 
+            ["Trust", "Guests need confidence before they commit. Owners need confidence before they delegate."], 
+            ["Evidence", "We work from real signals, not vanity metrics."]
+          ].map(([title, copy], index) => <article className="reveal-item" key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
         </div>
       </section>
       <section className="how-we-work">

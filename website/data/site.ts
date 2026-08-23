@@ -9,7 +9,7 @@ export const services = [
   },
   {
     number: "02",
-    slug: "/services#sales-support",
+    slug: "/sales-support",
     eyebrow: "Owner Support",
     title: "Sales & Customer Support",
     description: "Give your business a dedicated team that handles customer inquiries, follows up with leads and helps convert more inquiries into confirmed bookings.",

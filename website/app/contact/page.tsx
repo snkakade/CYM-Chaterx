@@ -6,20 +6,20 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
-  title: "Tell Us About Your Yacht",
-  description: "Share your yacht, market, booking setup, and growth goals. Request a commercial review covering visibility, enquiries, digital presence, and revenue.",
+  title: "Request a Yacht Growth Review",
+  description: "Tell us about your yacht, current booking setup, platforms, website, and growth goals. Request a review of your yacht business commercial setup.",
   alternates: { canonical: "/contact" },
-  openGraph: { title: "Tell Us About Your Yacht | CharterX", description: "Share your vessel, market, booking setup, and growth goals.", url: "/contact", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Tell Us About Your Yacht", description: "Request a considered commercial growth review.", images: [twitterImage] },
+  openGraph: { title: "Request a Yacht Growth Review", description: "Tell us about your yacht, current booking setup, platforms, website, and growth goals. Request a review of your yacht business commercial setup.", url: "/contact", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "Request a Yacht Growth Review", description: "Tell us about your yacht, current booking setup, platforms, website, and growth goals. Request a review of your yacht business commercial setup.", images: [twitterImage] },
 };
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        label="Start a Conversation"
-        title="Tell us about |your yacht."
-        description="Share your vessel, market, current booking setup, and growth goals. We’ll review where we can help improve visibility, inquiries, and revenue."
+        label="Enquiry"
+        title="Tell us about your yacht."
+        description="Share your vessel, market, current platforms, and commercial goals. We will review where we can help improve visibility, enquiries, and booking performance."
         image="/images/hero-yacht-wake-poster.webp"
         imageAlt="Top-down aerial view of a yacht drawing a curved wake"
         video="/videos/charterx-yacht-wake-hero-2k.mp4"
@@ -32,15 +32,9 @@ export default function ContactPage() {
       />
       <section className="contact-section section-shell" id="enquiry-form">
         <div className="contact-aside reveal-item">
-          <SectionLabel index="01">Growth enquiry</SectionLabel>
-          <h2>Give us the useful <em>commercial picture.</em></h2>
-          <p>You do not need a polished brief. A practical outline of the vessel, market, current channels, and biggest friction point is enough to begin.</p>
-          <div className="contact-expect">
-            <div><span>01</span><p>We review your context and current commercial setup.</p></div>
-            <div><span>02</span><p>We identify the most relevant first area to investigate.</p></div>
-            <div><span>03</span><p>We suggest a focused next conversation or review scope.</p></div>
-          </div>
-          <p className="contact-note">No pressure. No inflated forecast. Just a practical first look at where the commercial engine may be losing momentum.</p>
+          <SectionLabel index="01">Form Intro</SectionLabel>
+          <h2>Start with the <em>current setup.</em></h2>
+          <p>You do not need everything organised before speaking to us. Tell us what you have now — listings, website, platforms, enquiries, pricing, and the areas that feel messy. We will help identify what should be improved first.</p>
         </div>
         <ContactForm />
       </section>

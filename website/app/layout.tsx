@@ -6,6 +6,8 @@ import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
 import { YachtLoader } from "@/components/YachtLoader";
+import { ChatWidget } from "@/components/ChatWidget";
+import { GoogleTranslate } from "@/components/GoogleTranslate";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://charterx.example.com";
@@ -16,7 +18,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const inter = Inter({
+const interBody = Inter({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -49,13 +51,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <GoogleAnalytics />
       </head>
       <body
         id="top"
-        className={`${montserrat.variable} ${inter.variable}`}
+        className={`${montserrat.variable} ${interBody.variable}`}
+        suppressHydrationWarning
       >
         <YachtLoader />
         <a className="skip-link" href="#main-content">Skip to content</a>
@@ -64,6 +67,8 @@ export default function RootLayout({
         <Footer />
         <MotionProvider />
         <CookieConsent />
+        <ChatWidget />
+        <GoogleTranslate />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

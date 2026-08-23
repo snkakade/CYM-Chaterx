@@ -16,23 +16,22 @@ export const metadata: Metadata = {
 };
 
 const capabilities = [
-  ["Website strategy", "Define the role your site should play in discovery, trust, enquiry, and direct booking growth."],
-  ["UX optimization", "Remove uncertainty and guide guests from inspiration to practical booking intent."],
-  ["SEO", "Build durable visibility around the markets, experiences, and search intent most relevant to your vessel."],
-  ["SEM", "Structure accountable search campaigns around high-intent demand and measurable enquiry actions."],
-  ["Landing pages", "Create focused journeys for markets, seasons, vessel categories, and campaign intent."],
-  ["Conversion copy", "Answer the questions guests need resolved before they feel confident enough to enquire."],
-  ["Enquiry tracking", "Understand where leads begin, how they move, and which journeys create useful demand."],
-  ["Remarketing readiness", "Create clean audience and measurement foundations for future follow-up campaigns."],
+  ["Website Review", "We identify where visitors lose confidence, get confused, or fail to enquire."],
+  ["Conversion Copy", "We write service pages that answer real guest questions and support enquiry quality."],
+  ["Landing Pages", "We create focused pages for key markets, services, seasons, and campaigns."],
+  ["SEO", "We build search visibility around the terms guests use when they are ready to compare or enquire."],
+  ["Paid Search", "We structure Google Ads campaigns around intent, not vanity traffic."],
+  ["Analytics", "We track meaningful actions: calls, forms, WhatsApp clicks, enquiry starts, and confirmed lead sources."],
+  ["Remarketing Readiness", "We prepare the site for future Meta and Google campaigns with clean tracking foundations."],
 ] as const;
 
 export default function DigitalMarketingPage() {
   return (
     <>
       <PageHero
-        label="Yacht Digital Marketing"
-        title="Your digital presence should |work like a sales asset."
-        description="A refined website is only valuable when the right guests can find it, understand the experience, trust the operator, and take the next step."
+        label="Digital Presence"
+        title="Make your website work like a sales asset."
+        description="We improve yacht websites, landing pages, SEO, paid search, enquiry tracking, and campaign foundations so your digital presence supports real commercial outcomes."
         image="/images/hero-yacht-wake-poster.webp"
         imageAlt="Top-down aerial view of a yacht moving through dark blue water"
         video="/videos/charterx-yacht-wake-hero-2k.mp4"
@@ -46,10 +45,10 @@ export default function DigitalMarketingPage() {
       <section className="digital-intro section-shell">
         <AnimatedImageReveal src="/images/search-visibility.webp" alt="Coastline map with a subtle search visibility overlay" />
         <div className="digital-intro-copy reveal-item">
-          <SectionLabel index="01">From search to enquiry</SectionLabel>
-          <h2>Beautiful is the standard. <em>Commercially useful is the goal.</em></h2>
-          <p>Your website, organic visibility, paid search, landing pages, and tracking should make one coherent journey. We connect the visual experience to genuine guest intent.</p>
-          <ButtonLink href="/contact#enquiry-form">Request a Digital Review</ButtonLink>
+          <SectionLabel index="01">Website Strategy</SectionLabel>
+          <h2>Premium design is <em>only the beginning.</em></h2>
+          <p>A yacht website should create confidence quickly. Guests need to understand the vessel, the experience, the location, the process, what is included, and how to enquire. If the site is beautiful but unclear, it is not doing its job.</p>
+          <ButtonLink href="/contact#enquiry-form">Review My Website</ButtonLink>
         </div>
       </section>
       <VideoFeature
@@ -63,7 +62,7 @@ export default function DigitalMarketingPage() {
         mobilePosition="38% center"
       />
       <section className="capabilities section-shell" id="digital-capabilities">
-        <div className="section-heading-grid reveal-item"><SectionLabel index="02">Digital capabilities</SectionLabel><h2>Every layer of a stronger <em>direct presence.</em></h2><p>Use the full programme or start with the commercial layer creating the most friction today.</p></div>
+        <div className="section-heading-grid reveal-item"><SectionLabel index="02">Digital Capabilities</SectionLabel><h2>Every layer of a stronger <em>direct presence.</em></h2><p>Use the full programme or start with the commercial layer creating the most friction today.</p></div>
         <div className="capability-grid">
           {capabilities.map(([title, copy], index) => <article className="reveal-item" key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
         </div>

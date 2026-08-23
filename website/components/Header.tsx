@@ -5,15 +5,34 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ArrowIcon } from "./ArrowIcon";
 import { Logo } from "./Logo";
+import { LanguageSelector } from "./LanguageSelector";
 
-const links = [
+const serviceSubLinks = [
+  { href: "/ota-management", label: "OTA Management" },
+  { href: "/revenue-growth", label: "Revenue Growth" },
+  { href: "/digital-marketing", label: "Digital Marketing" },
+  { href: "/sales-support", label: "Sales Support" },
+];
+
+const aboutSubLinks = [
+  { href: "/about", label: "Story" },
+  { href: "/insights", label: "Insights" },
+  { href: "/contact", label: "Contact" },
+  { href: "/admin", label: "Admin Login" },
+];
+
+const mobileLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/ota-management", label: "OTA Management" },
   { href: "/revenue-growth", label: "Revenue Growth" },
   { href: "/digital-marketing", label: "Digital Marketing" },
+  { href: "/sales-support", label: "Sales Support" },
+  { href: "/yacht-growth-score", label: "Yacht Growth Score" },
+  { href: "/about", label: "Story" },
   { href: "/insights", label: "Insights" },
   { href: "/contact", label: "Contact" },
+  { href: "/admin", label: "Admin Login" },
 ];
 
 export function Header() {
@@ -21,6 +40,18 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  /* Homepage has dark hero video → white text. All other pages have light heroes → dark text. */
+  const isHomepage = pathname === "/";
+  const headerTheme = isHomepage ? "" : "header--light-page";
+
+  const isServicesActive =
+    pathname === "/services" ||
+    serviceSubLinks.some((l) => pathname === l.href);
+
+  const isAboutActive =
+    pathname === "/about" ||
+    aboutSubLinks.some((l) => pathname === l.href);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -65,17 +96,77 @@ export function Header() {
 
   return (
     <>
-      <header className={`site-header ${scrolled || isOpen ? "is-solid" : ""}`}>
-        <div className="header-inner">
-          <Logo onClick={() => setIsOpen(false)} />
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            {links.slice(0, -1).map((link) => (
-              <a className={pathname === link.href ? "is-active" : ""} href={link.href} key={link.href}>
-                {link.label}
+      <header className={`site-header ${scrolled || isOpen ? "is-solid" : ""} ${headerTheme}`}>
+        <div className="header-inner header-inner--centered">
+          {/* Left: 3 Navigation Tabs */}
+          <nav className="desktop-nav desktop-nav--left" aria-label="Primary navigation">
+            <a className={pathname === "/" ? "is-active" : ""} href="/">Home</a>
+
+            {/* Services with hover dropdown */}
+            <div className="nav-dropdown-wrapper">
+              <a
+                className={`nav-dropdown-trigger ${isServicesActive ? "is-active" : ""}`}
+                href="/services"
+              >
+                Services
+                <svg className="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </a>
-            ))}
+              <div className="nav-dropdown">
+                {serviceSubLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={pathname === link.href ? "is-active" : ""}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="nav-dropdown-wrapper">
+              <a
+                className={`nav-dropdown-trigger ${isAboutActive ? "is-active" : ""}`}
+                href="/about"
+              >
+                About
+                <svg className="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+              <div className="nav-dropdown">
+                {aboutSubLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={pathname === link.href ? "is-active" : ""}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <a
+              className={pathname === "/yacht-growth-score" ? "is-active" : ""}
+              href="/yacht-growth-score"
+            >
+              Yacht Growth Score
+            </a>
           </nav>
-          <a className="button button--primary" href="/contact#enquiry-form">Get a Quote <ArrowIcon /></a>
+
+          {/* Center: Logo */}
+          <Logo onClick={() => setIsOpen(false)} />
+
+          {/* Right: Language Dropdown + CTA Button */}
+          <div className="header-right">
+            <LanguageSelector />
+            <a className="button button--aqua-cta" href="/contact#enquiry-form">BOOK STRATEGY CALL</a>
+          </div>
+
+          {/* Mobile toggle */}
           <button
             className={`menu-toggle ${isOpen ? "is-open" : ""}`}
             type="button"
@@ -88,9 +179,11 @@ export function Header() {
           </button>
         </div>
       </header>
+
+      {/* Mobile Menu */}
       <div className="mobile-menu" id="mobile-menu" ref={menuRef} aria-hidden={!isOpen}>
         <nav aria-label="Mobile navigation">
-          {links.map((link, index) => (
+          {mobileLinks.map((link, index) => (
             <a className="mobile-nav-link" href={link.href} key={link.href} tabIndex={isOpen ? 0 : -1} onClick={() => setIsOpen(false)}>
               <span>0{index + 1}</span>{link.label}
             </a>

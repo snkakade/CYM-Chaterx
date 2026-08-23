@@ -17,36 +17,37 @@ export const metadata: Metadata = {
 };
 
 const levers = [
-  ["Pricing is not guessing", "A pricing rhythm should reflect seasonality, demand, lead time, vessel position, and the value of the experience—not just what a competitor charged yesterday."],
-  ["Availability affects revenue", "An accurate, deliberate calendar increases guest confidence and creates space to protect premium dates, fill need periods, and reduce avoidable friction."],
-  ["Content affects conversion", "The way your vessel is framed, ordered, described, and explained influences whether discovery becomes intent—or another closed tab."],
-  ["Response speed affects booking rate", "Fast matters, but trusted response matters more. Clear ownership, useful answers, and consistent follow-up create booking confidence."],
-  ["Channel mix affects profit", "The goal is not to be everywhere. It is to understand which platforms, partners, and direct routes deserve time, availability, and margin."],
-  ["Direct bookings matter", "A stronger direct path creates guest ownership, better insight, and more control over the long-term value of every marketing effort."],
+  ["Pricing", "Pricing should reflect demand, seasonality, lead time, experience value, and owner priorities — not just what someone nearby listed last week."],
+  ["Availability", "A clear calendar builds confidence and protects high-value dates from poor planning."],
+  ["Presentation", "The way your yacht is described, photographed, and packaged shapes how guests judge value."],
+  ["Response", "Fast is useful. Clear is better. Guests book when they feel understood and confident."],
+  ["Channel Mix", "Not every platform deserves the same attention. We help decide where your yacht should show up and why."],
+  ["Direct Demand", "A stronger website and enquiry journey gives the business more control beyond third-party platforms."],
 ] as const;
 
 export default function RevenueGrowthPage() {
   return (
     <>
       <PageHero
-        label="Yacht Revenue Strategy"
-        title="Build a smarter revenue |system around your yacht."
-        description="Revenue improves when pricing, availability, content, response, channel mix, and direct bookings work as one commercial operating system."
+        label="Revenue Strategy"
+        title="Build a more deliberate"
+        italic="revenue rhythm."
+        description="We help yacht businesses move away from reactive pricing and scattered channel decisions towards a clearer, more controlled commercial process."
         image="/images/hero-sailing-poster.webp"
         imageAlt="Sailing yacht cutting through deep blue Mediterranean water"
         video="/videos/charterx-sailing-hero-2k.mp4"
         videoMobile="/videos/charterx-sailing.mp4"
         videoPosition="35% center"
         videoMobilePosition="38% center"
-        primaryLabel="Build My Revenue System"
+        primaryLabel="Request a Revenue Review"
         secondaryLabel="Explore the Levers"
         secondaryHref="#revenue-levers"
       />
       <section className="revenue-intro section-shell">
         <div className="section-heading-grid reveal-item">
           <SectionLabel index="01">Commercial control</SectionLabel>
-          <h2>Revenue is the result of <em>connected decisions.</em></h2>
-          <p>A single price change cannot repair a weak listing, a missed enquiry, or an unavailable calendar. We connect each commercial input and create a rhythm for improving it.</p>
+          <h2>Revenue is rarely <em>one decision.</em></h2>
+          <p>It is the result of many connected decisions: where the yacht appears, how it is priced, when availability is released, how enquiries are handled, how the offer is framed, and how direct demand is built. We help connect those decisions into a more useful operating rhythm.</p>
         </div>
         <RevenueDashboardVisual />
       </section>
@@ -59,7 +60,7 @@ export default function RevenueGrowthPage() {
         posterAlt="Top-down aerial film of a yacht drawing a curved wake"
       />
       <section className="revenue-levers section-shell" id="revenue-levers">
-        <div className="revenue-lever-heading reveal-item"><SectionLabel index="02">Six revenue levers</SectionLabel><h2>Where performance is <em>won quietly.</em></h2></div>
+        <div className="revenue-lever-heading reveal-item"><SectionLabel index="02">Revenue Levers</SectionLabel><h2>Where performance is <em>won quietly.</em></h2></div>
         <div className="lever-list">
           {levers.map(([title, copy], index) => (
             <article className="lever-item reveal-item" key={title}>
@@ -83,9 +84,9 @@ export default function RevenueGrowthPage() {
         </div>
       </section>
       <section className="owner-outcomes section-shell">
-        <div className="section-heading-grid reveal-item"><SectionLabel index="04">Owner-first outcomes</SectionLabel><h2>More clarity. Less reactive <em>owner admin.</em></h2><p>No inflated forecasts. No vague dashboards. Just a clearer commercial picture and a disciplined next move.</p></div>
+        <div className="section-heading-grid reveal-item"><SectionLabel index="04">Owner Outcomes</SectionLabel><h2>More clarity. Less reactive <em>owner admin.</em></h2><p>No inflated forecasts. No vague dashboards. No theatre. Just a clearer view of what is happening commercially, where bookings may be leaking, and what should be improved next.</p></div>
         <div className="outcome-grid">
-          {["A clearer view of demand and channel performance", "More deliberate seasonal pricing and availability", "A stronger connection between leads and booking value", "A healthier balance between platform and direct demand"].map((item, index) => <article className="reveal-item" key={item}><span>0{index + 1}</span><p>{item}</p></article>)}
+          {["Better view of demand", "Cleaner pricing decisions", "More consistent enquiry handling", "Stronger listing quality", "Clearer channel performance", "Improved direct booking path", "Less manual owner follow-up", "More professional guest journey"].map((item, index) => <article className="reveal-item" key={item}><span>0{index + 1}</span><p>{item}</p></article>)}
         </div>
       </section>
       <FinalCTA />

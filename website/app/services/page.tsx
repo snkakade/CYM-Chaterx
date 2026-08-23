@@ -74,10 +74,10 @@ export default function ServicesPage() {
     <>
       <PageHero
         compact
-        label="Complete Yacht Growth Partnership"
+        label="Yacht Growth Partnership"
         title="One Team."
-        italic="Your Complete Yacht Growth Partner."
-        description="From getting your yacht listed on the right platforms to generating leads and converting them into bookings, we provide the people, systems and expertise needed to grow your business."
+        italic="Complete Growth."
+        description="We provide the expertise, systems, and people to maximize your yacht's booking revenue."
         image="/images/hero-aerial-poster.webp"
         imageAlt="Luxury motor yacht resting in calm water at sunset"
         video="/videos/charterx-yacht-aerial-hero-2k.mp4"

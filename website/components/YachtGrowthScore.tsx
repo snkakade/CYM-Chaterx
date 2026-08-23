@@ -7,13 +7,14 @@ import { SectionLabel } from "./SectionLabel";
 import { GROWTH_SCORE_STORAGE_KEY, type GrowthScorePayload } from "@/utils/growthScore";
 
 const questions = [
-  "Is your yacht listed on more than one booking platform?",
-  "Are your photos and descriptions professionally optimized?",
-  "Do you respond to inquiries within 15 minutes?",
-  "Do you adjust pricing by season, demand, and availability?",
-  "Does your website generate direct inquiries?",
-  "Do you track source, conversion, and booking value?",
-  "Do you follow up with unconverted leads?",
+  "Is your yacht listed on more than one relevant booking platform?",
+  "Are your photos ordered to show the strongest selling points first?",
+  "Is your calendar updated consistently?",
+  "Do enquiries receive a clear response within a reliable timeframe?",
+  "Is pricing reviewed by season, demand, and lead time?",
+  "Does your website generate direct enquiries?",
+  "Do you track where leads come from?",
+  "Do you follow up with guests who do not book immediately?",
 ];
 
 export function YachtGrowthScore() {
@@ -46,12 +47,13 @@ export function YachtGrowthScore() {
   };
 
   const score = answers.filter(Boolean).length;
-  const state = score <= 2 ? "Early Stage" : score <= 5 ? "Growth Ready" : "Optimization Opportunity";
-  const body = score <= 2
-    ? "Your commercial foundations may be limiting visibility and response consistency. A focused setup review can establish the right priorities."
-    : score <= 5
-      ? "You have useful foundations in place, with clear room to connect your channels, enquiry process, and revenue decisions more closely."
-      : "Your setup is active and commercially aware. The next opportunity is likely in refinement, measurement, and the consistency of your operating rhythm.";
+  const state = score <= 3 ? "Early Stage" : score <= 6 ? "Growth Ready" : "Optimisation Opportunity";
+  const body = score <= 3
+    ? "Your commercial setup may still rely too heavily on chance, referrals, or unmanaged listings. A structured review can help identify the first improvements in visibility, presentation, enquiry handling, and direct booking flow."
+    : score <= 6
+      ? "You have some of the right foundations in place, but there may be gaps between visibility, enquiry quality, pricing, and follow-up. The next step is to connect those pieces into a more consistent operating rhythm."
+      : "Your business may already have demand, but performance can often improve through better pricing logic, listing refinement, tracking, and direct booking strategy.";
+  const ctaLabel = score <= 3 ? "Request a Growth Review" : score <= 6 ? "Review My Setup" : "Discuss Optimisation";
 
   const saveScore = () => {
     const payload: GrowthScorePayload = {
@@ -66,11 +68,11 @@ export function YachtGrowthScore() {
   return (
     <section className="score-section" id="yacht-growth-score">
       <div className="score-intro reveal-item">
-        <SectionLabel tone="light">Yacht Growth Score</SectionLabel>
+        <SectionLabel tone="light">Your score is not a forecast.</SectionLabel>
         <h2>Where is your business <em>losing momentum?</em></h2>
-        <p>A focused commercial diagnostic that maps the visibility, conversion, pricing, and follow-up systems around your yacht.</p>
+        <p>It is a practical review of the commercial foundations around your yacht. Answer a few questions and we will show whether your current setup is early-stage, growth-ready, or ready for deeper optimisation.</p>
         <div className="score-orbit" aria-hidden="true">
-          <div><strong>{isComplete ? score : current}</strong><span>of 7 signals</span></div>
+          <div><strong>{isComplete ? score : current}</strong><span>of {questions.length} signals</span></div>
           {questions.map((_, index) => <i className={index < current || isComplete ? "is-active" : ""} key={index} style={{ "--score-dot": index } as CSSProperties} />)}
         </div>
         <div className="score-lenses" aria-label="Areas reviewed"><span>Visibility</span><span>Conversion</span><span>Pricing</span><span>Follow-up</span></div>
@@ -104,7 +106,7 @@ export function YachtGrowthScore() {
               <p>{body}</p>
               <p className="score-guidance">Your setup may have visibility and conversion gaps. A structured review can show where bookings are being lost.</p>
               <div>
-                <a className="button button--primary" href="/contact?source=growth-score#enquiry-form" onClick={saveScore}><span>Request a Growth Review</span><ArrowIcon /></a>
+                <a className="button button--primary" href="/contact?source=growth-score#enquiry-form" onClick={saveScore}><span>{ctaLabel}</span><ArrowIcon /></a>
                 <button className="score-reset" type="button" onClick={reset}>Retake score</button>
               </div>
             </div>

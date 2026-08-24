@@ -500,3 +500,31 @@
   .cx-footer-bottom { align-items: flex-start; flex-direction: column; gap: .5rem; }
   .cx-footer-bottom a { margin-left: 0; }
 }
+
+/* Header states: completely clear at rest, frosted only after scrolling. */
+.site-header:not(.is-solid) {
+  background: transparent !important;
+  border-bottom-color: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.site-header.is-solid {
+  background: rgba(251, 250, 247, 0.84) !important;
+  border-bottom: 1px solid rgba(7, 23, 22, 0.08) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  box-shadow: 0 8px 32px rgba(7, 23, 22, 0.06) !important;
+}
+
+.site-header.is-solid .desktop-nav a,
+.site-header.is-solid .lang-selector-trigger,
+.site-header.is-solid .brand-copy strong {
+  color: var(--navy-950) !important;
+}
+
+.site-header.is-solid .button--aqua-cta {
+  background: var(--navy-950) !important;
+  color: #fff !important;
+}

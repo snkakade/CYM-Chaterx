@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { MotionProvider } from "@/components/MotionProvider";
 import { YachtLoader } from "@/components/YachtLoader";
 import { GoogleTranslate } from "@/components/GoogleTranslate";
+import { ConnectConcierge } from "@/components/ConnectConcierge";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://charterx.example.com";
@@ -66,6 +67,7 @@ export default function RootLayout({
         <Footer />
         <MotionProvider />
         <CookieConsent />
+        <ConnectConcierge whatsappNumber={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER} />
         <GoogleTranslate />
         <script
           type="application/ld+json"

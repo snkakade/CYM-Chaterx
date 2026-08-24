@@ -40,8 +40,27 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /charterx-sunset-yacht\.webp/);
   assert.match(html, /charterx-yacht-deck\.webp/);
   assert.match(html, /Loading CharterX/);
+  assert.match(html, /WhatsApp or request a callback/);
+  assert.match(html, /data-open-concierge/);
   assert.doesNotMatch(html, /ambient-video-toggle|film-status|Pause film|Play film/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
+});
+
+test("contact concierge is restrained, accessible, and connected to the lead pipeline", async () => {
+  const widget = await readFile(new URL("../components/ConnectConcierge.tsx", import.meta.url), "utf8");
+  const leads = await readFile(new URL("../app/api/leads/route.ts", import.meta.url), "utf8");
+  const consent = await readFile(new URL("../components/CookieConsent.tsx", import.meta.url), "utf8");
+
+  assert.match(widget, /window\.scrollY > 480/);
+  assert.match(widget, /window\.sessionStorage\.setItem\(SHOWN_KEY, "yes"\)/);
+  assert.match(widget, /document\.querySelector\("\.cookie-consent"\)/);
+  assert.match(widget, /aria-expanded=\{open\}/);
+  assert.match(widget, /input:not\(\[tabindex=/);
+  assert.match(widget, /`concierge-\$\{view\}`/);
+  assert.match(widget, /10 minutes during staffed hours/);
+  assert.match(widget, /NEXT_PUBLIC_WHATSAPP_NUMBER|whatsappNumber/);
+  assert.match(leads, /concierge-whatsapp/);
+  assert.match(consent, /charterx:consent-set/);
 });
 
 test("all primary pages return branded HTML with one page heading", async () => {

@@ -1,3 +1,4 @@
 ADMIN_EMAIL="your-admin-email@example.com"
 ADMIN_PASSWORD_HASH="pbkdf2_sha256$100000$replace-with-generated-salt$replace-with-generated-hash"
 SESSION_SECRET="replace-with-at-least-32-random-characters"
+NEXT_PUBLIC_WHATSAPP_NUMBER="replace-with-country-code-and-number"

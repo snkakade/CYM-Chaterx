@@ -47,6 +47,7 @@ export function CookieConsent() {
       // The consent state still applies for this page when storage is unavailable.
     }
     updateGoogleConsent(choice === "accepted");
+    window.dispatchEvent(new Event("charterx:consent-set"));
     setVisible(false);
   }
 

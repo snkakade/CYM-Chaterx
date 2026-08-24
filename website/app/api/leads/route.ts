@@ -32,8 +32,13 @@ export async function POST(request: Request) {
     source: text(body.source, 80) || "website-contact",
   };
 
-  if (!lead.name || !lead.vesselType || !lead.location || !lead.challenge || !lead.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email)) {
-    return Response.json({ error: "Please complete all required fields with a valid email address." }, { status: 422 });
+  const isConcierge = new Set(["concierge-message", "concierge-whatsapp", "concierge-callback"]).has(lead.source);
+  const validEmail = !lead.email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
+  const validConcierge = isConcierge && lead.name && lead.challenge && lead.message && validEmail && (lead.email || lead.phone);
+  const validFullEnquiry = !isConcierge && lead.name && lead.vesselType && lead.location && lead.challenge && lead.message && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email);
+
+  if (!validConcierge && !validFullEnquiry) {
+    return Response.json({ error: "Please complete the required contact details." }, { status: 422 });
   }
 
   if (!getRuntimeEnv().SESSION_SECRET) return Response.json({ error: "Enquiry service is not configured." }, { status: 503 });

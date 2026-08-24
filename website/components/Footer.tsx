@@ -34,7 +34,10 @@ export function Footer() {
         <div className="cx-footer-cta">
           <p>Ready to grow?</p>
           <h2>Make your yacht easier to book.</h2>
-          <a href="/contact#enquiry-form">Start your review <span aria-hidden="true">↗</span></a>
+          <div className="cx-footer-actions">
+            <a href="/contact#enquiry-form">Start your review <span aria-hidden="true">↗</span></a>
+            <a href="/contact#enquiry-form" data-open-concierge data-concierge-mode="whatsapp">WhatsApp or request a call</a>
+          </div>
         </div>
       </div>
       <div className="cx-footer-bottom">

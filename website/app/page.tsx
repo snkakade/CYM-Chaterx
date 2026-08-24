@@ -170,6 +170,7 @@ export default function Home() {
           <a className="cx-button cx-button--gold" href="/contact#enquiry-form">
             Start your review <span aria-hidden="true">↗</span>
           </a>
+          <a className="cx-final-connect" href="/contact#enquiry-form" data-open-concierge data-concierge-mode="whatsapp">WhatsApp or request a callback</a>
         </div>
       </section>
     </div>

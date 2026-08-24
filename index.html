@@ -18,10 +18,10 @@
       <small>CharterX local preview</small>
       <h1>Opening the website…</h1>
       <p id="status">Waiting for the CharterX application on port 3000.</p>
-      <a href="http://localhost:3000/">Open CharterX</a>
+      <a href="http://127.0.0.1:3000/">Open CharterX</a>
     </main>
     <script>
-      const destination = "http://localhost:3000/";
+      const destination = "http://127.0.0.1:3000/";
       const status = document.querySelector("#status");
       const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 

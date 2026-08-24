@@ -166,6 +166,16 @@ test("navigation uses resilient document links", async () => {
   assert.match(header, /href="\/contact#enquiry-form"/);
 });
 
+test("anchor CTAs align padded sections below the fixed header", async () => {
+  const motion = await readFile(new URL("../components/MotionProvider.tsx", import.meta.url), "utf8");
+  const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(motion, /target\.matches\("section"\)/);
+  assert.match(motion, /targetStyles\.paddingTop/);
+  assert.match(motion, /new URL\(anchor\.href, window\.location\.href\)/);
+  assert.match(motion, /document\.fonts\?\.ready/);
+  assert.match(styles, /scroll-padding-top: 7rem/);
+});
+
 test("growth score carries diagnostic answers into the enquiry form", async () => {
   const score = await readFile(new URL("../components/YachtGrowthScore.tsx", import.meta.url), "utf8");
   const form = await readFile(new URL("../components/ContactForm.tsx", import.meta.url), "utf8");

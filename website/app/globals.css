@@ -28,10 +28,10 @@
 
 html {
   scroll-behavior: auto;
-  scroll-padding-top: 0;
+  scroll-padding-top: 7rem;
 }
 main [id] {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 7rem;
 }
 
 * {
@@ -5588,7 +5588,7 @@ main {
 }
 
 main section[id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 7rem;
 }
 
 .hero-actions,

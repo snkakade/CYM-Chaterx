@@ -82,7 +82,9 @@ export function MotionProvider() {
 
     const targetTop = (target: HTMLElement) => {
       const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 0;
-      return Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight - 12);
+      const targetStyles = window.getComputedStyle(target);
+      const sectionInset = target.matches("section") ? Math.min(Number.parseFloat(targetStyles.paddingTop) || 0, 176) : 0;
+      return Math.max(0, target.getBoundingClientRect().top + window.scrollY + sectionInset - headerHeight - 24);
     };
 
     const alignHashTarget = () => {
@@ -100,9 +102,11 @@ export function MotionProvider() {
 
     const onAnchorClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href^="#"]');
-      const hash = anchor?.getAttribute("href");
-      if (!hash || hash === "#") return;
+      const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>("a[href*='#']");
+      if (!anchor) return;
+      const destination = new URL(anchor.href, window.location.href);
+      if (destination.origin !== window.location.origin || destination.pathname !== window.location.pathname || destination.search !== window.location.search || !destination.hash) return;
+      const hash = destination.hash;
       const target = document.getElementById(decodeURIComponent(hash.slice(1)));
       if (!target) return;
 
@@ -115,12 +119,18 @@ export function MotionProvider() {
     const refreshTimer = window.setTimeout(() => {
       ScrollTrigger.refresh();
       alignHashTarget();
-    }, 220);
+    }, 160);
+    const settleTimer = window.setTimeout(alignHashTarget, 520);
+    const onWindowLoad = () => alignHashTarget();
+    document.fonts?.ready.then(alignHashTarget).catch(() => undefined);
+    window.addEventListener("load", onWindowLoad, { once: true });
     window.addEventListener("hashchange", alignHashTarget);
     document.addEventListener("click", onAnchorClick);
 
     return () => {
       window.clearTimeout(refreshTimer);
+      window.clearTimeout(settleTimer);
+      window.removeEventListener("load", onWindowLoad);
       window.removeEventListener("hashchange", alignHashTarget);
       document.removeEventListener("click", onAnchorClick);
       mm.revert();

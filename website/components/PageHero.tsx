@@ -68,7 +68,7 @@ export function PageHero({
           <SectionLabel>{label}</SectionLabel>
           <h1>
             {titleLines.map((line) => <span className="hero-line" key={line}><span>{line}</span></span>)}
-            {italic && <span className="hero-line hero-line--italic"><span>{italic}</span></span>}
+            {italic && <span className="hero-line"><span>{italic}</span></span>}
           </h1>
           <p className="hero-support">{description}</p>
           <div className="hero-actions">

@@ -57,10 +57,9 @@ export default function Home() {
         </div>
         <div className="cx-hero-shade" aria-hidden="true" />
         <div className="cx-shell cx-hero-inner">
-          <p className="cx-kicker">Commercial growth for yacht businesses</p>
           <h1 id="home-title">
             More bookings.<br />
-            <em>Less drift.</em>
+            Less drift.
           </h1>
           <p className="cx-hero-copy">
             We connect listings, pricing, enquiries and digital visibility into one focused growth system.
@@ -127,7 +126,7 @@ export default function Home() {
         </div>
         <div className="cx-proof-copy reveal-item">
           <p className="cx-kicker cx-kicker--dark">Calm on the owner’s side</p>
-          <h2>You run the yacht.<br /><em>We run the rhythm.</em></h2>
+          <h2>You run the yacht.</h2>
           <p className="cx-lead">Less channel chasing. Faster decisions. A clearer view of what moves demand.</p>
           <ul>
             <li><span>01</span>Listings that stay sharp</li>

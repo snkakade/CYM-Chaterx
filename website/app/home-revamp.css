@@ -46,8 +46,8 @@
 .cx-home h1 em,
 .cx-home h2 em {
   color: var(--cx-gold);
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 400;
+  font-family: inherit;
+  font-weight: inherit;
 }
 
 .cx-hero {

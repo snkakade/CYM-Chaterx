@@ -36,7 +36,7 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /G-G01ETXS1PF/);
   assert.match(html, /gtag\('consent', 'default'/);
   assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
-  assert.match(html, /charterx-marina-web\.mp4/);
+  assert.match(html, /charterx-sailing-hero-uhd\.mp4/);
   assert.match(html, /charterx-sunset-yacht\.webp/);
   assert.match(html, /charterx-yacht-deck\.webp/);
   assert.match(html, /Loading CharterX/);

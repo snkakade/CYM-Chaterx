@@ -5221,3 +5221,40 @@ h2 em {
 .hero-support {
   color: var(--slate-500) !important;
 }
+
+/* Final header treatment: lighter navigation, compact CTA and dependable menus. */
+.site-header .desktop-nav > a,
+.site-header .desktop-nav > .nav-dropdown-wrapper > a,
+.site-header .lang-selector-trigger {
+  font-weight: 520 !important;
+}
+
+.site-header .button.button--aqua-cta {
+  min-height: 2.75rem !important;
+  padding: 0.5rem 1.15rem !important;
+  font-weight: 520 !important;
+  letter-spacing: 0.075em !important;
+}
+
+.site-header .desktop-nav .nav-dropdown {
+  background: rgba(6, 12, 18, 0.97) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.site-header .desktop-nav .nav-dropdown a,
+.site-header.header--light-page .desktop-nav .nav-dropdown a,
+.site-header.is-solid .desktop-nav .nav-dropdown a {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-weight: 520 !important;
+  opacity: 1 !important;
+}
+
+.site-header .desktop-nav .nav-dropdown a:hover,
+.site-header .desktop-nav .nav-dropdown a.is-active,
+.site-header.header--light-page .desktop-nav .nav-dropdown a:hover,
+.site-header.header--light-page .desktop-nav .nav-dropdown a.is-active,
+.site-header.is-solid .desktop-nav .nav-dropdown a:hover,
+.site-header.is-solid .desktop-nav .nav-dropdown a.is-active {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.09) !important;
+}

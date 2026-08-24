@@ -19,9 +19,8 @@ export default function AboutPage() {
     <>
       <PageHero
         label="About"
-        title="Commercial management for yachts"
-        italic="built to be seen, trusted, and booked."
-        description="We support yacht owners and operators with the business systems around the vessel: visibility, listings, enquiry handling, website performance, search, and revenue strategy."
+        title="Built to be seen.|Ready to be booked."
+        description="Clear commercial systems that turn visibility into confident enquiries and stronger bookings."
         image="/images/hero-marina-poster.webp"
         imageAlt="Motor yachts moving through a contemporary marina"
         video="/videos/charterx-marina-web.mp4"

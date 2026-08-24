@@ -56,7 +56,6 @@ export default function Home() {
           />
         </div>
         <div className="cx-hero-shade" aria-hidden="true" />
-        <div className="cx-hero-rule" aria-hidden="true" />
         <div className="cx-shell cx-hero-inner">
           <p className="cx-kicker">Commercial growth for yacht businesses</p>
           <h1 id="home-title">

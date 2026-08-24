@@ -167,7 +167,7 @@ test("Privacy policy is published and linked from the footer", async () => {
 });
 
 test("navigation uses resilient document links", async () => {
-  const files = ["Header.tsx", "Footer.tsx", "Logo.tsx", "ButtonLink.tsx", "ServiceCard.tsx", "InsightCard.tsx"];
+  const files = ["Header.tsx", "Footer.tsx", "Logo.tsx", "ButtonLink.tsx", "InsightCard.tsx"];
 
   for (const file of files) {
     const source = await readFile(new URL(`../components/${file}`, import.meta.url), "utf8");

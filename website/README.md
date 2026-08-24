@@ -1,29 +1,12 @@
-# CharterX — Website & CYM Operations Portal
+# CharterX website and operations portal
 
-The mandatory visual source of truth is [`../DESIGN.md`](../DESIGN.md). All contributors and coding agents must read it before changing public, admin or invoice UI.
+Read [`../DESIGN.md`](../DESIGN.md) before changing any public, admin or invoice interface. Repository instructions are in [`../AGENTS.md`](../AGENTS.md).
 
-CharterX is a premium yacht-growth website with a private commercial operations portal for `Collaborative Yacht Management Limited`.
+This directory contains the complete CharterX application. It includes the public marketing website, enquiry capture, the private CYM operations portal, invoice generation and the Cloudflare runtime configuration.
 
-The public website covers OTA distribution, sales support, digital presence, SEO/SEM, listing quality, and revenue strategy. The protected `/admin` area receives website enquiries, manages follow-ups, creates CYM CharterX invoices, records invoice status, exports records, and keeps an audit trail.
+## Local development
 
-## Revamped design branch
-
-The `revamped` branch contains the refined editorial direction. It keeps the established page structure and adds:
-
-- A once-per-session GSAP yacht loading sequence with reduced-motion fallback
-- A quieter cream, deep-petrol, copper, and sea-glass colour system
-- Larger spacing and a restrained sans-serif-led type hierarchy
-- A unified editorial split-hero system across every public page
-- Two locally hosted, muted yacht films with accessible play/pause controls
-- Prepared testimonial/proof positions that must be replaced with verified client quotes before launch
-- A lazy-loaded, sandboxed live preview of the OTA Management experience
-
-The film files and their source notes are in `public/videos/`. Replace them with CharterX-owned footage when available.
-
-## Requirements and local development
-
-- Node.js 22.13 or newer
-- npm
+Requirements: Node.js 22.13 or newer and npm.
 
 ```bash
 npm install
@@ -31,26 +14,26 @@ cp .dev.vars.example .dev.vars
 npm run dev
 ```
 
-Open `http://localhost:3000`. The public website is at `/`; the private portal is at `/admin/login`.
+Open `http://127.0.0.1:3000`. The public website is at `/`; the private portal is at `/admin/login`.
 
-For a production-style Cloudflare runtime preview:
+For a production build running against the local Cloudflare-compatible runtime:
 
 ```bash
 npm run build
 npm run serve
 ```
 
-Unlike a plain Node preview, `npm run serve` runs the built application in the Cloudflare-compatible runtime so D1 and runtime secrets continue to work.
+The repository root also contains a small Live Server launcher. Port 5501 redirects to the full application on port 3000 because authentication, API routes and D1 cannot run inside a static Live Server process.
 
-## Configure admin access
+## Admin access
 
-Generate a secure password hash:
+Generate a password hash:
 
 ```bash
 npm run admin:hash-password -- "your-long-unique-password"
 ```
 
-Place the result in an ignored `.dev.vars` file:
+Store the email, hash and session secret in the ignored `.dev.vars` file:
 
 ```dotenv
 ADMIN_EMAIL="owner@example.com"
@@ -58,108 +41,53 @@ ADMIN_PASSWORD_HASH="pbkdf2_sha256$100000$..."
 SESSION_SECRET="at-least-32-random-characters"
 ```
 
-Generate a session secret with `openssl rand -hex 32`. Never commit `.dev.vars`, a plaintext password, or a production secret. Change the production password by generating a new hash and replacing the encrypted Cloudflare secret.
+Never commit `.dev.vars`, plaintext passwords or production secrets.
+
+## Application structure
+
+- `app/`: public routes, admin routes, API handlers, metadata and styles
+- `components/`: shared public and operations interfaces
+- `data/`: editable service, FAQ and insight content
+- `db/`: runtime D1 schema definitions
+- `drizzle/`: deployable D1 migrations
+- `lib/`: authentication, database, lead, invoice and audit logic
+- `public/images/`: runtime images and social previews
+- `public/videos/`: runtime video deliveries and their manifest
+- `scripts/`: development utilities
+- `tests/`: rendered route and design-contract checks
+- `worker/`: vinext Worker entry point
+- `build/`: local Sites-compatible build integration
+
+Original image and video masters are stored outside this application in the ignored repository-level `source-assets/` directory. Only assets referenced by the live website belong in `public/`.
 
 ## Operations portal
 
-Routes:
+The protected `/admin` area manages:
 
-- `/admin/login` — private email and password sign-in
-- `/admin` — commercial overview, lead pipeline, follow-up desk, invoices, and activity
-- `/admin/invoices/[id]` — printable invoice / Save as PDF view
+- website enquiries and lead stages;
+- priorities, internal notes and follow-up dates;
+- USD-default invoices with saved-record currency preservation;
+- printable CharterX invoice documents;
+- CSV exports and recent audit activity.
 
-Features:
+Every protected page and mutation checks the signed admin session. Production should use encrypted Cloudflare secrets, with Cloudflare Access as an optional additional identity layer.
 
-- Website enquiries stored in D1 rather than browser storage
-- Lead stages: new, contacted, qualified, proposal, won, and lost
-- High-priority flag, internal notes, and scheduled follow-up
-- Invoice creation directly from a lead
-- Multi-line invoices with GBP, EUR, or USD, tax calculation, due date, and notes
-- Draft, sent, paid, overdue, and void invoice states
-- Printable branded invoice documents
-- Lead and invoice CSV exports
-- Recent security and workflow activity log
-- Dashboard metrics calculated from live records
+## Cloudflare production configuration
 
-The local D1 schema initializes automatically. The source-of-truth migration is `drizzle/0001_charterx_admin.sql`; runtime schema statements are kept in `db/schema.ts` for a clean first local run.
+The app requires server execution and D1. Do not deploy only `dist/client`.
 
-## Security model
+1. Create and bind a D1 database as `DB`.
+2. Apply the migrations in `drizzle/` in numeric order.
+3. Add encrypted `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH` and `SESSION_SECRET` values.
+4. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS domain.
+5. Set the production D1 name and ID in the build environment.
+6. Deploy the full vinext Worker and attach the custom domain.
 
-- PBKDF2-SHA256 password hashing with Cloudflare's supported 100,000-iteration maximum and a per-password salt
-- HMAC-signed, eight-hour, HTTP-only sessions
-- `Secure` cookies on HTTPS and `SameSite=Strict`
-- Server-side authorization on every protected page, write endpoint, and export
-- Same-origin checks on administrative mutations
-- Login throttling with a temporary block after repeated failures
-- Generic sign-in errors to avoid account discovery
-- Prepared D1 statements and strict server-side input limits
-- Honeypot and IP-hash throttling on public enquiries; raw IP addresses are not stored
-- `noindex`, no-cache, frame blocking, MIME sniffing protection, and restrictive browser permissions on admin routes
-- Audit records for sign-in, sign-out, lead changes, invoice creation, and invoice status changes
-
-For production, place `/admin*` behind Cloudflare Access as an additional identity layer if the team wants MFA or an email allowlist. The application login remains the required second gate.
-
-## Cloudflare deployment and custom domain
-
-This is now a full-stack application: the contact form, authentication, invoices, and admin pages require server execution and D1. Do not deploy only the static `dist/client` directory.
-
-The project uses Cloudflare's Vite integration and runs in the Workers runtime. In Cloudflare, Workers and Pages are managed from the same **Workers & Pages** area. The native vinext production path is a full-stack Worker with static assets, API routes, SSR, and D1; this is the appropriate equivalent of a Pages site with Functions for this project.
-
-Production setup:
-
-1. Create a D1 database, for example `charterx-production`.
-2. Bind it to the application as `DB`.
-3. Apply `drizzle/0001_charterx_admin.sql` to the remote database.
-4. Add encrypted runtime secrets: `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, and `SESSION_SECRET`.
-5. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS domain for canonical URLs, the sitemap, robots metadata, and social metadata.
-6. Set `CLOUDFLARE_D1_DATABASE_NAME` and `CLOUDFLARE_D1_DATABASE_ID` in the build environment.
-7. Deploy with the vinext Cloudflare adapter, then attach the valid domain under **Settings → Domains & Routes → Custom Domain**.
-
-Example migration command after Wrangler is authenticated:
-
-```bash
-npx wrangler d1 execute charterx-production --remote --file=drizzle/0001_charterx_admin.sql
-```
-
-Use encrypted Cloudflare secrets rather than plaintext Wrangler `vars` for credentials. Add the custom domain through Cloudflare rather than manually creating only a CNAME, so Cloudflare can provision the correct route and certificate.
-
-## Project structure
-
-- `app/` — public pages, admin pages, API routes, metadata, robots, sitemap, and styles
-- `components/` — public components plus the admin dashboard, login, forms, and invoice controls
-- `db/` — runtime schema definitions
-- `drizzle/` — deployable D1 migration SQL
-- `lib/` — authentication, database access, validation, invoice, lead, and audit logic
-- `data/` — editable public services, FAQs, insights, and growth steps
-- `public/images/` — WebP imagery and social preview
-- `public/videos/` — optimised maritime clips and source notes
-- `public/fonts/` — self-hosted Source Serif 4, Source Sans 3, and IBM Plex Mono font system
-- `scripts/` — password-hash utility
-
-## Public content and brand updates
-
-- Brand mark and trading name: `components/Logo.tsx`
-- Registered legal name and organization schema: `app/layout.tsx`
-- Services, FAQs, Growth Engine, and Insights: `data/site.ts`
-- Longer page copy: the relevant route under `app/`
-- Images: `public/images/`
-- Shared motion: `components/MotionProvider.tsx`
-- Page metadata: each `app/**/page.tsx`
-- Production domain: `NEXT_PUBLIC_SITE_URL`
-
-Keep the registered address, company number, VAT details, bank details, and formal payment terms accurate before issuing a real invoice. Payment instructions can be entered in each invoice's notes field until a verified company billing profile is provided.
-
-## Contact form
-
-`components/ContactForm.tsx` submits to `/api/leads`. Valid submissions are stored in D1 and appear immediately in the admin lead pipeline. The form has client and server validation, a hidden bot trap, payload limits, and repeat-submission throttling.
-
-The strategy-call link remains a placeholder until the final scheduling URL is supplied.
-
-## Final checks
+## Verification
 
 ```bash
 npm run lint
 npm test
 ```
 
-`npm test` creates a production build and verifies the public routes. Before production launch, also verify the remote D1 binding, secrets, Cloudflare Access policy if used, final custom domain, and a real end-to-end enquiry and invoice flow in the production environment.
+`npm test` creates a production build and checks the rendered public routes, hero media, navigation behaviour and design contract.

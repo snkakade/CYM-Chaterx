@@ -80,14 +80,6 @@ export const insights = [
   },
 ] as const;
 
-export const growthSteps = [
-  { number: "01", verb: "Position", title: "Know the market before you move.", body: "We understand your yacht, market, ideal customer, pricing, and current booking channels." },
-  { number: "02", verb: "List", title: "Make every listing earn attention.", body: "We improve your OTA content, photos, availability, pricing, and platform consistency." },
-  { number: "03", verb: "Attract", title: "Be visible where intent is highest.", body: "We strengthen search visibility, paid campaigns, website journeys, and direct enquiry flow." },
-  { number: "04", verb: "Convert", title: "Respond with confidence and pace.", body: "We support enquiries, follow-ups, guest questions, and booking conversion." },
-  { number: "05", verb: "Optimize", title: "Turn insight into operating rhythm.", body: "We review performance, pricing, demand patterns, and listing quality to improve results over time." },
-] as const;
-
 export const otaFaqs = [
   ["What is yacht OTA management?", "Yacht OTA management is the ongoing commercial management of your vessel across third-party booking platforms. It covers listing quality, availability, pricing, enquiries, promotions, review signals, and performance improvement."],
   ["Which platforms can you manage?", "We work across relevant boat-rental, yacht-charter, travel, and experience marketplaces. The right mix depends on your vessel, location, guest profile, and operating model."],

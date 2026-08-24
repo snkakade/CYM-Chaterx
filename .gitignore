@@ -17,5 +17,6 @@ website/.env*
 website/coverage/
 website/outputs/
 website/work/
+*.tsbuildinfo
 source-assets/videos/*.mp4
 source-assets/images/*.jpg

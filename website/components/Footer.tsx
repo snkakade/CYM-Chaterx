@@ -42,7 +42,8 @@ export function Footer() {
       </div>
       <div className="cx-footer-bottom">
         <p>© {new Date().getFullYear()} CharterX</p>
-        <p>Trading as Collabrative Yacht Management Limited.</p>
+        <p>Trading as Collaborative Yacht Management Limited.</p>
+        <a className="cx-footer-credit" href="https://shreyashkakade.com/websites" target="_blank" rel="noreferrer">Designed by Shreyash K</a>
         <a href="/admin/login">Admin login</a>
         <a href="/privacy">Privacy</a>
       </div>

@@ -450,10 +450,12 @@
   border-top: 1px solid rgba(255,255,255,.12);
   color: rgba(255,255,255,.38);
   font-size: .68rem;
+  padding-right: clamp(10rem, 14vw, 13rem);
 }
 
 .cx-footer-bottom p { margin: 0; }
-.cx-footer-bottom a:first-of-type { margin-left: auto; }
+.cx-footer-bottom .cx-footer-credit { margin-left: auto; color: rgba(255,255,255,.48); font-size: .62rem; }
+.cx-footer-bottom .cx-footer-credit:hover { color: rgba(255,255,255,.8); }
 .cx-footer-bottom a + a { margin-left: 0; }
 
 @media (max-width: 900px) {
@@ -489,12 +491,13 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 700px) {
   .cx-footer-main { grid-template-columns: 1fr 1fr; }
   .cx-footer-brand,
   .cx-footer-cta { grid-column: 1 / -1; }
   .cx-footer-bottom { align-items: flex-start; flex-direction: column; gap: .5rem; }
-  .cx-footer-bottom a:first-of-type { margin-left: 0; }
+  .cx-footer-bottom { padding-right: 4.75rem; }
+  .cx-footer-bottom .cx-footer-credit { margin-left: 0; }
 }
 
 /* Header states: completely clear at rest, frosted only after scrolling. */

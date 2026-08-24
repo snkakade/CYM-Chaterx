@@ -24,7 +24,7 @@ export default function PrivacyPage() {
       <div className="privacy-layout">
         <aside>
           <p>Data controller</p>
-          <strong>Collabrative Yatch Managemnet Limited</strong>
+          <strong>Collaborative Yacht Management Limited</strong>
           <span>Trading as CharterX</span>
         </aside>
         <div className="privacy-content">

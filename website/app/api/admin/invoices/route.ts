@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   const session = await getRequestSession(request);
   if (!session) return Response.json({ error: "Authentication required." }, { status: 401 });
   const body = await request.json() as Record<string, unknown>;
-  const currency = clean(body.currency, 3);
+  const currency = clean(body.currency ?? "USD", 3);
   const items = Array.isArray(body.items) ? body.items.slice(0, 20).map((item) => {
     const source = item as Record<string, unknown>;
     return {

@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS invoices (
   client_email TEXT NOT NULL,
   client_address TEXT NOT NULL DEFAULT '',
   vessel_name TEXT NOT NULL DEFAULT '',
-  currency TEXT NOT NULL DEFAULT 'GBP',
+  currency TEXT NOT NULL DEFAULT 'USD',
   subtotal_cents INTEGER NOT NULL,
   tax_rate_bps INTEGER NOT NULL DEFAULT 0,
   tax_cents INTEGER NOT NULL DEFAULT 0,

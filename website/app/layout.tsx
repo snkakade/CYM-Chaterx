@@ -75,8 +75,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@graph": [
-                { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "CharterX", legalName: "Collabrative Yatch Managemnet Limited", url: `${siteUrl}/`, slogan: "You operate the yacht. We help grow the business." },
-                { "@type": "ProfessionalService", "@id": `${siteUrl}/#service`, name: "CharterX", legalName: "Collabrative Yatch Managemnet Limited", url: `${siteUrl}/`, serviceType: ["Yacht OTA management", "Yacht revenue management", "Yacht digital marketing"], areaServed: "Worldwide", provider: { "@id": `${siteUrl}/#organization` } },
+                { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "CharterX", legalName: "Collaborative Yacht Management Limited", url: `${siteUrl}/`, slogan: "You operate the yacht. We help grow the business." },
+                { "@type": "ProfessionalService", "@id": `${siteUrl}/#service`, name: "CharterX", legalName: "Collaborative Yacht Management Limited", url: `${siteUrl}/`, serviceType: ["Yacht OTA management", "Yacht revenue management", "Yacht digital marketing"], areaServed: "Worldwide", provider: { "@id": `${siteUrl}/#organization` } },
               ],
             }),
           }}

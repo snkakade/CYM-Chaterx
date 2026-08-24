@@ -27,7 +27,9 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /Less drift/);
   assert.match(html, /Check your growth score/);
   assert.match(html, /application\/ld\+json/);
-  assert.match(html, /Collabrative Yatch Managemnet Limited/);
+  assert.match(html, /Collaborative Yacht Management Limited/);
+  assert.match(html, /Designed by Shreyash K/);
+  assert.match(html, /href="https:\/\/shreyashkakade\.com\/websites"/);
   assert.match(html, /og:image/);
   assert.match(html, /twitter:card/);
   assert.match(html, /rel="canonical"/);
@@ -62,6 +64,9 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   assert.match(dashboard, /Weighted pipeline/);
   assert.match(dashboard, /Next best action/);
   assert.match(dashboard, /Message me on WhatsApp|wa\.me/);
+  assert.match(dashboard, /useState\("USD"\)/);
+  assert.match(dashboard, /Estimated value \(USD\)/);
+  assert.match(dashboard, /<option>USD<\/option><option>EUR<\/option><option>GBP<\/option>/);
   assert.match(login, /CharterXWordmark/);
   assert.match(dashboard, /CharterXWordmark/);
   assert.match(wordmark, /charterx-wordmark__line/);

@@ -2,7 +2,7 @@ import { getDatabase, recordAudit } from "./database";
 
 export const leadStatuses = ["new", "contacted", "qualified", "proposal", "won", "lost"] as const;
 export const invoiceStatuses = ["draft", "sent", "paid", "overdue", "void"] as const;
-export const currencies = ["GBP", "EUR", "USD"] as const;
+export const currencies = ["USD", "EUR", "GBP"] as const;
 
 export type LeadStatus = typeof leadStatuses[number];
 export type InvoiceStatus = typeof invoiceStatuses[number];

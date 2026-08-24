@@ -42,8 +42,27 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /Loading CharterX/);
   assert.match(html, /WhatsApp or request a callback/);
   assert.match(html, /data-open-concierge/);
+  assert.match(html, /href="\/admin\/login"[^>]*>Admin login/);
   assert.doesNotMatch(html, /ambient-video-toggle|film-status|Pause film|Play film/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
+});
+
+test("admin login and commercial CRM intelligence are production-wired", async () => {
+  const login = await readFile(new URL("../components/AdminLogin.tsx", import.meta.url), "utf8");
+  const layout = await readFile(new URL("../app/admin/layout.tsx", import.meta.url), "utf8");
+  const dashboard = await readFile(new URL("../components/AdminDashboard.tsx", import.meta.url), "utf8");
+  const adminData = await readFile(new URL("../lib/admin-data.ts", import.meta.url), "utf8");
+  const migration = await readFile(new URL("../drizzle/0002_admin_crm_intelligence.sql", import.meta.url), "utf8");
+  assert.match(login, /Private operations portal/);
+  assert.match(login, /Sign in securely/);
+  assert.match(layout, /index: false/);
+  assert.match(dashboard, /What needs a move now/);
+  assert.match(dashboard, /Weighted pipeline/);
+  assert.match(dashboard, /Next best action/);
+  assert.match(dashboard, /Message me on WhatsApp|wa\.me/);
+  assert.match(adminData, /weightedPipeline/);
+  assert.match(adminData, /estimated_value_cents/);
+  assert.match(migration, /idx_leads_attention/);
 });
 
 test("contact concierge is restrained, accessible, and connected to the lead pipeline", async () => {

@@ -18,6 +18,11 @@ export const schemaStatements = [
     priority TEXT NOT NULL DEFAULT 'normal',
     follow_up_at TEXT,
     internal_notes TEXT NOT NULL DEFAULT '',
+    estimated_value_cents INTEGER NOT NULL DEFAULT 0,
+    probability INTEGER NOT NULL DEFAULT 20,
+    next_action TEXT NOT NULL DEFAULT '',
+    lost_reason TEXT NOT NULL DEFAULT '',
+    last_contact_at TEXT,
     ip_hash TEXT NOT NULL DEFAULT ''
   )`,
   `CREATE INDEX IF NOT EXISTS idx_leads_status_created_at

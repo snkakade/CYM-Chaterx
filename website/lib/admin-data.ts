@@ -26,6 +26,11 @@ export type LeadRecord = {
   priority: "normal" | "high";
   follow_up_at: string | null;
   internal_notes: string;
+  estimated_value_cents: number;
+  probability: number;
+  next_action: string;
+  lost_reason: string;
+  last_contact_at: string | null;
 };
 
 export type InvoiceLineItem = {
@@ -69,7 +74,7 @@ export type AuditRecord = {
 export async function getDashboardData() {
   const database = await getDatabase();
   const [leadsResult, invoicesResult, auditResult] = await Promise.all([
-    database.prepare("SELECT id, created_at, updated_at, name, email, phone, vessel_type, location, platforms, website, challenge, monthly_goal, message, source, status, priority, follow_up_at, internal_notes FROM leads ORDER BY created_at DESC LIMIT 200").all<LeadRecord>(),
+    database.prepare("SELECT id, created_at, updated_at, name, email, phone, vessel_type, location, platforms, website, challenge, monthly_goal, message, source, status, priority, follow_up_at, internal_notes, estimated_value_cents, probability, next_action, lost_reason, last_contact_at FROM leads ORDER BY created_at DESC LIMIT 200").all<LeadRecord>(),
     database.prepare("SELECT * FROM invoices ORDER BY created_at DESC LIMIT 200").all<InvoiceRecord>(),
     database.prepare("SELECT * FROM audit_events ORDER BY created_at DESC LIMIT 20").all<AuditRecord>(),
   ]);
@@ -78,6 +83,9 @@ export async function getDashboardData() {
   const invoices = invoicesResult.results;
   const now = new Date();
   const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
+  const openLeads = leads.filter((lead) => !["won", "lost"].includes(lead.status));
+  const closedLeads = leads.filter((lead) => ["won", "lost"].includes(lead.status));
+  const wonLeads = leads.filter((lead) => lead.status === "won");
 
   return {
     leads,
@@ -89,6 +97,12 @@ export async function getDashboardData() {
       followUpsDue: leads.filter((lead) => lead.follow_up_at && new Date(lead.follow_up_at) <= now && !["won", "lost"].includes(lead.status)).length,
       outstandingInvoices: invoices.filter((invoice) => ["sent", "overdue"].includes(invoice.status)).length,
       paidThisMonth: invoices.filter((invoice) => invoice.status === "paid" && invoice.updated_at >= monthStart).length,
+      responseQueue: openLeads.filter((lead) => lead.status === "new" || (lead.follow_up_at && new Date(lead.follow_up_at) <= now)).length,
+      pipelineValue: openLeads.reduce((total, lead) => total + lead.estimated_value_cents, 0),
+      weightedPipeline: openLeads.reduce((total, lead) => total + Math.round(lead.estimated_value_cents * lead.probability / 100), 0),
+      outstandingValue: invoices.filter((invoice) => ["sent", "overdue"].includes(invoice.status)).reduce((total, invoice) => total + invoice.total_cents, 0),
+      paidThisMonthValue: invoices.filter((invoice) => invoice.status === "paid" && invoice.updated_at >= monthStart).reduce((total, invoice) => total + invoice.total_cents, 0),
+      conversionRate: closedLeads.length ? Math.round(wonLeads.length / closedLeads.length * 100) : 0,
     },
   };
 }
@@ -100,15 +114,25 @@ export async function getInvoiceById(id: string) {
 
 export async function updateLead(
   id: string,
-  updates: { status: LeadStatus; priority: "normal" | "high"; followUpAt: string | null; internalNotes: string },
+  updates: {
+    status: LeadStatus;
+    priority: "normal" | "high";
+    followUpAt: string | null;
+    internalNotes: string;
+    estimatedValueCents: number;
+    probability: number;
+    nextAction: string;
+    lostReason: string;
+    lastContactAt: string | null;
+  },
   actorEmail: string,
 ) {
   const database = await getDatabase();
   const changed = await database.prepare(
-    `UPDATE leads SET status = ?, priority = ?, follow_up_at = ?, internal_notes = ?, updated_at = ? WHERE id = ?`,
-  ).bind(updates.status, updates.priority, updates.followUpAt, updates.internalNotes.slice(0, 5000), new Date().toISOString(), id).run();
+    `UPDATE leads SET status = ?, priority = ?, follow_up_at = ?, internal_notes = ?, estimated_value_cents = ?, probability = ?, next_action = ?, lost_reason = ?, last_contact_at = ?, updated_at = ? WHERE id = ?`,
+  ).bind(updates.status, updates.priority, updates.followUpAt, updates.internalNotes.slice(0, 5000), updates.estimatedValueCents, updates.probability, updates.nextAction.slice(0, 500), updates.lostReason.slice(0, 500), updates.lastContactAt, new Date().toISOString(), id).run();
   if (!changed.meta.changes) return false;
-  await recordAudit(actorEmail, "lead_updated", "lead", id, `${updates.status} · ${updates.priority} priority`);
+  await recordAudit(actorEmail, "lead_updated", "lead", id, `${updates.status} · ${updates.priority} priority · ${updates.probability}% confidence`);
   return true;
 }
 

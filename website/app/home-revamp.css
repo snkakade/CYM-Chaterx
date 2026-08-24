@@ -447,7 +447,8 @@
 }
 
 .cx-footer-bottom p { margin: 0; }
-.cx-footer-bottom a { margin-left: auto; }
+.cx-footer-bottom a:first-of-type { margin-left: auto; }
+.cx-footer-bottom a + a { margin-left: 0; }
 
 @media (max-width: 900px) {
   .cx-footer-main { grid-template-columns: 1fr 1fr; }
@@ -487,7 +488,7 @@
   .cx-footer-brand,
   .cx-footer-cta { grid-column: 1 / -1; }
   .cx-footer-bottom { align-items: flex-start; flex-direction: column; gap: .5rem; }
-  .cx-footer-bottom a { margin-left: 0; }
+  .cx-footer-bottom a:first-of-type { margin-left: 0; }
 }
 
 /* Header states: completely clear at rest, frosted only after scrolling. */

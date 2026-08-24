@@ -43,6 +43,7 @@ export function Footer() {
       <div className="cx-footer-bottom">
         <p>© {new Date().getFullYear()} CharterX</p>
         <p>Trading as Collabrative Yacht Management Limited.</p>
+        <a href="/admin/login">Admin login</a>
         <a href="/privacy">Privacy</a>
       </div>
     </footer>

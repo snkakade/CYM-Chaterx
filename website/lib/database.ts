@@ -3,6 +3,14 @@ import { schemaStatements } from "@/db/schema";
 
 let schemaReady = false;
 
+const leadIntelligenceColumns = [
+  ["estimated_value_cents", "INTEGER NOT NULL DEFAULT 0"],
+  ["probability", "INTEGER NOT NULL DEFAULT 20"],
+  ["next_action", "TEXT NOT NULL DEFAULT ''"],
+  ["lost_reason", "TEXT NOT NULL DEFAULT ''"],
+  ["last_contact_at", "TEXT"],
+] as const;
+
 type CharterXEnv = {
   DB?: D1Database;
   ADMIN_EMAIL?: string;
@@ -20,6 +28,16 @@ export async function getDatabase(): Promise<D1Database> {
 
   if (!schemaReady) {
     await database.batch(schemaStatements.map((statement) => database.prepare(statement)));
+    const columnResult = await database.prepare("PRAGMA table_info(leads)").all<{ name: string }>();
+    const existingColumns = new Set(columnResult.results.map((column) => column.name));
+    const additions = leadIntelligenceColumns
+      .filter(([name]) => !existingColumns.has(name))
+      .map(([name, definition]) => database.prepare(`ALTER TABLE leads ADD COLUMN ${name} ${definition}`));
+    if (additions.length) await database.batch(additions);
+    await database.prepare(
+      "CREATE INDEX IF NOT EXISTS idx_leads_attention ON leads(priority, status, follow_up_at)",
+    ).run();
+    await database.prepare("PRAGMA optimize").run();
     schemaReady = true;
   }
 

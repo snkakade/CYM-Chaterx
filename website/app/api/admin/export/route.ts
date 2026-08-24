@@ -16,8 +16,8 @@ export async function GET(request: Request) {
         ...data.invoices.map((invoice) => [invoice.invoice_number, invoice.client_name, invoice.client_email, invoice.issue_date, invoice.due_date, invoice.currency, (invoice.total_cents / 100).toFixed(2), invoice.status]),
       ]
     : [
-        ["Created", "Name", "Email", "Phone", "Vessel", "Market", "Challenge", "Status", "Priority", "Follow up"],
-        ...data.leads.map((lead) => [lead.created_at, lead.name, lead.email, lead.phone, lead.vessel_type, lead.location, lead.challenge, lead.status, lead.priority, lead.follow_up_at ?? ""]),
+        ["Created", "Name", "Email", "Phone", "Vessel", "Market", "Source", "Challenge", "Status", "Priority", "Estimated value", "Probability", "Weighted value", "Next action", "Follow up", "Last contact", "Lost reason"],
+        ...data.leads.map((lead) => [lead.created_at, lead.name, lead.email, lead.phone, lead.vessel_type, lead.location, lead.source, lead.challenge, lead.status, lead.priority, (lead.estimated_value_cents / 100).toFixed(2), lead.probability, (lead.estimated_value_cents * lead.probability / 10_000).toFixed(2), lead.next_action, lead.follow_up_at ?? "", lead.last_contact_at ?? "", lead.lost_reason]),
       ];
   const csv = rows.map((row) => row.map(csvCell).join(",")).join("\r\n");
   return new Response(csv, { headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="charterx-${type === "invoices" ? "invoices" : "leads"}.csv"`, "cache-control": "no-store" } });

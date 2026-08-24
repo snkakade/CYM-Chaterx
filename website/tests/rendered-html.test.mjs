@@ -73,15 +73,14 @@ test("OTA page includes accessible FAQ controls and FAQ schema", async () => {
   assert.match(html, /aria-hidden="true"/);
   assert.match(html, /FAQPage/);
   assert.match(html, /What is yacht OTA management\?/);
-  assert.match(html, /charterx-city-yacht-web\.mp4/);
+  assert.match(html, /charterx-city-yacht-uhd\.mp4/);
 });
 
 test("About page uses the dedicated marina hero film", async () => {
   const worker = await createWorker();
   const response = await render(worker, "/about");
   const html = await response.text();
-  assert.match(html, /charterx-marina-web\.mp4/);
-  assert.match(html, /charterx-marina-mobile\.mp4/);
+  assert.match(html, /charterx-marina-uhd\.mp4/);
   assert.match(html, /charterx-yacht-deck\.webp/);
 });
 
@@ -89,8 +88,7 @@ test("Revenue Growth page uses the sailing hero film", async () => {
   const worker = await createWorker();
   const response = await render(worker, "/revenue-growth");
   const html = await response.text();
-  assert.match(html, /charterx-sailing\.mp4/);
-  assert.match(html, /charterx-sailing\.mp4/);
+  assert.match(html, /charterx-sailing-hero-uhd\.mp4/);
 });
 
 test("Privacy policy is published and linked from the footer", async () => {

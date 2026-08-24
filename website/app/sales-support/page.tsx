@@ -35,8 +35,8 @@ export default function SalesSupportPage() {
         description="We help manage guest communication, response quality, follow-up, and booking handover so owners do not lose warm leads to slow or unclear replies."
         image="/images/sales-support.webp"
         imageAlt="Team member providing premium yacht sales support ashore"
-        video="/videos/charterx-ocean-texture.mp4"
-        videoMobile="/videos/charterx-ocean-texture.mp4"
+        video="/videos/charterx-ocean-texture-uhd.mp4"
+        videoMobile="/videos/charterx-ocean-texture-uhd.mp4"
         videoPosition="center center"
         videoMobilePosition="center center"
         primaryLabel="Discuss Support"
@@ -57,7 +57,7 @@ export default function SalesSupportPage() {
       <section className="managed-section section-shell" id="support-includes" style={{ paddingTop: "2rem", background: "var(--navy-950)", color: "white" }}>
         <div className="section-heading-grid reveal-item">
           <SectionLabel index="02" tone="light">Support Includes</SectionLabel>
-          <h2 style={{ color: "var(--champagne-500)" }}>A complete extension of your <em>sales team.</em></h2>
+          <h2>A complete extension of your <em>sales team.</em></h2>
           <p style={{ opacity: 0.8 }}>We ensure nothing slips through the cracks, from the first contact to the final handover.</p>
         </div>
         <div className="managed-grid">

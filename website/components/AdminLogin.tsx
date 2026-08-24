@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { ArrowIcon } from "./ArrowIcon";
+import { CharterXWordmark } from "./CharterXWordmark";
 
 export function AdminLogin() {
   const [error, setError] = useState("");
@@ -30,13 +31,12 @@ export function AdminLogin() {
   return (
     <div className="admin-login-page admin-page">
       <div className="admin-login-brand">
-        <span className="admin-route-mark" aria-hidden="true"><i /><i /></span>
-        <p>CharterX</p>
+        <CharterXWordmark tone="light" />
         <small>CYM Operations</small>
       </div>
       <section className="admin-login-card" aria-labelledby="admin-login-title">
         <p className="admin-eyebrow">Private operations portal</p>
-        <h1 id="admin-login-title">Welcome <em>back ashore.</em></h1>
+        <h1 id="admin-login-title">Welcome back ashore.</h1>
         <p>Sign in to manage enquiries, follow-ups, invoices, and commercial activity.</p>
         <form onSubmit={submit}>
           <label><span>Email address</span><input name="email" type="email" autoComplete="username" required /></label>
@@ -44,9 +44,9 @@ export function AdminLogin() {
           {error && <p className="admin-form-error" role="alert">{error}</p>}
           <button type="submit" disabled={busy}>{busy ? "Checking access…" : "Sign in securely"}<ArrowIcon direction="right" /></button>
         </form>
-        <div className="admin-security-note"><span aria-hidden="true">●</span><p>Protected access · Attempts are rate-limited and sessions expire automatically.</p></div>
+        <div className="admin-security-note"><p>Protected access. Attempts are rate-limited and sessions expire automatically.</p></div>
       </section>
-      <p className="admin-legal">Collabrative Yatch Managemnet Limited · Trading as CharterX</p>
+      <p className="admin-legal">Collaborative Yacht Management Limited · Trading as CharterX</p>
     </div>
   );
 }

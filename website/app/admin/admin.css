@@ -253,3 +253,193 @@ body:has(.admin-page) { background: #edf1ef; }
   .admin-lead-brief,
   .admin-commercial-fields { grid-template-columns: 1fr !important; }
 }
+
+/* CharterX identity system shared by login, command centre and invoices. */
+.charterx-wordmark {
+  --wordmark-ink: #08211d;
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--wordmark-ink);
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.9rem;
+  font-weight: 430;
+  letter-spacing: .26em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.charterx-wordmark--light { --wordmark-ink: #f6f2e9; }
+.charterx-wordmark--compact { font-size: 1.35rem; }
+.charterx-wordmark__name { position: relative; }
+.charterx-wordmark__line {
+  position: absolute;
+  top: 52%;
+  right: -.15em;
+  left: -.15em;
+  height: 1px;
+  background: #d7b77a;
+}
+.charterx-wordmark__x { margin-left: .02em; color: #d7b77a; font-weight: 650; }
+
+.admin-page {
+  --admin-bg: #f2f0e9;
+  --admin-panel: #fbfaf6;
+  --admin-ink: #08211d;
+  --admin-muted: #66736f;
+  --admin-line: #dcd9cf;
+  --admin-navy: #071b18;
+  --admin-teal: #3f766d;
+  --admin-gold: #b89352;
+}
+body:has(.admin-page) { background: var(--admin-bg); }
+
+.admin-login-page {
+  place-items: stretch;
+  grid-template-columns: minmax(20rem, .88fr) minmax(31rem, 1.12fr);
+  padding: 0;
+  background: #071b18;
+}
+.admin-login-page:before {
+  inset: 0 48% 0 0;
+  opacity: 1;
+  background:
+    linear-gradient(180deg, rgba(7,27,24,.12), rgba(7,27,24,.76)),
+    url('/images/charterx-yacht-deck.webp') center / cover;
+  mask-image: none;
+}
+.admin-login-brand {
+  z-index: 2;
+  top: 3rem;
+  left: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+.admin-login-brand small {
+  padding-left: 1.1rem;
+  border-left: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.6);
+}
+.admin-login-card {
+  align-self: center;
+  justify-self: center;
+  width: min(calc(100% - 4rem), 35rem);
+  padding: clamp(2.4rem, 5vw, 4.5rem);
+  background: #f7f4ec;
+  box-shadow: 0 38px 100px rgba(0,0,0,.28);
+}
+.admin-login-card:before {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin-bottom: 2.2rem;
+  background: var(--admin-gold);
+  content: "";
+}
+.admin-login-card h1 {
+  max-width: 9ch;
+  margin: .5rem 0 1.1rem;
+  color: var(--admin-ink);
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(3rem, 5.5vw, 5.6rem);
+  font-weight: 480;
+  letter-spacing: -.065em;
+}
+.admin-login-card form>button,
+.admin-primary {
+  background: #d7b77a !important;
+  color: #071b18 !important;
+}
+.admin-login-card form>button:hover,
+.admin-primary:hover { background: #e3c991 !important; }
+.admin-security-note { border-color: #dcd9cf; }
+.admin-security-note p { color: #66736f; }
+.admin-legal { z-index: 2; color: rgba(255,255,255,.5); }
+
+.admin-dashboard { background: var(--admin-bg); }
+.admin-sidebar {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(215,183,122,.13), transparent 25%),
+    linear-gradient(160deg, #0b2924, #061714 72%);
+}
+.admin-wordmark { gap: .55rem; }
+.admin-wordmark small { margin-top: .15rem; }
+.admin-sidebar nav button i { border-radius: 0; transform: rotate(45deg); }
+.admin-sidebar nav button.is-active i { border-color: var(--admin-gold); background: var(--admin-gold); }
+.admin-main {
+  background:
+    linear-gradient(rgba(8,33,29,.025) 1px, transparent 1px),
+    var(--admin-bg);
+  background-size: 100% 7rem;
+}
+.admin-panel,
+.admin-metrics article,
+.admin-revenue-strip article { background: rgba(251,250,246,.94); }
+.admin-panel,
+.admin-metrics article,
+.admin-revenue-strip article,
+.admin-modal { border-radius: 0; }
+.admin-live {
+  border-color: #d3d0c6;
+  background: transparent;
+  color: var(--admin-muted);
+  letter-spacing: .08em;
+}
+.admin-live i { display: none; }
+.admin-modal-backdrop { background: rgba(4,20,17,.76); }
+.admin-invoice-modal { border-top: 3px solid var(--admin-gold); background: #f8f6ef; }
+.admin-line-head,
+.admin-table-panel th { background: #edeae1; }
+.admin-invoice-total { background: #0b2924; }
+
+.invoice-page {
+  padding: 2.5rem;
+  background: #deddd6;
+}
+.invoice-toolbar { width: min(100%, 60rem); }
+.invoice-toolbar a,
+.invoice-toolbar button {
+  border-color: #c9c7be;
+  background: #f8f6ef;
+  color: var(--admin-ink);
+}
+.invoice-document {
+  position: relative;
+  width: min(100%, 60rem);
+  padding: 4.7rem;
+  overflow: hidden;
+  background: #fbfaf6;
+  box-shadow: 0 28px 80px rgba(7,27,24,.16);
+}
+.invoice-document:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: .45rem;
+  background: linear-gradient(90deg, #0b2924 0 72%, #d7b77a 72%);
+  content: "";
+}
+.invoice-document>header { padding-bottom: 2.4rem; border-bottom-color: #0b2924; }
+.invoice-identity { display: grid; gap: .65rem; }
+.invoice-identity>span:last-child { letter-spacing: .08em; text-transform: uppercase; }
+.invoice-project { border-left: 3px solid #d7b77a; background: #efede5; }
+.invoice-document th { border-bottom-color: #0b2924; color: #44534e; }
+.invoice-summary p:last-child { background: #0b2924; }
+.invoice-document>footer { color: #68746f; }
+
+@media(max-width:900px) {
+  .admin-login-page { grid-template-columns: 1fr; padding: 7rem 1.5rem 5rem; }
+  .admin-login-page:before { inset: 0; opacity: .28; }
+  .admin-login-card { width: min(100%, 35rem); }
+}
+@media(max-width:700px) {
+  .admin-login-brand { top: 1.8rem; left: 1.5rem; }
+  .admin-login-brand .charterx-wordmark { font-size: 1.35rem; }
+  .admin-login-card { padding: 2.3rem 1.5rem; }
+  .invoice-page { padding: 0; }
+  .invoice-document { padding: 3rem 1.25rem; }
+}
+@media print {
+  .invoice-document:before { position: fixed; }
+}

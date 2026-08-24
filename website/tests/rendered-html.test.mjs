@@ -51,6 +51,8 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   const login = await readFile(new URL("../components/AdminLogin.tsx", import.meta.url), "utf8");
   const layout = await readFile(new URL("../app/admin/layout.tsx", import.meta.url), "utf8");
   const dashboard = await readFile(new URL("../components/AdminDashboard.tsx", import.meta.url), "utf8");
+  const wordmark = await readFile(new URL("../components/CharterXWordmark.tsx", import.meta.url), "utf8");
+  const invoice = await readFile(new URL("../app/admin/invoices/[id]/page.tsx", import.meta.url), "utf8");
   const adminData = await readFile(new URL("../lib/admin-data.ts", import.meta.url), "utf8");
   const migration = await readFile(new URL("../drizzle/0002_admin_crm_intelligence.sql", import.meta.url), "utf8");
   assert.match(login, /Private operations portal/);
@@ -60,6 +62,12 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   assert.match(dashboard, /Weighted pipeline/);
   assert.match(dashboard, /Next best action/);
   assert.match(dashboard, /Message me on WhatsApp|wa\.me/);
+  assert.match(login, /CharterXWordmark/);
+  assert.match(dashboard, /CharterXWordmark/);
+  assert.match(wordmark, /charterx-wordmark__line/);
+  assert.match(invoice, /CharterXWordmark/);
+  assert.match(invoice, /connect@cymcharterx\.com/);
+  assert.match(invoice, /Collaborative Yacht Management Limited/);
   assert.match(adminData, /weightedPipeline/);
   assert.match(adminData, /estimated_value_cents/);
   assert.match(migration, /idx_leads_attention/);

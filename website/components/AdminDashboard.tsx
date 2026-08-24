@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { AuditRecord, InvoiceLineItem, InvoiceRecord, LeadRecord, LeadStatus } from "@/lib/admin-data";
 import { ArrowIcon } from "./ArrowIcon";
+import { CharterXWordmark } from "./CharterXWordmark";
 
 type DashboardData = {
   leads: LeadRecord[];
@@ -134,14 +135,14 @@ export function AdminDashboard({ data, adminEmail }: { data: DashboardData; admi
 
   return <div className="admin-dashboard admin-page">
     <aside className="admin-sidebar">
-      <a className="admin-wordmark" href="/admin"><span>CharterX</span><small>Commercial command</small></a>
+      <a className="admin-wordmark" href="/admin"><CharterXWordmark tone="light" compact /><small>Commercial command</small></a>
       <nav aria-label="Admin navigation">{(["overview", "leads", "invoices"] as const).map((item) => <button className={view === item ? "is-active" : ""} key={item} onClick={() => setView(item)}><i aria-hidden="true" />{item === "overview" ? "Command desk" : pretty(item)}</button>)}</nav>
       <div className="admin-sidebar-signal"><span>Today’s signal</span><strong>{data.metrics.responseQueue ? `${data.metrics.responseQueue} action${data.metrics.responseQueue === 1 ? "" : "s"} waiting` : "Desk is clear"}</strong><small>{data.metrics.followUpsDue ? `${data.metrics.followUpsDue} follow-up${data.metrics.followUpsDue === 1 ? "" : "s"} overdue` : "No overdue follow-ups"}</small></div>
       <div className="admin-sidebar-foot"><span>{adminEmail}</span><button onClick={logout}>Sign out</button><a href="/" target="_blank" rel="noreferrer">View website <ArrowIcon /></a></div>
     </aside>
 
     <main className="admin-main">
-      <header className="admin-topbar"><div><p>Private command centre · {new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(new Date())}</p><h1>{view === "overview" ? "Commercial command" : view === "leads" ? "Opportunity pipeline" : "Revenue desk"}</h1></div><div><span className="admin-live"><i /> Secure</span><button className="admin-primary" onClick={() => setShowInvoice(true)}>New invoice</button></div></header>
+      <header className="admin-topbar"><div><p>Private command centre · {new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long" }).format(new Date())}</p><h1>{view === "overview" ? "Commercial command" : view === "leads" ? "Opportunity pipeline" : "Revenue desk"}</h1></div><div><span className="admin-live">Encrypted session</span><button className="admin-primary" onClick={() => setShowInvoice(true)}>New invoice</button></div></header>
       {toast && <div className="admin-toast" role="status">{toast}<button aria-label="Dismiss notification" onClick={() => setToast("")}>×</button></div>}
 
       {view === "overview" && <>

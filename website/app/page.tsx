@@ -22,7 +22,7 @@ const pillars = [
     number: "03",
     eyebrow: "Turn interest into revenue",
     title: "Win bookings",
-    copy: "Responsive enquiry support, thoughtful pricing and consistent follow-up—managed as one commercial rhythm.",
+    copy: "Responsive enquiry support, thoughtful pricing and consistent follow-up, managed as one commercial rhythm.",
     link: "/revenue-growth",
     linkLabel: "Grow booking value",
   },
@@ -73,12 +73,6 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <div className="cx-hero-foot">
-          <span>OTA management</span>
-          <span>Revenue strategy</span>
-          <span>Enquiry support</span>
-          <span>Digital growth</span>
-        </div>
       </section>
 
       <section className="cx-reality cx-section cx-shell" id="growth-system">
@@ -89,7 +83,7 @@ export default function Home() {
         </div>
         <div className="cx-reality-copy reveal-item">
           <p className="cx-lead">Guests do not see disconnected tools. They feel delay, doubt and friction.</p>
-          <p>CharterX turns the commercial work around your yacht into one clear operating system—so every channel feels current, every enquiry has an owner and every improvement has a purpose.</p>
+          <p>CharterX turns the commercial work around your yacht into one clear operating system. Every channel stays current, every enquiry has an owner and every improvement has a purpose.</p>
           <a className="cx-text-link" href="/yacht-growth-score">Check your growth score <span aria-hidden="true">↗</span></a>
         </div>
       </section>

@@ -187,7 +187,7 @@ export function ConnectConcierge({ whatsappNumber = "" }: { whatsappNumber?: str
                 <button type="button" onClick={() => choose("message")}><span className="connect-symbol" aria-hidden="true">M</span><span><strong>Message us here</strong><small>Share a few useful details.</small></span></button>
                 <button type="button" onClick={() => choose("whatsapp")}><span className="connect-symbol" aria-hidden="true">W</span><span><strong>{directWhatsapp ? "Open WhatsApp" : "Message me on WhatsApp"}</strong><small>{directWhatsapp ? "Continue in WhatsApp." : "We’ll message your number."}</small></span></button>
                 <button type="button" onClick={() => choose("callback")}><span className="connect-symbol" aria-hidden="true">C</span><span><strong>Request a callback</strong><small>Ask for a call within 10 minutes.</small></span></button>
-                <a href="mailto:info@charterx.com?subject=CharterX%20enquiry"><span className="connect-symbol" aria-hidden="true">@</span><span><strong>Email directly</strong><small>info@charterx.com</small></span></a>
+                <a href="mailto:connect@cymcharterx.com?subject=CharterX%20enquiry"><span className="connect-symbol" aria-hidden="true">@</span><span><strong>Email directly</strong><small>connect@cymcharterx.com</small></span></a>
               </div>
               <p className="connect-availability">10-minute callback requests apply during staffed hours.</p>
             </div>

@@ -54,7 +54,7 @@ export const insights = [
     slug: "why-yacht-listings-underperform",
     category: "OTA Distribution",
     title: "Why Yacht Listings Underperform on Booking Platforms",
-    excerpt: "The quiet listing gaps that limit discovery, trust, and conversion—and how to identify them.",
+    excerpt: "The quiet listing gaps that limit discovery, trust and conversion, plus how to identify them.",
     readTime: "6 min read",
   },
   {
@@ -68,7 +68,7 @@ export const insights = [
     slug: "yacht-website-sales-asset",
     category: "Digital Presence",
     title: "The Difference Between a Yacht Website and a Yacht Sales Asset",
-    excerpt: "Why beautiful imagery is only the start—and what a commercially useful yacht website needs to do.",
+    excerpt: "Why beautiful imagery is only the start, and what a commercially useful yacht website needs to do.",
     readTime: "5 min read",
   },
   {

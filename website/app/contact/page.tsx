@@ -34,7 +34,7 @@ export default function ContactPage() {
         <div className="contact-aside reveal-item">
           <SectionLabel index="01">Form Intro</SectionLabel>
           <h2>Start with the <em>current setup.</em></h2>
-          <p>You do not need everything organised before speaking to us. Tell us what you have now — listings, website, platforms, enquiries, pricing, and the areas that feel messy. We will help identify what should be improved first.</p>
+          <p>You do not need everything organised before speaking to us. Tell us what you have now: listings, website, platforms, enquiries, pricing and the areas that feel messy. We will help identify what should be improved first.</p>
         </div>
         <ContactForm />
       </section>

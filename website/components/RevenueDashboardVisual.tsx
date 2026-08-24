@@ -29,9 +29,9 @@ export function RevenueDashboardVisual() {
     <div className="revenue-dashboard" ref={root} aria-label="Abstract dashboard showing booking rhythm and revenue optimisation">
       <div className="dashboard-shell">
         <div className="dash-head">
-          <div><span className="dash-light" /><span className="dash-light" /><span className="dash-light" /></div>
+          <div className="dash-mark" aria-hidden="true">CX / 01</div>
           <p>Commercial overview</p>
-          <span>Live rhythm</span>
+          <span>Monthly signal</span>
         </div>
         <div className="dash-grid">
           <div className="dash-main">
@@ -51,7 +51,7 @@ export function RevenueDashboardVisual() {
           </div>
           <div className="dash-side">
             {["Direct enquiry", "Platform request", "Follow-up ready"].map((label, index) => (
-              <div className="dash-booking" key={label}><span>0{index + 1}</span><div><strong>{label}</strong><small>Guest journey active</small></div><i /></div>
+              <div className="dash-booking" key={label}><span>0{index + 1}</span><div><strong>{label}</strong><small>Guest journey active</small></div></div>
             ))}
             <div className="dash-note"><span>Owner view</span><p>Clarity across the commercial engine.</p></div>
           </div>

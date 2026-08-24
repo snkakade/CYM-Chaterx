@@ -49,7 +49,7 @@ export function CinematicStories() {
       <div className="minimal-heading reveal-item">
         <SectionLabel index="04">In motion</SectionLabel>
         <h2>A quieter view of <em>commercial momentum.</em></h2>
-        <p>Short maritime studies that keep the experience grounded in the yacht—not in dashboard theatre.</p>
+        <p>Short maritime studies that keep the experience grounded in the yacht, not in dashboard theatre.</p>
       </div>
       <div className="film-grid">
         {films.map((film, index) => (

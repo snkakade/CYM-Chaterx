@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     siteName: "CharterX",
     title: "More Bookings. Less Drift.",
     description: "One commercial growth system for yacht businesses.",
-    images: [{ url: "/og-v2.png", width: 1200, height: 630, alt: "CharterX — More bookings. Less drift." }],
+    images: [{ url: "/og-v2.png", width: 1200, height: 630, alt: "CharterX | More bookings. Less drift." }],
   },
-  twitter: { card: "summary_large_image", title: "CharterX — More Bookings. Less Drift.", description: "One commercial growth system for yacht businesses.", images: ["/og-v2.png"] },
+  twitter: { card: "summary_large_image", title: "CharterX | More Bookings. Less Drift.", description: "One commercial growth system for yacht businesses.", images: ["/og-v2.png"] },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

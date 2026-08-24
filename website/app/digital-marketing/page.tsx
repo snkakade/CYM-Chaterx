@@ -62,7 +62,7 @@ export default function DigitalMarketingPage() {
         mobilePosition="38% center"
       />
       <section className="capabilities section-shell" id="digital-capabilities">
-        <div className="section-heading-grid reveal-item"><SectionLabel index="02">Digital Capabilities</SectionLabel><h2>Every layer of a stronger <em>direct presence.</em></h2><p>Use the full programme or start with the commercial layer creating the most friction today.</p></div>
+        <div className="section-heading-grid reveal-item"><SectionLabel index="02">Digital Capabilities</SectionLabel><h2>Every layer of a stronger direct presence.</h2><p>Use the full programme or start with the commercial layer creating the most friction today.</p></div>
         <div className="capability-grid">
           {capabilities.map(([title, copy], index) => <article className="reveal-item" key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
         </div>

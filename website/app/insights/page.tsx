@@ -35,7 +35,7 @@ export default function InsightsPage() {
         <div className="section-heading-grid reveal-item"><SectionLabel index="01">The commercial library</SectionLabel><h2>Useful thinking, without <em>the theatre.</em></h2><p>Clear, considered guidance designed to make your next commercial decision easier.</p></div>
         <div className="insights-grid">{insights.map((insight, index) => <InsightCard insight={insight} index={index} key={insight.slug} />)}</div>
       </section>
-      <section className="insight-note section-shell reveal-item"><span>Field note 001</span><p>Good growth advice should respect the vessel, the operation, and the guest—not just the dashboard.</p></section>
+      <section className="insight-note section-shell reveal-item"><span>Field note 001</span><p>Good growth advice should respect the vessel, the operation and the guest, not just the dashboard.</p></section>
       <FinalCTA />
     </>
   );

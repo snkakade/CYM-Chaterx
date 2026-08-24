@@ -80,7 +80,7 @@ export function YachtGrowthScore() {
       </div>
       <div className="score-card reveal-item">
         <div className="score-interactive-label">
-          <span><i aria-hidden="true" />Interactive assessment</span>
+          <span>Growth score review</span>
           <small>Select one answer to continue</small>
         </div>
         <div className="score-progress">

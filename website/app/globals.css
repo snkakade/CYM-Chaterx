@@ -1448,11 +1448,11 @@ h1 em {
 }
 .dashboard-shell {
   padding: 1.5rem;
-  border: 1px solid rgba(84, 214, 198, 0.2);
+  border: 1px solid rgba(215, 183, 122, 0.38);
   border-radius: 12px;
-  background: var(--navy-900);
+  background: #102823;
   color: var(--white);
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 32px 80px rgba(7, 23, 22, 0.18);
 }
 .dash-head {
   display: flex;
@@ -1465,23 +1465,7 @@ h1 em {
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.dash-head > div {
-  display: flex;
-  gap: 0.3rem;
-}
-.dash-light {
-  display: block;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--champagne-500);
-}
-.dash-light:nth-child(2) {
-  background: var(--aqua-500);
-}
-.dash-light:nth-child(3) {
-  background: var(--slate-500);
-}
+.dash-mark { color: var(--champagne-400); }
 .dash-grid {
   display: grid;
   grid-template-columns: 1fr 19rem;
@@ -1490,7 +1474,7 @@ h1 em {
 .dash-main,
 .dash-side {
   padding: 1.25rem;
-  background: var(--navy-800);
+  background: #18372f;
   border-radius: 8px;
 }
 .dash-kpis {
@@ -1513,7 +1497,7 @@ h1 em {
 .dash-kpis strong {
   margin-top: 0.3rem;
   font-size: 0.78rem;
-  color: var(--aqua-400);
+  color: var(--champagne-400);
 }
 .dash-chart {
   position: relative;
@@ -1539,7 +1523,7 @@ h1 em {
 }
 .dash-chart-line {
   fill: none;
-  stroke: var(--aqua-400);
+  stroke: var(--champagne-400);
   stroke-width: 2;
   stroke-dasharray: 520;
   stroke-dashoffset: 520;
@@ -1568,11 +1552,11 @@ h1 em {
 }
 .dash-booking {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   gap: 0.7rem;
   align-items: center;
   padding: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(215, 183, 122, 0.16);
 }
 .dash-booking > span {
   font-family: var(--font-mono);
@@ -1590,21 +1574,15 @@ h1 em {
   font-size: 0.55rem;
   color: rgba(255, 255, 255, 0.4);
 }
-.dash-booking i {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--aqua-400);
-}
 .dash-note {
   margin-top: auto;
   padding: 1rem;
-  background: rgba(84, 214, 198, 0.08);
+  background: rgba(215, 183, 122, 0.1);
 }
 .dash-note span {
   font-family: var(--font-mono);
   font-size: 0.5rem;
-  color: var(--aqua-400);
+  color: var(--champagne-400);
   text-transform: uppercase;
 }
 .dash-note p {
@@ -3208,7 +3186,7 @@ html {
   }
 }
 
-/* Revamped direction — quiet editorial luxury with more breathing room. */
+/* Revamped direction: quiet editorial luxury with more breathing room. */
 :root {
   --navy-950: #060c12;
   --navy-900: #0d1e2c;
@@ -3946,27 +3924,9 @@ h2 {
   color: var(--ocean-700);
   font-weight: 500;
 }
-.score-interactive-label i {
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.55rem;
-  border-radius: 50%;
-  background: var(--aqua-500);
-  box-shadow: 0 0 0 0 rgba(78, 148, 139, 0.42);
-  animation: score-pulse 2s ease-out infinite;
-}
 .score-interactive-label small {
   color: var(--champagne-500);
   font: inherit;
-}
-@keyframes score-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(78, 148, 139, 0.42);
-  }
-  70%,
-  100% {
-    box-shadow: 0 0 0 0.55rem rgba(78, 148, 139, 0);
-  }
 }
 .score-choices button {
   position: relative;
@@ -4570,7 +4530,7 @@ h2 {
   }
 }
 
-/* Revamped hero system — spacious editorial split used on every public page. */
+/* Revamped hero system: spacious editorial split used on every public page. */
 .site-header,
 .site-header.is-solid {
   height: 5.35rem;

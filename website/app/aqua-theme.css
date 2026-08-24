@@ -404,7 +404,7 @@ body {
 }
 
 /* ========================================
-   Inner page hero cleanup — remove tint, frames, unnecessary text
+   Inner page hero cleanup: remove tint, frames, unnecessary text
    ======================================== */
 
 /* Remove the white/dark shade overlay that washes out the image */
@@ -414,7 +414,7 @@ body {
   opacity: 0 !important;
 }
 
-/* Remove desaturation filter — let images be vivid */
+/* Remove desaturation filter so images stay vivid */
 .page-hero .hero-media img,
 .page-hero .hero-media video {
   filter: none !important;
@@ -896,7 +896,7 @@ body {
 }
 
 /* ==========================================================================
-   YACHT GROWTH SCORE — LUXURY HIGH-CONTRAST & COMPACT REDESIGN
+   YACHT GROWTH SCORE: LUXURY HIGH-CONTRAST & COMPACT REDESIGN
    ========================================================================== */
 
 .score-section {

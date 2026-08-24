@@ -3,7 +3,7 @@ import { SectionLabel } from "./SectionLabel";
 
 const proofSlots = [
   {
-    quote: "The difference should be felt in the quality of every enquiry—not just the number appearing in an inbox.",
+    quote: "The difference should be felt in the quality of every enquiry, not just the number appearing in an inbox.",
     focus: "Enquiry quality",
   },
   {

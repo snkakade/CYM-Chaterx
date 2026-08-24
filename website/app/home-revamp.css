@@ -79,7 +79,7 @@
   z-index: 2;
   width: 100%;
   padding-top: 10rem;
-  padding-bottom: clamp(8.5rem, 14vh, 11rem);
+  padding-bottom: clamp(5.5rem, 10vh, 8rem);
 }
 
 .cx-hero h1 {
@@ -91,10 +91,10 @@
 }
 
 .cx-hero-copy {
-  max-width: 610px;
+  max-width: 560px;
   margin: 2rem 0 0;
   color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+  font-size: clamp(0.9rem, 1.1vw, 1.08rem);
   line-height: 1.55;
 }
 
@@ -140,20 +140,15 @@
 
 .cx-text-link--light { color: rgba(255, 255, 255, 0.86); }
 
-.cx-hero-foot {
-  position: absolute;
-  z-index: 2;
-  right: clamp(1.25rem, 5vw, 5.5rem);
-  bottom: 2rem;
-  left: clamp(1.25rem, 5vw, 5.5rem);
-  display: flex;
-  justify-content: flex-end;
-  gap: clamp(1rem, 3vw, 3rem);
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.cx-hero .cx-button {
+  min-height: 3.1rem;
+  gap: 1.6rem;
+  padding: 0.28rem 0.36rem 0.28rem 1.15rem;
+}
+
+.cx-hero .cx-button span {
+  width: 2.35rem;
+  height: 2.35rem;
 }
 
 .cx-section-index {
@@ -370,10 +365,21 @@
   .cx-proof-image { min-height: 580px; }
 }
 
+@media (min-width: 801px) {
+  .cx-pillars {
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+  }
+
+  .cx-pillars.cx-section { padding-block: clamp(5rem, 7vh, 6.5rem); }
+  .cx-pillars .cx-heading-row { margin-bottom: clamp(2rem, 3.5vh, 3.2rem); }
+  .cx-pillars .cx-heading-row h2 { font-size: clamp(3rem, 5vw, 5.4rem) !important; }
+  .cx-pillars .cx-pillar { min-height: clamp(20rem, 42vh, 25rem); }
+}
+
 @media (max-width: 800px) {
   .cx-hero-shade { background: linear-gradient(0deg, rgba(4, 18, 17, 0.9) 0%, rgba(4, 18, 17, 0.55) 72%, rgba(4, 18, 17, 0.28) 100%); }
-  .cx-hero-foot { justify-content: flex-start; overflow: hidden; }
-  .cx-hero-foot span:nth-child(n+3) { display: none; }
   .cx-reality,
   .cx-heading-row,
   .cx-proof { grid-template-columns: 1fr; }
@@ -389,7 +395,7 @@
 }
 
 @media (max-width: 560px) {
-  .cx-hero-inner { padding-bottom: 10rem; }
+  .cx-hero-inner { padding-bottom: 5.5rem; }
   .cx-hero h1 { font-size: clamp(3.35rem, 17vw, 5.5rem) !important; }
   .cx-actions { align-items: flex-start; flex-direction: column; gap: 1.2rem; }
   .cx-reality h2,

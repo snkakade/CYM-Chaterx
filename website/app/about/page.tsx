@@ -63,7 +63,7 @@ export default function AboutPage() {
       </section>
       <section className="how-we-work">
         <div className="section-shell how-we-work-inner">
-          <div className="how-we-work-copy reveal-item"><SectionLabel index="03" tone="light">How we work</SectionLabel><h2>Close enough to understand. Structured enough <em>to deliver.</em></h2><p>We begin with the vessel, market, operating model, and current commercial setup. Then we establish the most useful scope—focused support or a connected growth partnership.</p></div>
+          <div className="how-we-work-copy reveal-item"><SectionLabel index="03" tone="light">How we work</SectionLabel><h2>Close enough to understand. Structured enough <em>to deliver.</em></h2><p>We begin with the vessel, market, operating model and current commercial setup. Then we establish the most useful scope: focused support or a connected growth partnership.</p></div>
           <div className="working-principles">
             {[["01", "Listen", "Understand the vessel, owner priorities, guest profile, and operating limits."], ["02", "Prioritise", "Find the commercial gaps most likely to be costing visibility, time, or conversion."], ["03", "Build", "Create the content, systems, campaigns, and response rhythm the business needs."], ["04", "Improve", "Review real signals and make measured changes over time."]].map(([number, title, copy]) => <article className="reveal-item" key={title}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
           </div>

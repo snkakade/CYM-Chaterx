@@ -21,7 +21,7 @@ export function Footer() {
         <div className="cx-footer-brand">
           <Logo />
           <p>One commercial system for a yacht business that moves with purpose.</p>
-          <a href="mailto:info@charterx.com">info@charterx.com</a>
+          <a href="mailto:connect@cymcharterx.com">connect@cymcharterx.com</a>
         </div>
         <nav aria-label="Footer services">
           <p>Services</p>

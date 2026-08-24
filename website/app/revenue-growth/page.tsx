@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const levers = [
-  ["Pricing", "Pricing should reflect demand, seasonality, lead time, experience value, and owner priorities — not just what someone nearby listed last week."],
+  ["Pricing", "Pricing should reflect demand, seasonality, lead time, experience value and owner priorities, not simply nearby listings."],
   ["Availability", "A clear calendar builds confidence and protects high-value dates from poor planning."],
   ["Presentation", "The way your yacht is described, photographed, and packaged shapes how guests judge value."],
   ["Response", "Fast is useful. Clear is better. Guests book when they feel understood and confident."],
@@ -60,7 +60,7 @@ export default function RevenueGrowthPage() {
         posterAlt="Top-down aerial film of a yacht drawing a curved wake"
       />
       <section className="revenue-levers section-shell" id="revenue-levers">
-        <div className="revenue-lever-heading reveal-item"><SectionLabel index="02">Revenue Levers</SectionLabel><h2>Where performance is <em>won quietly.</em></h2></div>
+        <div className="section-heading-grid reveal-item"><SectionLabel index="02">Revenue Levers</SectionLabel><h2>Where performance is won quietly.</h2><p>Small decisions compound across pricing, availability, presentation and response.</p></div>
         <div className="lever-list">
           {levers.map(([title, copy], index) => (
             <article className="lever-item reveal-item" key={title}>
@@ -84,7 +84,7 @@ export default function RevenueGrowthPage() {
         </div>
       </section>
       <section className="owner-outcomes section-shell">
-        <div className="section-heading-grid reveal-item"><SectionLabel index="04">Owner Outcomes</SectionLabel><h2>More clarity. Less reactive <em>owner admin.</em></h2><p>No inflated forecasts. No vague dashboards. No theatre. Just a clearer view of what is happening commercially, where bookings may be leaking, and what should be improved next.</p></div>
+        <div className="section-heading-grid reveal-item"><SectionLabel index="04">Owner Outcomes</SectionLabel><h2>More clarity. Less owner administration.</h2><p>Clear reporting shows what is happening, where bookings are leaking and what should improve next.</p></div>
         <div className="outcome-grid">
           {["Better view of demand", "Cleaner pricing decisions", "More consistent enquiry handling", "Stronger listing quality", "Clearer channel performance", "Improved direct booking path", "Less manual owner follow-up", "More professional guest journey"].map((item, index) => <article className="reveal-item" key={item}><span>0{index + 1}</span><p>{item}</p></article>)}
         </div>

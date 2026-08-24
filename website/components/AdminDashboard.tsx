@@ -53,6 +53,8 @@ export function AdminDashboard({ data, adminEmail }: { data: DashboardData; admi
   const [view, setView] = useState<View>("overview");
   const [leadFilter, setLeadFilter] = useState<LeadFilter>("all");
   const [selectedLead, setSelectedLead] = useState<LeadRecord | null>(null);
+  const [leads, setLeads] = useState(data.leads);
+  const [invoices, setInvoices] = useState(data.invoices);
   const [showInvoice, setShowInvoice] = useState(false);
   const [search, setSearch] = useState("");
   const [toast, setToast] = useState("");
@@ -68,22 +70,22 @@ export function AdminDashboard({ data, adminEmail }: { data: DashboardData; admi
 
   const filteredLeads = useMemo(() => {
     const query = search.trim().toLowerCase();
-    return data.leads.filter((lead) => !query || [lead.name, lead.email, lead.phone, lead.vessel_type, lead.location, lead.challenge, lead.source, lead.next_action].some((value) => value.toLowerCase().includes(query))).filter((lead) => {
+    return leads.filter((lead) => !query || [lead.name, lead.email, lead.phone, lead.vessel_type, lead.location, lead.challenge, lead.source, lead.next_action].some((value) => value.toLowerCase().includes(query))).filter((lead) => {
       if (leadFilter === "attention") return isDue(lead) || lead.status === "new";
       if (leadFilter === "priority") return lead.priority === "high" && !isClosed(lead);
       if (leadFilter === "no-followup") return !lead.follow_up_at && !isClosed(lead);
       if (leadFilter === "won") return lead.status === "won";
       return true;
     });
-  }, [data.leads, leadFilter, search]);
+  }, [leads, leadFilter, search]);
 
-  const attentionLeads = useMemo(() => [...data.leads].filter((lead) => !isClosed(lead)).sort((left, right) => attentionScore(right) - attentionScore(left) || new Date(right.created_at).getTime() - new Date(left.created_at).getTime()).slice(0, 6), [data.leads]);
-  const pipelineCounts = useMemo(() => leadStages.map((stage) => ({ stage, count: data.leads.filter((lead) => lead.status === stage).length })), [data.leads]);
+  const attentionLeads = useMemo(() => [...leads].filter((lead) => !isClosed(lead)).sort((left, right) => attentionScore(right) - attentionScore(left) || new Date(right.created_at).getTime() - new Date(left.created_at).getTime()).slice(0, 6), [leads]);
+  const pipelineCounts = useMemo(() => leadStages.map((stage) => ({ stage, count: leads.filter((lead) => lead.status === stage).length })), [leads]);
   const sourceCounts = useMemo(() => {
     const counts = new Map<string, number>();
-    data.leads.forEach((lead) => counts.set(sourceLabel(lead.source), (counts.get(sourceLabel(lead.source)) ?? 0) + 1));
+    leads.forEach((lead) => counts.set(sourceLabel(lead.source), (counts.get(sourceLabel(lead.source)) ?? 0) + 1));
     return [...counts.entries()].sort((left, right) => right[1] - left[1]).slice(0, 5);
-  }, [data.leads]);
+  }, [leads]);
   const maxPipelineCount = Math.max(...pipelineCounts.map((item) => item.count), 1);
   const maxSourceCount = Math.max(...sourceCounts.map((item) => item[1]), 1);
 
@@ -94,13 +96,36 @@ export function AdminDashboard({ data, adminEmail }: { data: DashboardData; admi
     if (!selectedLead) return;
     setBusy(true);
     const form = new FormData(event.currentTarget);
+    const status = String(form.get("status")) as LeadStatus;
+    const priority = form.get("priority") === "high" ? "high" as const : "normal" as const;
+    const followUpValue = String(form.get("followUpAt") ?? "");
+    const lastContactValue = String(form.get("lastContactAt") ?? "");
+    const estimatedValueCents = Math.round(Number(form.get("estimatedValue")) * 100);
+    const probability = Number(form.get("probability"));
+    const nextAction = String(form.get("nextAction") ?? "");
+    const lostReason = String(form.get("lostReason") ?? "");
+    const internalNotes = String(form.get("internalNotes") ?? "");
     const response = await fetch(`/api/admin/leads/${selectedLead.id}`, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({
-      status: form.get("status"), priority: form.get("priority"), followUpAt: form.get("followUpAt"), lastContactAt: form.get("lastContactAt"), estimatedValueCents: Math.round(Number(form.get("estimatedValue")) * 100), probability: Number(form.get("probability")), nextAction: form.get("nextAction"), lostReason: form.get("lostReason"), internalNotes: form.get("internalNotes"),
+      status, priority, followUpAt: followUpValue, lastContactAt: lastContactValue, estimatedValueCents, probability, nextAction, lostReason, internalNotes,
     }) });
     const result = await response.json().catch(() => null) as { error?: string } | null;
     setBusy(false);
     if (!response.ok) return setToast(result?.error || "The lead could not be updated.");
-    setToast("Lead intelligence and next action saved."); setSelectedLead(null); window.setTimeout(() => window.location.reload(), 450);
+    setLeads((current) => current.map((lead) => lead.id === selectedLead.id ? {
+      ...lead,
+      status,
+      priority,
+      follow_up_at: followUpValue ? new Date(followUpValue).toISOString() : null,
+      last_contact_at: lastContactValue ? new Date(lastContactValue).toISOString() : null,
+      estimated_value_cents: estimatedValueCents,
+      probability,
+      next_action: nextAction,
+      lost_reason: lostReason,
+      internal_notes: internalNotes,
+      updated_at: new Date().toISOString(),
+    } : lead));
+    setToast("Lead intelligence and next action saved.");
+    setSelectedLead(null);
   }
 
   async function createInvoice(event: FormEvent<HTMLFormElement>) {
@@ -116,7 +141,8 @@ export function AdminDashboard({ data, adminEmail }: { data: DashboardData; admi
   async function changeInvoiceStatus(invoice: InvoiceRecord, status: string) {
     const response = await fetch(`/api/admin/invoices/${invoice.id}`, { method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ status }) });
     if (!response.ok) return setToast("Invoice status could not be changed.");
-    setToast(`${invoice.invoice_number} marked ${status}.`); window.setTimeout(() => window.location.reload(), 500);
+    setInvoices((current) => current.map((entry) => entry.id === invoice.id ? { ...entry, status: status as InvoiceRecord["status"], updated_at: new Date().toISOString() } : entry));
+    setToast(`${invoice.invoice_number} marked ${status}.`);
   }
 
   function invoiceForLead(lead: LeadRecord) {
@@ -160,7 +186,7 @@ export function AdminDashboard({ data, adminEmail }: { data: DashboardData; admi
 
       {view === "leads" && <section className="admin-panel admin-table-panel"><div className="admin-panel-head admin-lead-tools"><div><p>Opportunity intelligence</p><h2>{filteredLeads.length} visible lead{filteredLeads.length === 1 ? "" : "s"}</h2></div><div className="admin-tools"><input aria-label="Search leads" placeholder="Search contact, yacht, source or action…" value={search} onChange={(event) => setSearch(event.target.value)} /><a href="/api/admin/export?type=leads">Export intelligence</a></div></div><div className="admin-filter-row" aria-label="Lead filters">{(["all", "attention", "priority", "no-followup", "won"] as const).map((filter) => <button className={leadFilter === filter ? "is-active" : ""} key={filter} onClick={() => setLeadFilter(filter)}>{filter === "no-followup" ? "No follow-up" : pretty(filter)}</button>)}</div><div className="admin-table-scroll"><table><thead><tr><th>Contact</th><th>Opportunity</th><th>Signal</th><th>Stage</th><th>Next move</th><th /></tr></thead><tbody>{filteredLeads.map((lead) => <tr className={isDue(lead) ? "is-due" : ""} key={lead.id}><td><strong>{lead.name}</strong><span>{lead.email || lead.phone || "Contact detail missing"}</span><small>{date(lead.created_at)} · {sourceLabel(lead.source)}</small></td><td><strong>{lead.vessel_type || "Vessel not supplied"}</strong><span>{lead.location || lead.challenge}</span><small>{lead.estimated_value_cents ? money(lead.estimated_value_cents) : "Value not set"}</small></td><td><strong>{readiness(lead)}% ready</strong><span>{lead.probability}% confidence</span>{lead.priority === "high" && <small className="admin-high-copy">High priority</small>}</td><td><span className={`admin-status status-${lead.status}`}>{pretty(lead.status)}</span></td><td><strong>{suggestedAction(lead)}</strong><span>{lead.follow_up_at ? dateTime(lead.follow_up_at) : "No follow-up scheduled"}</span></td><td><button onClick={() => setSelectedLead(lead)}>Open</button></td></tr>)}</tbody></table></div>{!filteredLeads.length && <p className="admin-empty">No leads match this view.</p>}</section>}
 
-      {view === "invoices" && <><section className="admin-revenue-strip"><article><span>Outstanding</span><strong>{money(data.metrics.outstandingValue)}</strong><small>{data.metrics.outstandingInvoices} invoice{data.metrics.outstandingInvoices === 1 ? "" : "s"}</small></article><article><span>Paid this month</span><strong>{money(data.metrics.paidThisMonthValue)}</strong><small>{data.metrics.paidThisMonth} payment{data.metrics.paidThisMonth === 1 ? "" : "s"}</small></article><article><span>Drafts</span><strong>{data.invoices.filter((invoice) => invoice.status === "draft").length}</strong><small>Awaiting issue</small></article></section><section className="admin-panel admin-table-panel"><div className="admin-panel-head"><div><p>CYM CharterX billing</p><h2>{data.invoices.length} invoice{data.invoices.length === 1 ? "" : "s"}</h2></div><div className="admin-tools"><a href="/api/admin/export?type=invoices">Export CSV</a><button className="admin-primary" onClick={() => setShowInvoice(true)}>New invoice</button></div></div><div className="admin-table-scroll"><table><thead><tr><th>Invoice</th><th>Client</th><th>Dates</th><th>Total</th><th>Status</th><th /></tr></thead><tbody>{data.invoices.map((invoice) => <tr key={invoice.id}><td><strong>{invoice.invoice_number}</strong><span>{invoice.vessel_name || "Commercial services"}</span></td><td><strong>{invoice.client_name}</strong><span>{invoice.client_email}</span></td><td><strong>{date(invoice.issue_date)}</strong><span>Due {date(invoice.due_date)}</span></td><td><strong>{money(invoice.total_cents, invoice.currency)}</strong><span>{invoice.currency}</span></td><td><select aria-label={`Status for ${invoice.invoice_number}`} value={invoice.status} onChange={(event) => changeInvoiceStatus(invoice, event.target.value)}>{invoiceStages.map((status) => <option key={status} value={status}>{pretty(status)}</option>)}</select></td><td><a href={`/admin/invoices/${invoice.id}`} target="_blank" rel="noreferrer">Open</a></td></tr>)}</tbody></table></div>{!data.invoices.length && <p className="admin-empty">Create the first CharterX invoice.</p>}</section></>}
+      {view === "invoices" && <><section className="admin-revenue-strip"><article><span>Outstanding</span><strong>{money(data.metrics.outstandingValue)}</strong><small>{data.metrics.outstandingInvoices} invoice{data.metrics.outstandingInvoices === 1 ? "" : "s"}</small></article><article><span>Paid this month</span><strong>{money(data.metrics.paidThisMonthValue)}</strong><small>{data.metrics.paidThisMonth} payment{data.metrics.paidThisMonth === 1 ? "" : "s"}</small></article><article><span>Drafts</span><strong>{invoices.filter((invoice) => invoice.status === "draft").length}</strong><small>Awaiting issue</small></article></section><section className="admin-panel admin-table-panel"><div className="admin-panel-head"><div><p>CYM CharterX billing</p><h2>{invoices.length} invoice{invoices.length === 1 ? "" : "s"}</h2></div><div className="admin-tools"><a href="/api/admin/export?type=invoices">Export CSV</a><button className="admin-primary" onClick={() => setShowInvoice(true)}>New invoice</button></div></div><div className="admin-table-scroll"><table><thead><tr><th>Invoice</th><th>Client</th><th>Dates</th><th>Total</th><th>Status</th><th /></tr></thead><tbody>{invoices.map((invoice) => <tr key={invoice.id}><td><strong>{invoice.invoice_number}</strong><span>{invoice.vessel_name || "Commercial services"}</span></td><td><strong>{invoice.client_name}</strong><span>{invoice.client_email}</span></td><td><strong>{date(invoice.issue_date)}</strong><span>Due {date(invoice.due_date)}</span></td><td><strong>{money(invoice.total_cents, invoice.currency)}</strong><span>{invoice.currency}</span></td><td><select aria-label={`Status for ${invoice.invoice_number}`} value={invoice.status} onChange={(event) => changeInvoiceStatus(invoice, event.target.value)}>{invoiceStages.map((status) => <option key={status} value={status}>{pretty(status)}</option>)}</select></td><td><a href={`/admin/invoices/${invoice.id}`} target="_blank" rel="noreferrer">Open</a></td></tr>)}</tbody></table></div>{!invoices.length && <p className="admin-empty">Create the first CharterX invoice.</p>}</section></>}
     </main>
 
     {selectedLead && <div className="admin-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && setSelectedLead(null)}><section className="admin-modal admin-lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-title"><button className="admin-modal-close" onClick={() => setSelectedLead(null)} aria-label="Close lead">×</button><div className="admin-lead-heading"><div><p className="admin-eyebrow">{sourceLabel(selectedLead.source)} · received {date(selectedLead.created_at)}</p><h2 id="lead-title">{selectedLead.name}</h2><p>{selectedLead.vessel_type || "Vessel not supplied"}{selectedLead.location ? ` · ${selectedLead.location}` : ""}</p></div><div className="admin-readiness"><strong>{readiness(selectedLead)}%</strong><span>Brief readiness</span></div></div><div className="admin-contact-strip">{selectedLead.email && <a href={`mailto:${selectedLead.email}`}>Email</a>}{selectedLead.phone && <a href={`tel:${selectedLead.phone}`}>Call</a>}{selectedLead.phone && <a href={`https://wa.me/${selectedLead.phone.replace(/\D/g, "")}`} target="_blank" rel="noreferrer">WhatsApp</a>}{selectedLead.website && <a href={selectedLead.website} target="_blank" rel="noreferrer">Website</a>}</div><div className="admin-intelligence-strip"><div><span>Estimated value</span><strong>{selectedLead.estimated_value_cents ? money(selectedLead.estimated_value_cents) : "Not set"}</strong></div><div><span>Confidence</span><strong>{selectedLead.probability}%</strong></div><div><span>Weighted value</span><strong>{money(Math.round(selectedLead.estimated_value_cents * selectedLead.probability / 100))}</strong></div><div><span>Last contact</span><strong>{dateTime(selectedLead.last_contact_at)}</strong></div></div><div className="admin-lead-brief"><div><span>Commercial challenge</span><p>{selectedLead.challenge || "Not supplied"}</p></div><div><span>Monthly goal</span><p>{selectedLead.monthly_goal || "Not supplied"}</p></div><div><span>Booking platforms</span><p>{selectedLead.platforms || "Not supplied"}</p></div></div><div className="admin-lead-message"><span>Original enquiry</span><p>{selectedLead.message}</p></div><form className="admin-edit-form" key={`${selectedLead.id}-${selectedLead.follow_up_at}`} onSubmit={saveLead}><div className="admin-commercial-fields"><label><span>Stage</span><select name="status" defaultValue={selectedLead.status}>{leadStages.map((stage) => <option value={stage} key={stage}>{pretty(stage)}</option>)}</select></label><label><span>Priority</span><select name="priority" defaultValue={selectedLead.priority}><option value="normal">Normal</option><option value="high">High</option></select></label><label><span>Estimated value (USD)</span><input name="estimatedValue" type="number" min="0" step="50" defaultValue={(selectedLead.estimated_value_cents / 100).toFixed(0)} /></label><label><span>Confidence %</span><input name="probability" type="number" min="0" max="100" step="5" defaultValue={selectedLead.probability || stageProbability[selectedLead.status]} /></label><label><span>Follow-up</span><input name="followUpAt" type="datetime-local" defaultValue={selectedLead.follow_up_at?.slice(0, 16) ?? ""} /></label><label><span>Last contact</span><input name="lastContactAt" type="datetime-local" defaultValue={selectedLead.last_contact_at?.slice(0, 16) ?? ""} /></label></div><div className="admin-quick-followup"><span>Set next follow-up</span><div><button type="button" onClick={() => setFollowUp(0)}>Today</button><button type="button" onClick={() => setFollowUp(1)}>Tomorrow</button><button type="button" onClick={() => setFollowUp(3)}>In 3 days</button><button type="button" onClick={() => setFollowUp(7)}>Next week</button></div></div><label><span>Next best action</span><input name="nextAction" defaultValue={selectedLead.next_action} placeholder={suggestedAction(selectedLead)} /></label><label><span>Lost reason</span><input name="lostReason" defaultValue={selectedLead.lost_reason} placeholder="Complete only when closing an opportunity as lost" /></label><label><span>Internal notes</span><textarea name="internalNotes" rows={4} defaultValue={selectedLead.internal_notes} placeholder="Decision makers, objections, call notes and useful context…" /></label><div className="admin-form-actions"><button type="button" onClick={() => invoiceForLead(selectedLead)}>Create invoice</button><button className="admin-primary" disabled={busy} type="submit">{busy ? "Saving…" : "Save opportunity"}</button></div></form></section></div>}

@@ -69,6 +69,12 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   assert.match(dashboard, /useState\("USD"\)/);
   assert.match(dashboard, /Estimated value \(USD\)/);
   assert.match(dashboard, /<option>USD<\/option><option>EUR<\/option><option>GBP<\/option>/);
+  const leadSaveFlow = dashboard.slice(dashboard.indexOf("async function saveLead"), dashboard.indexOf("async function createInvoice"));
+  const invoiceStatusFlow = dashboard.slice(dashboard.indexOf("async function changeInvoiceStatus"), dashboard.indexOf("function invoiceForLead"));
+  assert.match(leadSaveFlow, /setLeads/);
+  assert.match(invoiceStatusFlow, /setInvoices/);
+  assert.doesNotMatch(leadSaveFlow, /location\.reload/);
+  assert.doesNotMatch(invoiceStatusFlow, /location\.reload/);
   assert.match(login, /CharterXWordmark/);
   assert.match(dashboard, /CharterXWordmark/);
   assert.match(wordmark, /brand-logotype/);

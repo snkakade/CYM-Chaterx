@@ -114,6 +114,50 @@ export const languages: Language[] = [
   { code: "sw", name: "KISWAHILI", nativeName: "Kiswahili", flag: <FlagSwahili /> },
 ];
 
+const GOOGLE_COOKIE = "googtrans";
+
+function translationCookieDomains(hostname: string) {
+  if (hostname === "localhost" || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(hostname)) return [];
+
+  const labels = hostname.split(".");
+  return labels.slice(0, -1).map((_, index) => `.${labels.slice(index).join(".")}`);
+}
+
+function expireTranslationCookies() {
+  const expired = "Thu, 01 Jan 1970 00:00:00 GMT";
+  document.cookie = `${GOOGLE_COOKIE}=; expires=${expired}; path=/; SameSite=Lax`;
+
+  translationCookieDomains(window.location.hostname).forEach((domain) => {
+    document.cookie = `${GOOGLE_COOKIE}=; expires=${expired}; path=/; domain=${domain}; SameSite=Lax`;
+  });
+}
+
+function applyDocumentLanguage(code: string) {
+  document.documentElement.lang = code;
+  if (code === "ar") document.documentElement.dir = "rtl";
+  else document.documentElement.removeAttribute("dir");
+}
+
+function switchLanguage(code: string) {
+  expireTranslationCookies();
+
+  if (code !== "en") {
+    document.cookie = `${GOOGLE_COOKIE}=/en/${code}; path=/; SameSite=Lax`;
+  }
+
+  applyDocumentLanguage(code);
+
+  // Tell an already-loaded Google Translate instance to change immediately.
+  // Cookie handling above keeps the choice correct after navigation or refresh.
+  const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo");
+  if (combo) {
+    combo.value = code;
+    combo.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  window.setTimeout(() => window.location.reload(), combo ? 150 : 0);
+}
+
 export function LanguageSelector() {
   const [selected, setSelected] = useState<Language>(languages[0]);
   const [isOpen, setIsOpen] = useState(false);
@@ -135,8 +179,11 @@ export function LanguageSelector() {
       const code = parts[parts.length - 1];
       const lang = languages.find(l => l.code === code);
       if (lang) {
+        applyDocumentLanguage(lang.code);
         selectedTimer = window.setTimeout(() => setSelected(lang), 0);
       }
+    } else {
+      applyDocumentLanguage("en");
     }
 
     return () => {
@@ -182,15 +229,7 @@ export function LanguageSelector() {
             onClick={() => {
               setSelected(lang);
               setIsOpen(false);
-              
-              if (lang.code === "en") {
-                document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.${window.location.hostname}; path=/;`;
-              } else {
-                document.cookie = `googtrans=/en/${lang.code}; path=/`;
-                document.cookie = `googtrans=/en/${lang.code}; domain=.${window.location.hostname}; path=/`;
-              }
-              window.location.reload();
+              switchLanguage(lang.code);
             }}
             role="option"
             aria-selected={selected.code === lang.code}

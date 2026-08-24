@@ -46,12 +46,13 @@ export default function Home() {
       <section className="cx-hero" aria-labelledby="home-title">
         <div className="cx-hero-media" aria-hidden="true">
           <video
-            src="/videos/charterx-marina-web.mp4"
-            poster="/images/hero-marina-poster.webp"
+            src="/videos/charterx-sailing-hero-uhd.mp4"
+            poster="/images/charterx-sailing-hero-poster.jpg"
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
           />
         </div>
         <div className="cx-hero-shade" aria-hidden="true" />

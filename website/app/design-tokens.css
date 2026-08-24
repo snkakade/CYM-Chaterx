@@ -1,0 +1,42 @@
+/*
+ * CharterX visual source of truth.
+ * Read /DESIGN.md before changing these values. Do not create local near-match
+ * colours, typefaces, widths or spacing when an approved token exists here.
+ */
+:root {
+  --brand-ink: #071716;
+  --brand-deep: #0b2220;
+  --brand-cream: #f3f0e9;
+  --brand-paper: #fbfaf7;
+  --brand-champagne: #d7b77a;
+  --brand-logo-gold: #c4a467;
+  --brand-sea-glass: #a8d4c8;
+  --brand-muted: #64736f;
+  --brand-line: rgba(7, 23, 22, 0.12);
+  --brand-page-pad: clamp(1.25rem, 4vw, 4.5rem);
+  --brand-max-width: 1440px;
+  --brand-section-space: clamp(5.5rem, 10vw, 10rem);
+  --brand-anchor-offset: 7rem;
+
+  /* Compatibility aliases. New work should prefer the brand-* tokens. */
+  --navy-950: #060c12;
+  --navy-900: #0d1e2c;
+  --navy-800: #172a3a;
+  --ocean-700: #0d1e2c;
+  --slate-500: #8a9ba8;
+  --ivory-100: #ffffff;
+  --ivory-200: #f4f6f8;
+  --champagne-400: var(--brand-champagne);
+  --champagne-500: var(--brand-logo-gold);
+  --aqua-400: #7ae3d5;
+  --aqua-500: #54d6c6;
+  --coral-cta: var(--brand-champagne);
+  --white: #fff;
+  --ink: #0f172a;
+  --line: rgba(15, 23, 42, 0.08);
+  --page-pad: var(--brand-page-pad);
+  --max: var(--brand-max-width);
+  --font-display: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-body);
+}

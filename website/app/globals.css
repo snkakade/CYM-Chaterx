@@ -1,37 +1,15 @@
+@import "./design-tokens.css";
 @import "./aqua-theme.css";
 @import "./home-revamp.css";
 
 @import "tailwindcss";
 
-:root {
-  --navy-950: #060c12;
-  --navy-900: #0d1e2c;
-  --navy-800: #172a3a;
-  --ocean-700: #0d1e2c;
-  --slate-500: #8a9ba8;
-  --ivory-100: #ffffff;
-  --ivory-200: #f4f6f8;
-  --champagne-400: #d7b77a;
-  --champagne-500: #c4a467;
-  --aqua-400: #7ae3d5;
-  --aqua-500: #54d6c6;
-  --coral-cta: #d7b77a;
-  --white: #fff;
-  --ink: #0f172a;
-  --line: rgba(15, 23, 42, 0.08);
-  --page-pad: clamp(1.25rem, 4vw, 4.5rem);
-  --max: 1440px;
-  --font-display: var(--font-heading);
-  --font-body: var(--font-body);
-  --font-mono: var(--font-body);
-}
-
 html {
   scroll-behavior: auto;
-  scroll-padding-top: 7rem;
+  scroll-padding-top: var(--brand-anchor-offset);
 }
 main [id] {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: var(--brand-anchor-offset);
 }
 
 * {
@@ -5588,7 +5566,7 @@ main {
 }
 
 main section[id] {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: var(--brand-anchor-offset);
 }
 
 .hero-actions,

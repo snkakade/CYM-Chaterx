@@ -186,7 +186,22 @@ test("anchor CTAs align padded sections below the fixed header", async () => {
   assert.match(motion, /targetStyles\.paddingTop/);
   assert.match(motion, /new URL\(anchor\.href, window\.location\.href\)/);
   assert.match(motion, /document\.fonts\?\.ready/);
-  assert.match(styles, /scroll-padding-top: 7rem/);
+  assert.match(styles, /scroll-padding-top: var\(--brand-anchor-offset\)/);
+});
+
+test("repository design contract protects shared brand decisions", async () => {
+  const design = await readFile(new URL("../../DESIGN.md", import.meta.url), "utf8");
+  const agents = await readFile(new URL("../../AGENTS.md", import.meta.url), "utf8");
+  const tokens = await readFile(new URL("../app/design-tokens.css", import.meta.url), "utf8");
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(agents, /read \[`DESIGN\.md`\]/);
+  assert.match(design, /Canonical logo/);
+  assert.match(design, /Only two families are approved/);
+  assert.match(design, /Do not use em dashes/);
+  assert.match(design, /Default CRM and invoice currency is USD/);
+  assert.match(tokens, /--brand-logo-gold: #c4a467/);
+  assert.match(tokens, /--brand-max-width: 1440px/);
+  assert.match(globals, /@import "\.\/design-tokens\.css"/);
 });
 
 test("growth score carries diagnostic answers into the enquiry form", async () => {

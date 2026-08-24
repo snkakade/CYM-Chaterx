@@ -1,6 +1,8 @@
 # CharterX — Website & CYM Operations Portal
 
-CharterX is a premium yacht-growth website with a private commercial operations portal for `Collabrative Yatch Managemnet Limited`.
+The mandatory visual source of truth is [`../DESIGN.md`](../DESIGN.md). All contributors and coding agents must read it before changing public, admin or invoice UI.
+
+CharterX is a premium yacht-growth website with a private commercial operations portal for `Collaborative Yacht Management Limited`.
 
 The public website covers OTA distribution, sales support, digital presence, SEO/SEM, listing quality, and revenue strategy. The protected `/admin` area receives website enquiries, manages follow-ups, creates CYM CharterX invoices, records invoice status, exports records, and keeps an audit trail.
 

@@ -1,10 +1,10 @@
 .cx-home {
-  --cx-ink: #071716;
-  --cx-deep: #0b2220;
-  --cx-cream: #f3f0e9;
-  --cx-paper: #fbfaf7;
-  --cx-gold: #d9b56d;
-  --cx-mint: #a8d4c8;
+  --cx-ink: var(--brand-ink);
+  --cx-deep: var(--brand-deep);
+  --cx-cream: var(--brand-cream);
+  --cx-paper: var(--brand-paper);
+  --cx-gold: var(--brand-champagne);
+  --cx-mint: var(--brand-sea-glass);
   overflow: clip;
   background: var(--cx-paper);
   color: var(--cx-ink);
@@ -16,7 +16,7 @@
   padding-inline: clamp(1.25rem, 5vw, 5.5rem);
 }
 
-.cx-section { padding-block: clamp(5.5rem, 10vw, 10rem); }
+.cx-section { padding-block: var(--brand-section-space); }
 
 .cx-kicker {
   margin: 0 0 1.4rem;

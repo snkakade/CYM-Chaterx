@@ -254,32 +254,26 @@ body:has(.admin-page) { background: #edf1ef; }
   .admin-commercial-fields { grid-template-columns: 1fr !important; }
 }
 
-/* CharterX identity system shared by login, command centre and invoices. */
-.charterx-wordmark {
-  --wordmark-ink: #08211d;
-  position: relative;
-  display: inline-flex;
-  align-items: baseline;
-  color: var(--wordmark-ink);
-  font-family: var(--font-heading), sans-serif;
-  font-size: 1.9rem;
-  font-weight: 430;
-  letter-spacing: .26em;
-  line-height: 1;
-  white-space: nowrap;
+/* The portal uses the exact same canonical wordmark as the public header. */
+.charterx-wordmark--light .brand-logotype { color: #f6f2e9; }
+.charterx-wordmark--compact .brand-logotype { font-size: 1.35rem; }
+.admin-wordmark .brand-logotype {
+  color: #f6f2e9;
+  font-family: var(--font-display), serif;
+  font-size: 1.35rem;
+  font-weight: normal;
+  letter-spacing: normal;
 }
-.charterx-wordmark--light { --wordmark-ink: #f6f2e9; }
-.charterx-wordmark--compact { font-size: 1.35rem; }
-.charterx-wordmark__name { position: relative; }
-.charterx-wordmark__line {
-  position: absolute;
-  top: 52%;
-  right: -.15em;
-  left: -.15em;
-  height: 1px;
-  background: #d7b77a;
+.admin-wordmark .brand-text-charter {
+  font-size: inherit;
+  font-weight: 300;
+  letter-spacing: .25em;
 }
-.charterx-wordmark__x { margin-left: .02em; color: #d7b77a; font-weight: 650; }
+.admin-wordmark .brand-text-x {
+  font-size: inherit;
+  font-weight: 800;
+  letter-spacing: normal;
+}
 
 .admin-page {
   --admin-bg: #f2f0e9;
@@ -435,7 +429,7 @@ body:has(.admin-page) { background: var(--admin-bg); }
 }
 @media(max-width:700px) {
   .admin-login-brand { top: 1.8rem; left: 1.5rem; }
-  .admin-login-brand .charterx-wordmark { font-size: 1.35rem; }
+  .admin-login-brand .brand-logotype { font-size: 1.35rem; }
   .admin-login-card { padding: 2.3rem 1.5rem; }
   .invoice-page { padding: 0; }
   .invoice-document { padding: 3rem 1.25rem; }

@@ -1,8 +1,13 @@
 export function CharterXWordmark({ tone = "dark", compact = false }: { tone?: "dark" | "light"; compact?: boolean }) {
   return (
-    <span className={`charterx-wordmark charterx-wordmark--${tone}${compact ? " charterx-wordmark--compact" : ""}`} aria-label="CharterX">
-      <span className="charterx-wordmark__name">CHARTER<span className="charterx-wordmark__line" aria-hidden="true" /></span>
-      <span className="charterx-wordmark__x">X</span>
+    <span className={`brand-copy charterx-wordmark charterx-wordmark--${tone}${compact ? " charterx-wordmark--compact" : ""}`} aria-label="CharterX">
+      <strong className="brand-logotype">
+        <span className="brand-text-charter">
+          CHARTER
+          <span className="brand-strike" aria-hidden="true" />
+        </span>
+        <span className="brand-text-x">X</span>
+      </strong>
     </span>
   );
 }

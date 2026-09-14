@@ -36,7 +36,7 @@ export default function AboutPage() {
         <div className="about-origin-copy reveal-item">
           <SectionLabel index="01">Why We Exist</SectionLabel>
           <h2>Great yachts deserve better <em>commercial support.</em></h2>
-          <p>Owners already carry enough responsibility: vessel condition, crew, maintenance, safety, guest experience, and operations. The commercial side often becomes fragmented across platforms, inboxes, agencies, spreadsheets, and last-minute decisions.</p>
+          <p>Owners already carry enough responsibility: vessel condition, crew, maintenance, safety, guest experience, and operations. The commercial side often becomes fragmented across <a href="/ota-management">platforms</a>, inboxes, agencies, spreadsheets, and last-minute decisions.</p>
           <p>We bring that work into one clearer system.</p>
         </div>
         <AnimatedImageReveal src="/images/charterx-yacht-deck.webp" alt="Elevated view across the guest decks of a luxury motor yacht in calm water" />
@@ -55,17 +55,17 @@ export default function AboutPage() {
           {[
             ["Clarity", "Owners should know what is happening, what is being improved, and why it matters."], 
             ["Taste", "Premium positioning should feel restrained, confident, and well-edited."], 
-            ["Consistency", "Listings, calendars, prices, responses, and pages need regular care."], 
+            ["Consistency", <>Listings, calendars, <a href="/revenue-growth">prices</a>, <a href="/sales-support">responses</a>, and pages need regular care.</>], 
             ["Trust", "Guests need confidence before they commit. Owners need confidence before they delegate."], 
             ["Evidence", "We work from real signals, not vanity metrics."]
-          ].map(([title, copy], index) => <article className="reveal-item" key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
+          ].map(([title, copy], index) => <article className="reveal-item" key={title as string}><span>0{index + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
         </div>
       </section>
       <section className="how-we-work">
         <div className="section-shell how-we-work-inner">
           <div className="how-we-work-copy reveal-item"><SectionLabel index="03" tone="light">How we work</SectionLabel><h2>Close enough to understand. Structured enough <em>to deliver.</em></h2><p>We begin with the vessel, market, operating model and current commercial setup. Then we establish the most useful scope: focused support or a connected growth partnership.</p></div>
           <div className="working-principles">
-            {[["01", "Listen", "Understand the vessel, owner priorities, guest profile, and operating limits."], ["02", "Prioritise", "Find the commercial gaps most likely to be costing visibility, time, or conversion."], ["03", "Build", "Create the content, systems, campaigns, and response rhythm the business needs."], ["04", "Improve", "Review real signals and make measured changes over time."]].map(([number, title, copy]) => <article className="reveal-item" key={title}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
+            {[["01", "Listen", "Understand the vessel, owner priorities, guest profile, and operating limits."], ["02", "Prioritise", "Find the commercial gaps most likely to be costing visibility, time, or conversion."], ["03", "Build", <>Create the content, systems, <a href="/digital-marketing">campaigns</a>, and response rhythm the business needs.</>], ["04", "Improve", "Review real signals and make measured changes over time."]].map(([number, title, copy]) => <article className="reveal-item" key={title as string}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}
           </div>
         </div>
       </section>

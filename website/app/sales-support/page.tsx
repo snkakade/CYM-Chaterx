@@ -59,7 +59,7 @@ export default function SalesSupportPage() {
           <SectionLabel index="01">Why It Matters</SectionLabel>
           <h2>The first response <em>sets the tone.</em></h2>
           <p style={{ fontSize: "1.2rem", lineHeight: 1.6, marginTop: "2rem" }}>
-            Guests often enquire with more than one operator. The business that replies clearly, professionally, and quickly is already ahead. We help make sure every serious lead receives the attention it deserves.
+            Guests often <a href="/ota-management">enquire with more than one operator</a>. The business that replies clearly, professionally, and quickly is already ahead. We help make sure every serious lead receives the attention it deserves.
           </p>
         </div>
       </section>

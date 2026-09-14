@@ -20,7 +20,7 @@ export default function InsightsPage() {
       <PageHero
         label="Insights & Resources"
         title="Insights & growth."
-        description="Practical advice for owners and operators navigating booking platforms and digital performance."
+        description={<>Practical advice for owners and operators navigating <a href="/ota-management">booking platforms</a> and <a href="/digital-marketing">digital performance</a>.</>}
         image="/images/hero-ocean-poster.webp"
         imageAlt="Calm open water viewed from above"
         video="/videos/charterx-ocean-texture-uhd.mp4"

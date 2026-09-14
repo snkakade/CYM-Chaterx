@@ -23,7 +23,7 @@ const detailSections = [
     id: "ota",
     label: "OTA Distribution",
     title: "A better presence across the platforms guests already use.",
-    copy: "Get your yacht in front of more customers across leading boat-rental and travel platforms. We manage listings, pricing, availability, inquiries and ongoing optimization.",
+    copy: <>Get your yacht in front of more customers across leading boat-rental and travel platforms. We manage listings, pricing, availability, inquiries and <a href="/insights/why-yacht-listings-underperform">ongoing optimization</a>.</>,
     image: "/images/ota-dashboard.webp",
     alt: "Yacht booking platform dashboard showing listings and availability",
     items: ["OTA profile setup", "Listing content improvement", "Photo order and description guidance", "Pricing and availability updates", "Inquiry monitoring", "Promotion setup", "Visibility tools", "Review and ranking improvement", "Platform performance tracking"],
@@ -33,7 +33,7 @@ const detailSections = [
     id: "sales-support",
     label: "Owner Support",
     title: "Every serious enquiry deserves a trusted response.",
-    copy: "Give your business a dedicated team that handles customer inquiries, follows up with leads and helps convert more inquiries into confirmed bookings.",
+    copy: <>Give your business a dedicated team that handles customer inquiries, follows up with leads and helps <a href="/insights/turn-inquiries-into-bookings">convert more inquiries into confirmed bookings</a>.</>,
     image: "/images/sales-support.webp",
     alt: "Charter enquiry specialist supporting a yacht booking enquiry",
     items: ["Inquiry handling", "Lead follow-up", "Guest questions", "Quote coordination", "Booking assistance", "Pipeline tracking", "Response templates", "CRM-style enquiry management"],
@@ -43,7 +43,7 @@ const detailSections = [
     id: "digital-presence",
     label: "Digital Presence",
     title: "Move beyond a digital brochure.",
-    copy: "Your website should work as a booking and lead-generation tool. We help improve your website, content, user experience and online presence to turn visitors into customers.",
+    copy: <>Your <a href="/insights/yacht-website-sales-asset">website</a> should work as a booking and lead-generation tool. We help improve your website, content, user experience and online presence to turn visitors into customers.</>,
     image: "/images/website-optimization.webp",
     alt: "Yacht charter website designed to generate enquiries",
     items: ["Website audit", "User experience improvement", "Landing pages", "Enquiry forms", "Booking journey optimization", "Copywriting", "Photo and content direction", "Conversion-focused design"],
@@ -63,13 +63,13 @@ const detailSections = [
     id: "revenue",
     label: "Revenue Strategy",
     title: "Better positioning. Better data. Better decisions.",
-    copy: "We analyze your pricing, availability, listing quality and market positioning to help you compete effectively and maximize your earning potential.",
+    copy: <>We analyze your <a href="/insights/pricing-availability-seasonality">pricing, availability</a>, listing quality and market positioning to help you compete effectively and maximize your earning potential.</>,
     image: "/images/revenue-optimization.webp",
     alt: "Yacht charter revenue performance dashboard beside a marina",
     items: ["Pricing review", "Competitor positioning", "Calendar availability logic", "Seasonality planning", "Listing performance analysis", "Package and offer strategy", "Channel mix review", "Direct booking strategy"],
     cta: ["Build My Revenue System", "/revenue-growth"],
   },
-] as const;
+];
 
 export default function ServicesPage() {
   const collectionJson = {

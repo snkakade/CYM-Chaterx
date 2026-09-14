@@ -65,7 +65,7 @@ export default function Home() {
             Less drift.
           </h1>
           <p className="cx-hero-copy">
-            We connect listings, pricing, enquiries and digital visibility into one focused growth system.
+            We connect <a href="/ota-management">listings</a>, <a href="/revenue-growth">pricing</a>, <a href="/sales-support">enquiries</a> and <a href="/digital-marketing">digital visibility</a> into one focused growth system.
           </p>
           <div className="cx-actions">
             <a className="cx-button cx-button--gold" href="/contact#enquiry-form">

@@ -7,7 +7,7 @@ type PageHeroProps = {
   label: string;
   title: string;
   italic?: string;
-  description: string;
+  description: React.ReactNode;
   image?: string;
   imageAlt?: string;
   video?: string;

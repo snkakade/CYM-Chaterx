@@ -57,7 +57,7 @@ export default function DigitalMarketingPage() {
         <div className="digital-intro-copy reveal-item">
           <SectionLabel index="01">Website Strategy</SectionLabel>
           <h2>Premium design is <em>only the beginning.</em></h2>
-          <p>A yacht website should create confidence quickly. Guests need to understand the vessel, the experience, the location, the process, what is included, and how to enquire. If the site is beautiful but unclear, it is not doing its job.</p>
+          <p>A <a href="/insights/yacht-website-sales-asset">yacht website</a> should create confidence quickly. Guests need to understand the vessel, the experience, the location, the process, what is included, and <a href="/sales-support">how to enquire</a>. If the site is beautiful but unclear, it is not doing its job.</p>
           <ButtonLink href="/contact#enquiry-form">Review My Website</ButtonLink>
         </div>
       </section>

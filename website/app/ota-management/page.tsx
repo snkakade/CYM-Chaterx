@@ -60,9 +60,9 @@ export default function OTAManagementPage() {
       <section className="underperform-section section-shell">
         <AnimatedImageReveal src="/images/hero-yacht.webp" alt="Luxury motor yacht at blue hour for yacht charter listing optimisation" />
         <div className="underperform-copy reveal-item">
-          <SectionLabel index="02">Why Listings Underperform</SectionLabel>
+          <SectionLabel index="02"><a href="/insights/why-yacht-listings-underperform">Why Listings Underperform</a></SectionLabel>
           <h2>Small listing problems can still cost bookings.</h2>
-          <p>A guest may never tell you why they moved on. It might be a weak first photo, unclear inclusions, slow response, outdated calendar, confusing pricing, or a description that does not match the quality of the yacht. We find and fix those points of friction.</p>
+          <p>A guest may never tell you why they moved on. It might be a weak first photo, unclear inclusions, <a href="/sales-support">slow response</a>, outdated calendar, <a href="/revenue-growth">confusing pricing</a>, or a description that does not match the quality of the yacht. We find and fix those points of friction.</p>
           <div className="friction-list">
             {["Weak first impression", "Poor photo sequence", "Unclear inclusions", "Slow enquiry response", "Inconsistent pricing", "Stale availability", "No review strategy", "No optimisation rhythm"].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong></div>)}
           </div>

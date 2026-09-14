@@ -57,7 +57,7 @@ export default function RevenueGrowthPage() {
         <div className="section-heading-grid reveal-item">
           <SectionLabel index="01">Commercial control</SectionLabel>
           <h2>Revenue is rarely <em>one decision.</em></h2>
-          <p>It is the result of many connected decisions: where the yacht appears, how it is priced, when availability is released, how enquiries are handled, how the offer is framed, and how direct demand is built. We help connect those decisions into a more useful operating rhythm.</p>
+          <p>It is the result of many connected decisions: <a href="/ota-management">where the yacht appears</a>, <a href="/insights/pricing-availability-seasonality">how it is priced, when availability is released</a>, <a href="/sales-support">how enquiries are handled</a>, how the offer is framed, and how <a href="/digital-marketing">direct demand</a> is built. We help connect those decisions into a more useful operating rhythm.</p>
         </div>
         <RevenueDashboardVisual />
       </section>

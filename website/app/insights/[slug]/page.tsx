@@ -103,11 +103,11 @@ export default async function InsightArticle({ params }: Props) {
           <div>
             <p className="article-lead">A yacht can be exceptional on the water and still be difficult to discover, understand, or book. The commercial experience around the vessel deserves the same attention as the operating experience on board.</p>
             <h2 id="why">Why it matters</h2>
-            <p>Prospective guests make a series of small confidence decisions. They assess the imagery, relevance, availability, value, response, and clarity of the next step. When these signals disagree, intent fades quietly.</p>
+            <p>Prospective guests make a series of small confidence decisions. They assess the imagery, relevance, <a href="/revenue-growth">availability</a>, value, <a href="/sales-support">response</a>, and clarity of the next step. When these signals disagree, intent fades quietly.</p>
             <blockquote>Commercial performance improves when every part of the journey gives the guest a consistent reason to continue.</blockquote>
             <h2 id="signals">Signals to watch</h2>
             <p>Look beyond raw traffic or platform impressions. Useful signals include the quality of enquiries, response time, follow-up consistency, calendar accuracy, conversion by source, and the reasons promising conversations do not progress.</p>
-            <ul><li>Is the vessel positioned for a clear guest and occasion?</li><li>Do your listings and website answer the practical questions that delay an enquiry?</li><li>Can your team trace a lead from source through to booking value?</li><li>Does each lost enquiry lead to a useful operating insight?</li></ul>
+            <ul><li>Is the vessel positioned for a clear guest and occasion?</li><li>Do your <a href="/ota-management">listings</a> and <a href="/digital-marketing">website</a> answer the practical questions that delay an <a href="/sales-support">enquiry</a>?</li><li>Can your team trace a lead from source through to <a href="/revenue-growth">booking value</a>?</li><li>Does each lost enquiry lead to a useful operating insight?</li></ul>
             <h2 id="next">A practical next step</h2>
             <p>Choose one part of the journey and review it as a guest would. Record the friction without solving it immediately. The pattern will usually reveal a tighter, more commercially useful priority than a broad redesign or another disconnected campaign.</p>
             <ButtonLink href="/contact#enquiry-form">Request a Growth Review</ButtonLink>

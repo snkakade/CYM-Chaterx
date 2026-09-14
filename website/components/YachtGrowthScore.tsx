@@ -75,7 +75,7 @@ export function YachtGrowthScore() {
           <div><strong>{isComplete ? score : current}</strong><span>of {questions.length} signals</span></div>
           {questions.map((_, index) => <i className={index < current || isComplete ? "is-active" : ""} key={index} style={{ "--score-dot": index } as CSSProperties} />)}
         </div>
-        <div className="score-lenses" aria-label="Areas reviewed"><span>Visibility</span><span>Conversion</span><span>Pricing</span><span>Follow-up</span></div>
+        <div className="score-lenses" aria-label="Areas reviewed"><span><a href="/digital-marketing">Visibility</a></span><span><a href="/ota-management">Listing quality</a></span><span><a href="/revenue-growth">Pricing</a></span><span><a href="/sales-support">Follow-up</a></span></div>
         <div className="score-meta"><span>≈ 60 seconds</span><span>No email required</span><span>No inflated promises</span></div>
       </div>
       <div className="score-card reveal-item">

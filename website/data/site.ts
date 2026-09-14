@@ -100,14 +100,22 @@ export const revenueFaqs = [
   ["What is yacht revenue management?", "It is the deliberate strategy of aligning pricing, availability, and channel mix to maximise booking value. Rather than relying on static seasonal rates, it involves adjusting to demand, lead time, and market conditions."],
   ["How should yacht charter pricing change by season?", "Pricing should reflect more than just basic 'high' and 'low' seasons. It must account for specific peak weeks, early-bird demand, last-minute calendar gaps, and local events to ensure you do not leave money on the table."],
   ["When should a charter operator use OTA distribution versus direct bookings?", "OTAs are excellent for discovery and filling calendar gaps, while direct bookings provide better margins and guest control. A strong revenue strategy uses OTAs to build demand while investing in direct channels for long-term growth."],
+  ["How does lead time affect charter pricing?", "As the charter date approaches without a booking, operators must balance holding out for full price against securing some revenue. We help establish clear logic for when and how to adjust pricing for late availability."],
+  ["What is a good channel mix for a yacht?", "A healthy channel mix does not rely on a single source. It combines direct bookings from repeat guests and organic search with strategic OTA placements to fill gaps and reach new markets."],
 ] as const;
 
 export const salesFaqs = [
   ["What is a good yacht enquiry response process?", "A strong process is fast, clear, and professional. It moves beyond a simple 'yes, we are available' to actually answering the guest's underlying questions, offering alternatives if needed, and maintaining a structured follow-up rhythm."],
   ["How quickly should charter enquiries be answered?", "Guests often enquire with multiple yachts simultaneously. A response within hours—not days—is critical to securing the booking. We ensure enquiries are handled promptly to capture intent before it fades."],
   ["How does listing optimisation affect enquiries?", "Better listings generate better enquiries. When photos, pricing, and inclusions are clear, guests ask fewer basic questions and move faster toward a confirmed booking."],
+  ["Why do guests stop responding to charter enquiries?", "Guests usually go quiet because they booked a faster option, the pricing was unclear, or the follow-up felt automated and impersonal. We structure responses to build trust and keep the conversation open."],
+  ["Do you handle the final booking contract?", "We handle the commercial negotiation, quote coordination and guest follow-up to secure the commitment. Once confirmed, the operational contract and payment are typically handled by your existing management company or direct payment system."],
 ] as const;
 
 export const digitalFaqs = [
   ["How can yacht operators increase direct bookings?", "By turning their website into a sales asset. This requires clear conversion copywriting, intuitive navigation, fast loading speeds, structured SEO for commercial search terms, and a frictionless enquiry form."],
+  ["Why is my yacht website not generating enquiries?", "Many yacht websites function as static brochures. If your site lacks a clear booking journey, obvious calls to action, or mobile optimization, visitors will leave without enquiring."],
+  ["What is the best SEO strategy for a yacht charter business?", "Instead of chasing broad terms like 'yacht rental', the best strategy focuses on high-intent, location-specific queries and commercial terms that serious guests actually search when they are ready to book."],
+  ["Do paid search campaigns work for yacht charters?", "Yes, if structured correctly. Google Ads should target high-intent commercial keywords rather than generic terms, ensuring your budget is spent acquiring qualified leads, not window shoppers."],
+  ["How should we track digital marketing performance?", "Move beyond vanity metrics like total traffic. We set up tracking for meaningful commercial actions: enquiry form submissions, WhatsApp clicks, phone calls, and the actual source of confirmed bookings."],
 ] as const;

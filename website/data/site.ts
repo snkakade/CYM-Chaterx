@@ -91,4 +91,23 @@ export const otaFaqs = [
   ["Do you work with new yacht rental businesses?", "Yes. We can help establish the listing foundations, booking journey, enquiry process, and measurement structure a new operation needs."],
   ["Can OTA work support direct bookings?", "Yes. Strong third-party visibility can create awareness and trust, while a better website and enquiry experience can help build a healthier direct-booking channel over time."],
   ["How do we get started?", "Tell us about your vessel, market, current platforms, booking process, and goals. We will review the setup and recommend a practical first scope."],
+  ["How is yacht OTA management different from yacht management?", "Yacht management handles the physical vessel, crew, safety and technical operations. Yacht OTA management focuses strictly on commercial performance: listing visibility, digital pricing, enquiry response and booking conversion across third-party platforms."],
+  ["How often should yacht listings be updated?", "Listings should be reviewed constantly. Beyond basic calendar and pricing updates, algorithms reward active profiles. We continually refine photo order, descriptions, amenities and policies based on guest search behaviour."],
+  ["Should a yacht be listed on multiple OTAs?", "Yes, but strategically. Broad distribution increases visibility, but not all platforms deliver the same quality of guest. We select the mix that matches your vessel's value and manage the calendar centrally to prevent double bookings."],
+] as const;
+
+export const revenueFaqs = [
+  ["What is yacht revenue management?", "It is the deliberate strategy of aligning pricing, availability, and channel mix to maximise booking value. Rather than relying on static seasonal rates, it involves adjusting to demand, lead time, and market conditions."],
+  ["How should yacht charter pricing change by season?", "Pricing should reflect more than just basic 'high' and 'low' seasons. It must account for specific peak weeks, early-bird demand, last-minute calendar gaps, and local events to ensure you do not leave money on the table."],
+  ["When should a charter operator use OTA distribution versus direct bookings?", "OTAs are excellent for discovery and filling calendar gaps, while direct bookings provide better margins and guest control. A strong revenue strategy uses OTAs to build demand while investing in direct channels for long-term growth."],
+] as const;
+
+export const salesFaqs = [
+  ["What is a good yacht enquiry response process?", "A strong process is fast, clear, and professional. It moves beyond a simple 'yes, we are available' to actually answering the guest's underlying questions, offering alternatives if needed, and maintaining a structured follow-up rhythm."],
+  ["How quickly should charter enquiries be answered?", "Guests often enquire with multiple yachts simultaneously. A response within hours—not days—is critical to securing the booking. We ensure enquiries are handled promptly to capture intent before it fades."],
+  ["How does listing optimisation affect enquiries?", "Better listings generate better enquiries. When photos, pricing, and inclusions are clear, guests ask fewer basic questions and move faster toward a confirmed booking."],
+] as const;
+
+export const digitalFaqs = [
+  ["How can yacht operators increase direct bookings?", "By turning their website into a sales asset. This requires clear conversion copywriting, intuitive navigation, fast loading speeds, structured SEO for commercial search terms, and a frictionless enquiry form."],
 ] as const;

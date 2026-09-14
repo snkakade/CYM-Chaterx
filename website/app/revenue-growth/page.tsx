@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ArrowIcon } from "@/components/ArrowIcon";
 import { ButtonLink } from "@/components/ButtonLink";
+import { FAQAccordion } from "@/components/FAQAccordion";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { RevenueDashboardVisual } from "@/components/RevenueDashboardVisual";
 import { SectionLabel } from "@/components/SectionLabel";
 import { VideoFeature } from "@/components/VideoFeature";
+import { revenueFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
@@ -36,6 +38,7 @@ export default function RevenueGrowthPage() {
       { "@type": "BreadcrumbList", "@id": `${siteUrl}/revenue-growth#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "Revenue Growth", item: `${siteUrl}/revenue-growth` }] },
     ],
   };
+  const faqJson = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: revenueFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
   return (
     <>
       <PageHero
@@ -99,7 +102,15 @@ export default function RevenueGrowthPage() {
           {["Better view of demand", "Cleaner pricing decisions", "More consistent enquiry handling", "Stronger listing quality", "Clearer channel performance", "Improved direct booking path", "Less manual owner follow-up", "More professional guest journey"].map((item, index) => <article className="reveal-item" key={item}><span>0{index + 1}</span><p>{item}</p></article>)}
         </div>
       </section>
+      <section className="faq-section section-shell">
+        <div className="faq-heading reveal-item">
+          <SectionLabel index="05">Frequently Asked</SectionLabel>
+          <h2>Revenue strategy, <em>clearly explained.</em></h2>
+        </div>
+        <FAQAccordion items={revenueFaqs} />
+      </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       <FinalCTA />
     </>
   );

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { FAQAccordion } from "@/components/FAQAccordion";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
+import { salesFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
@@ -36,6 +38,7 @@ export default function SalesSupportPage() {
       { "@type": "BreadcrumbList", "@id": `${siteUrl}/sales-support#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "Sales Support", item: `${siteUrl}/sales-support` }] },
     ],
   };
+  const faqJson = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: salesFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
   return (
     <>
       <PageHero
@@ -80,7 +83,16 @@ export default function SalesSupportPage() {
         </div>
       </section>
 
+      <section className="faq-section section-shell">
+        <div className="faq-heading reveal-item">
+          <SectionLabel index="03">Frequently Asked</SectionLabel>
+          <h2>Sales support, <em>clearly explained.</em></h2>
+        </div>
+        <FAQAccordion items={salesFaqs} />
+      </section>
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       <FinalCTA />
     </>
   );

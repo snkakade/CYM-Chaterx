@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { AnimatedImageReveal } from "@/components/AnimatedImageReveal";
 import { ButtonLink } from "@/components/ButtonLink";
+import { FAQAccordion } from "@/components/FAQAccordion";
 import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
 import { VideoFeature } from "@/components/VideoFeature";
+import { digitalFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
@@ -36,6 +38,7 @@ export default function DigitalMarketingPage() {
       { "@type": "BreadcrumbList", "@id": `${siteUrl}/digital-marketing#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "Digital Marketing", item: `${siteUrl}/digital-marketing` }] },
     ],
   };
+  const faqJson = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: digitalFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
   return (
     <>
       <PageHero
@@ -92,7 +95,17 @@ export default function DigitalMarketingPage() {
           <p>Designed for clarity, not vanity metrics.</p>
         </div>
       </section>
+      
+      <section className="faq-section section-shell">
+        <div className="faq-heading reveal-item">
+          <SectionLabel index="05">Frequently Asked</SectionLabel>
+          <h2>Digital marketing, <em>clearly explained.</em></h2>
+        </div>
+        <FAQAccordion items={digitalFaqs} />
+      </section>
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
       <FinalCTA />
     </>
   );

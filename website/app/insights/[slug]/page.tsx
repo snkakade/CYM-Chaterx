@@ -6,6 +6,36 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { insights } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
+
+/* SEO-optimised metadata per article slug */
+const seoOverrides: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string }> = {
+  "why-yacht-listings-underperform": {
+    title: "Yacht Listing Optimisation: Why Listings Underperform",
+    description: "Learn why yacht listings underperform and how yacht listing optimisation can improve visibility, trust and enquiry quality. Read the CharterX guide.",
+    ogTitle: "Why Yacht Listings Underperform",
+    ogDescription: "The listing gaps that quietly reduce visibility, confidence and enquiry conversion.",
+  },
+  "turn-inquiries-into-bookings": {
+    title: "Yacht Enquiry Conversion: Turn Enquiries Into Bookings",
+    description: "Improve yacht enquiry conversion with stronger response quality, follow-up and booking handover. Read the CharterX guide to converting more leads.",
+    ogTitle: "Turning Yacht Enquiries Into Bookings",
+    ogDescription: "A more considered approach to response quality, follow-up and conversion.",
+  },
+  "yacht-website-sales-asset": {
+    title: "Yacht Website Conversion: From Brochure to Sales Asset",
+    description: "Improve yacht website conversion by turning a digital brochure into a clearer sales asset. See what helps visitors become qualified enquiries.",
+    ogTitle: "When a Yacht Website Becomes a Sales Asset",
+    ogDescription: "What separates a polished digital brochure from a commercially effective yacht website.",
+  },
+  "pricing-availability-seasonality": {
+    title: "Yacht Charter Pricing Strategy: Availability & Seasonality",
+    description: "Build a stronger yacht charter pricing strategy around demand, availability and seasonality. Read the CharterX revenue-growth guide.",
+    ogTitle: "Pricing, Availability and Yacht Revenue",
+    ogDescription: "How seasonality, demand and availability should inform yacht charter pricing decisions.",
+  },
+};
+
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
@@ -16,12 +46,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const insight = insights.find((entry) => entry.slug === slug);
   if (!insight) return {};
+  const seo = seoOverrides[slug];
+  const title = seo?.title ?? insight.title;
+  const description = seo?.description ?? insight.excerpt;
+  const ogTitle = seo?.ogTitle ?? insight.title;
+  const ogDescription = seo?.ogDescription ?? insight.excerpt;
   return {
-    title: insight.title,
-    description: insight.excerpt,
+    title,
+    description,
     alternates: { canonical: `/insights/${slug}` },
-    openGraph: { type: "article", title: insight.title, description: insight.excerpt, url: `/insights/${slug}`, images: [socialImage] },
-    twitter: { card: "summary_large_image", title: insight.title, description: insight.excerpt, images: [twitterImage] },
+    openGraph: { type: "article", title: ogTitle, description: ogDescription, url: `/insights/${slug}`, images: [socialImage] },
+    twitter: { card: "summary_large_image", title: ogTitle, description: ogDescription, images: [twitterImage] },
   };
 }
 
@@ -29,6 +64,31 @@ export default async function InsightArticle({ params }: Props) {
   const { slug } = await params;
   const insight = insights.find((entry) => entry.slug === slug);
   if (!insight) notFound();
+
+  const articleJson = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${siteUrl}/insights/${slug}#article`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${siteUrl}/insights/${slug}` },
+    headline: insight.title,
+    description: insight.excerpt,
+    url: `${siteUrl}/insights/${slug}`,
+    publisher: { "@id": `${siteUrl}/#organization` },
+    author: { "@id": `${siteUrl}/#organization` },
+    about: insight.category === "OTA Distribution" ? ["Yacht listing optimisation", "Yacht OTA management"] : insight.category === "Conversion" ? ["Yacht enquiry conversion", "Yacht booking growth"] : insight.category === "Digital Presence" ? ["Yacht website conversion", "Yacht charter marketing"] : ["Yacht charter pricing strategy", "Yacht revenue management"],
+    inLanguage: "en-GB",
+  };
+
+  const breadcrumbJson = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` },
+      { "@type": "ListItem", position: 2, name: "Insights", item: `${siteUrl}/insights` },
+      { "@type": "ListItem", position: 3, name: insight.title, item: `${siteUrl}/insights/${slug}` },
+    ],
+  };
+
   return (
     <>
       <article className="article-page">
@@ -54,6 +114,8 @@ export default async function InsightArticle({ params }: Props) {
           </div>
         </div>
       </article>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }} />
       <FinalCTA />
     </>
   );

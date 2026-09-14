@@ -26,19 +26,19 @@ const interBody = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: "CharterX | More Bookings. Less Drift.", template: "%s | CharterX" },
-  description: "One focused commercial growth system for yacht listings, pricing, enquiries and digital visibility.",
-  keywords: ["yacht management", "yacht business growth", "yacht OTA management", "boat rental management", "yacht revenue management", "yacht digital marketing"],
+  title: { default: "Yacht Business Growth & Booking Strategy | CharterX", template: "%s | CharterX" },
+  description: "Grow yacht bookings with a sharper commercial system for listings, pricing, enquiries and digital visibility. Request a CharterX growth review.",
+  keywords: ["yacht business growth", "yacht OTA management", "yacht listing optimisation", "yacht revenue management", "yacht charter marketing", "yacht enquiry handling", "boat rental management", "yacht booking growth"],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_GB",
     siteName: "CharterX",
-    title: "More Bookings. Less Drift.",
-    description: "One commercial growth system for yacht businesses.",
-    images: [{ url: "/og-v2.png", width: 1200, height: 630, alt: "CharterX | More bookings. Less drift." }],
+    title: "A More Deliberate Yacht Growth System",
+    description: "Listings, pricing, enquiries and digital visibility managed as one commercial system.",
+    images: [{ url: "/og-v2.png", width: 1200, height: 630, alt: "CharterX yacht business growth system overview" }],
   },
-  twitter: { card: "summary_large_image", title: "CharterX | More Bookings. Less Drift.", description: "One commercial growth system for yacht businesses.", images: ["/og-v2.png"] },
+  twitter: { card: "summary_large_image", title: "A More Deliberate Yacht Growth System", description: "Listings, pricing, enquiries and digital visibility managed as one commercial system.", images: ["/og-v2.png"] },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -75,8 +75,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@graph": [
-                { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "CharterX", legalName: "Collaborative Yacht Management Limited", url: `${siteUrl}/`, slogan: "You operate the yacht. We help grow the business." },
-                { "@type": "ProfessionalService", "@id": `${siteUrl}/#service`, name: "CharterX", legalName: "Collaborative Yacht Management Limited", url: `${siteUrl}/`, serviceType: ["Yacht OTA management", "Yacht revenue management", "Yacht digital marketing"], areaServed: "Worldwide", provider: { "@id": `${siteUrl}/#organization` } },
+                { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "CharterX", legalName: "Collaborative Yacht Management Limited", url: `${siteUrl}/`, email: "connect@cymcharterx.com", slogan: "More bookings. Less drift.", knowsAbout: ["Yacht OTA management", "Yacht listing optimisation", "Yacht revenue management", "Yacht charter marketing", "Yacht enquiry handling", "Yacht website conversion"] },
+                { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: "CharterX", publisher: { "@id": `${siteUrl}/#organization` }, inLanguage: "en-GB" },
+                { "@type": "WebPage", "@id": `${siteUrl}/#webpage`, url: `${siteUrl}/`, name: "Yacht Business Growth & Booking Strategy | CharterX", isPartOf: { "@id": `${siteUrl}/#website` }, about: { "@id": `${siteUrl}/#organization` }, inLanguage: "en-GB" },
               ],
             }),
           }}

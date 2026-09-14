@@ -7,11 +7,11 @@ import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
-  title: "About Our Yacht Growth Consultancy",
-  description: "CharterX is a premium commercial growth consultancy for yacht owners, charter operators, boat rentals, and marine hospitality brands.",
+  title: "Yacht Growth Consultancy | About CharterX",
+  description: "Meet CharterX, a yacht growth consultancy helping owners and operators improve visibility, enquiries and booking performance. Explore our approach.",
   alternates: { canonical: "/about" },
-  openGraph: { title: "About CharterX", description: "Commercial structure for assets built to move.", url: "/about", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "About CharterX", description: "A yacht growth consultancy built ashore.", images: [twitterImage] },
+  openGraph: { title: "The Commercial Thinking Behind CharterX", description: "Quietly professional yacht growth support built around visibility, conversion and booking performance.", url: "/about", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "The Commercial Thinking Behind CharterX", description: "Quietly professional yacht growth support built around visibility, conversion and booking performance.", images: [twitterImage] },
 };
 
 export default function AboutPage() {

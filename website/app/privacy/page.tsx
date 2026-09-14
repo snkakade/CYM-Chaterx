@@ -3,14 +3,14 @@ import { SectionLabel } from "@/components/SectionLabel";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How CharterX collects, uses, stores, and protects information submitted through this website.",
+  description: "Read the CharterX privacy policy and how Collaborative Yacht Management Limited handles personal information submitted through the website.",
   alternates: { canonical: "/privacy" },
   openGraph: {
-    title: "Privacy Policy | CharterX",
-    description: "How CharterX handles website and enquiry information.",
+    title: "CharterX Privacy Policy",
+    description: "How Collaborative Yacht Management Limited handles information submitted through CharterX.",
     url: "/privacy",
   },
-  twitter: { card: "summary", title: "Privacy Policy | CharterX", description: "How CharterX handles website and enquiry information." },
+  twitter: { card: "summary", title: "CharterX Privacy Policy", description: "How Collaborative Yacht Management Limited handles information submitted through CharterX." },
 };
 
 export default function PrivacyPage() {

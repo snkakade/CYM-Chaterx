@@ -9,18 +9,28 @@ import { VideoFeature } from "@/components/VideoFeature";
 import { otaFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
+
 export const metadata: Metadata = {
-  title: "Yacht OTA Management Services | Listing Optimisation & Enquiry Support",
-  description: "Improve yacht listing quality, platform visibility, pricing, availability, enquiry handling, and ongoing OTA performance with professional yacht OTA management.",
+  title: "Yacht OTA Management & Listing Optimisation",
+  description: "Improve yacht OTA management across listings, pricing, availability and enquiries. Request a focused review of your booking-platform setup.",
   alternates: { canonical: "/ota-management" },
-  openGraph: { title: "Yacht OTA Management Services | Listing Optimisation & Enquiry Support", description: "Improve yacht listing quality, platform visibility, pricing, availability, enquiry handling, and ongoing OTA performance with professional yacht OTA management.", url: "/ota-management", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Yacht OTA Management Services", description: "Improve yacht listing quality, platform visibility, pricing, availability, enquiry handling, and ongoing OTA performance with professional yacht OTA management.", images: [twitterImage] },
+  openGraph: { title: "Yacht OTA Management, Without the Drift", description: "A clearer approach to yacht listings, availability, pricing and booking-platform performance.", url: "/ota-management", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "Yacht OTA Management, Without the Drift", description: "A clearer approach to yacht listings, availability, pricing and booking-platform performance.", images: [twitterImage] },
 };
 
 const managed = ["Platform setup", "Listing structure", "Description writing", "Photo order guidance", "Pricing updates", "Calendar accuracy", "Availability coordination", "Guest enquiry monitoring", "Promotion support", "Review and ranking signals", "Performance review", "Ongoing improvements"];
 
 export default function OTAManagementPage() {
   const faqJson = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: otaFaqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
+  const serviceJson = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", "@id": `${siteUrl}/ota-management#webpage`, url: `${siteUrl}/ota-management`, name: "Yacht OTA Management & Listing Optimisation | CharterX", isPartOf: { "@id": `${siteUrl}/#website` }, mainEntity: { "@id": `${siteUrl}/ota-management#service` }, inLanguage: "en-GB" },
+      { "@type": "Service", "@id": `${siteUrl}/ota-management#service`, name: "Yacht OTA Management", serviceType: "Yacht OTA management and listing optimisation", url: `${siteUrl}/ota-management`, description: "Commercial management of yacht listings, pricing, availability, enquiries and ongoing booking-platform performance.", provider: { "@id": `${siteUrl}/#organization` }, areaServed: "Worldwide", audience: [{ "@type": "BusinessAudience", name: "Yacht owners" }, { "@type": "BusinessAudience", name: "Charter operators" }, { "@type": "BusinessAudience", name: "Boat rental businesses" }] },
+      { "@type": "BreadcrumbList", "@id": `${siteUrl}/ota-management#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "OTA Management", item: `${siteUrl}/ota-management` }] },
+    ],
+  };
   return (
     <>
       <PageHero
@@ -48,7 +58,7 @@ export default function OTAManagementPage() {
       </section>
 
       <section className="underperform-section section-shell">
-        <AnimatedImageReveal src="/images/hero-yacht.webp" alt="Luxury motor yacht at blue hour" />
+        <AnimatedImageReveal src="/images/hero-yacht.webp" alt="Luxury motor yacht at blue hour for yacht charter listing optimisation" />
         <div className="underperform-copy reveal-item">
           <SectionLabel index="02">Why Listings Underperform</SectionLabel>
           <h2>Small listing problems can still cost bookings.</h2>
@@ -65,7 +75,7 @@ export default function OTAManagementPage() {
         title="From discovery to a confident enquiry."
         direction="Slow aerial passage beside a premium motor yacht, with generous open water and no visible branding."
         poster="/images/hero-yacht.webp"
-        posterAlt="Aerial film of a luxury yacht at sunset"
+        posterAlt="Aerial view of a luxury yacht at sunset for OTA distribution"
         position="35% center"
       />
 
@@ -100,7 +110,9 @@ export default function OTAManagementPage() {
         <FAQAccordion items={otaFaqs} />
       </section>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJson) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
       <FinalCTA />
     </>
   );
 }
+

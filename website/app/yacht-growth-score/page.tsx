@@ -8,19 +8,19 @@ import { otaFaqs } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
-  title: "Yacht Growth Score | Review Your Booking & Visibility Setup",
-  description: "Assess your yacht business visibility, listing quality, enquiry flow, pricing setup, direct booking path, and commercial growth opportunities.",
+  title: "Yacht Business Growth Audit",
+  description: "Take a yacht business growth audit covering visibility, listings, pricing and enquiry flow. Complete the CharterX Yacht Growth Score.",
   alternates: { canonical: "/yacht-growth-score" },
   openGraph: {
-    title: "Yacht Growth Score | Review Your Booking & Visibility Setup",
-    description: "Assess your yacht business visibility, listing quality, enquiry flow, pricing setup, direct booking path, and commercial growth opportunities.",
+    title: "Where Is Your Yacht Business Losing Momentum?",
+    description: "Review the visibility, listings, pricing and enquiry systems around your yacht business.",
     url: "/yacht-growth-score",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yacht Growth Score",
-    description: "Assess your yacht business visibility, listing quality, enquiry flow, pricing setup, direct booking path, and commercial growth opportunities.",
+    title: "Where Is Your Yacht Business Losing Momentum?",
+    description: "Review the visibility, listings, pricing and enquiry systems around your yacht business.",
     images: [twitterImage],
   },
 };

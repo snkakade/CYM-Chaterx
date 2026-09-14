@@ -8,12 +8,14 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
+
 export const metadata: Metadata = {
-  title: "Yacht Revenue Management & Growth Strategy",
-  description: "Build a smarter revenue system around your yacht with pricing reviews, availability strategy, channel mix, listing optimization, and direct booking growth.",
+  title: "Yacht Revenue Management & Pricing Strategy",
+  description: "Strengthen yacht revenue management with clearer pricing, availability, channel mix and direct-booking strategy. Request a revenue review.",
   alternates: { canonical: "/revenue-growth" },
-  openGraph: { title: "Yacht Revenue Management & Growth Strategy", description: "Build a smarter revenue system around your yacht.", url: "/revenue-growth", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Yacht Revenue Management", description: "Build a smarter revenue system around your yacht.", images: [twitterImage] },
+  openGraph: { title: "A More Deliberate Yacht Revenue Strategy", description: "Connect pricing, availability, channel decisions and direct demand around commercial performance.", url: "/revenue-growth", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "A More Deliberate Yacht Revenue Strategy", description: "Connect pricing, availability, channel decisions and direct demand around commercial performance.", images: [twitterImage] },
 };
 
 const levers = [
@@ -26,6 +28,14 @@ const levers = [
 ] as const;
 
 export default function RevenueGrowthPage() {
+  const serviceJson = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", "@id": `${siteUrl}/revenue-growth#webpage`, url: `${siteUrl}/revenue-growth`, name: "Yacht Revenue Management & Pricing Strategy | CharterX", isPartOf: { "@id": `${siteUrl}/#website` }, mainEntity: { "@id": `${siteUrl}/revenue-growth#service` }, inLanguage: "en-GB" },
+      { "@type": "Service", "@id": `${siteUrl}/revenue-growth#service`, name: "Yacht Revenue Management", serviceType: "Yacht revenue management and pricing strategy", url: `${siteUrl}/revenue-growth`, description: "Pricing reviews, availability strategy, channel mix optimisation and direct booking growth for yacht businesses.", provider: { "@id": `${siteUrl}/#organization` }, areaServed: "Worldwide", audience: [{ "@type": "BusinessAudience", name: "Yacht owners" }, { "@type": "BusinessAudience", name: "Charter operators" }] },
+      { "@type": "BreadcrumbList", "@id": `${siteUrl}/revenue-growth#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "Revenue Growth", item: `${siteUrl}/revenue-growth` }] },
+    ],
+  };
   return (
     <>
       <PageHero
@@ -57,7 +67,7 @@ export default function RevenueGrowthPage() {
         title="A stronger operating rhythm leaves a clearer wake."
         direction="Elevated aft view of a yacht underway at first light, with a long symmetrical wake and restrained camera movement."
         poster="/images/yacht-wake.webp"
-        posterAlt="Top-down aerial film of a yacht drawing a curved wake"
+        posterAlt="Top-down aerial view of a yacht wake illustrating yacht revenue performance"
       />
       <section className="revenue-levers section-shell" id="revenue-levers">
         <div className="section-heading-grid reveal-item"><SectionLabel index="02">Revenue Levers</SectionLabel><h2>Where performance is won quietly.</h2><p>Small decisions compound across pricing, availability, presentation and response.</p></div>
@@ -89,6 +99,7 @@ export default function RevenueGrowthPage() {
           {["Better view of demand", "Cleaner pricing decisions", "More consistent enquiry handling", "Stronger listing quality", "Clearer channel performance", "Improved direct booking path", "Less manual owner follow-up", "More professional guest journey"].map((item, index) => <article className="reveal-item" key={item}><span>0{index + 1}</span><p>{item}</p></article>)}
         </div>
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
       <FinalCTA />
     </>
   );

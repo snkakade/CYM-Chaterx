@@ -7,12 +7,14 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { VideoFeature } from "@/components/VideoFeature";
 import { socialImage, twitterImage } from "@/data/metadata";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
+
 export const metadata: Metadata = {
-  title: "Yacht Website Design, SEO & Digital Marketing",
-  description: "Conversion-focused yacht website design, SEO, paid search, landing pages, analytics, and enquiry tracking for yacht charter and boat rental businesses.",
+  title: "Yacht Charter Marketing & Website SEO",
+  description: "Improve yacht charter marketing with conversion-focused websites, SEO, paid search and enquiry tracking. Request a digital growth review.",
   alternates: { canonical: "/digital-marketing" },
-  openGraph: { title: "Yacht Website Design, SEO & Digital Marketing", description: "Make your digital presence work like a sales asset.", url: "/digital-marketing", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Yacht Digital Marketing", description: "Make your digital presence work like a sales asset.", images: [twitterImage] },
+  openGraph: { title: "Turn Your Yacht Website Into a Sales Asset", description: "Website, SEO, paid search and measurement designed around qualified charter enquiries.", url: "/digital-marketing", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "Turn Your Yacht Website Into a Sales Asset", description: "Website, SEO, paid search and measurement designed around qualified charter enquiries.", images: [twitterImage] },
 };
 
 const capabilities = [
@@ -26,6 +28,14 @@ const capabilities = [
 ] as const;
 
 export default function DigitalMarketingPage() {
+  const serviceJson = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", "@id": `${siteUrl}/digital-marketing#webpage`, url: `${siteUrl}/digital-marketing`, name: "Yacht Charter Marketing & Website SEO | CharterX", isPartOf: { "@id": `${siteUrl}/#website` }, mainEntity: { "@id": `${siteUrl}/digital-marketing#service` }, inLanguage: "en-GB" },
+      { "@type": "Service", "@id": `${siteUrl}/digital-marketing#service`, name: "Yacht Charter Marketing", serviceType: "Yacht website design, SEO and digital marketing", url: `${siteUrl}/digital-marketing`, description: "Conversion-focused yacht website design, SEO, paid search, landing pages, analytics and enquiry tracking.", provider: { "@id": `${siteUrl}/#organization` }, areaServed: "Worldwide", audience: [{ "@type": "BusinessAudience", name: "Yacht owners" }, { "@type": "BusinessAudience", name: "Charter operators" }, { "@type": "BusinessAudience", name: "Boat rental businesses" }] },
+      { "@type": "BreadcrumbList", "@id": `${siteUrl}/digital-marketing#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "Digital Marketing", item: `${siteUrl}/digital-marketing` }] },
+    ],
+  };
   return (
     <>
       <PageHero
@@ -43,7 +53,7 @@ export default function DigitalMarketingPage() {
         secondaryHref="#digital-capabilities"
       />
       <section className="digital-intro section-shell">
-        <AnimatedImageReveal src="/images/search-visibility.webp" alt="Coastline map with a subtle search visibility overlay" />
+        <AnimatedImageReveal src="/images/search-visibility.webp" alt="Coastline map illustrating yacht charter search visibility" />
         <div className="digital-intro-copy reveal-item">
           <SectionLabel index="01">Website Strategy</SectionLabel>
           <h2>Premium design is <em>only the beginning.</em></h2>
@@ -82,6 +92,7 @@ export default function DigitalMarketingPage() {
           <p>Designed for clarity, not vanity metrics.</p>
         </div>
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
       <FinalCTA />
     </>
   );

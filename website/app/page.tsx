@@ -36,8 +36,11 @@ const process = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: "More Yacht Bookings. Less Commercial Drift.",
-  description: "CharterX connects yacht listings, pricing, enquiries and digital visibility into one focused commercial growth system.",
+  title: "Yacht Business Growth & Booking Strategy",
+  description: "Grow yacht bookings with a sharper commercial system for listings, pricing, enquiries and digital visibility. Request a CharterX growth review.",
+  alternates: { canonical: "/" },
+  openGraph: { title: "A More Deliberate Yacht Growth System", description: "Listings, pricing, enquiries and digital visibility managed as one commercial system.", url: "/", images: [{ url: "/og-v2.png", width: 1200, height: 630, alt: "CharterX yacht business growth system overview" }] },
+  twitter: { card: "summary_large_image", title: "A More Deliberate Yacht Growth System", description: "Listings, pricing, enquiries and digital visibility managed as one commercial system.", images: ["/og-v2.png"] },
 };
 
 export default function Home() {
@@ -52,7 +55,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
           />
         </div>
         <div className="cx-hero-shade" aria-hidden="true" />
@@ -115,7 +118,7 @@ export default function Home() {
 
       <section className="cx-proof cx-section cx-shell">
         <div className="cx-proof-image image-reveal">
-          <Image src="/images/charterx-yacht-deck.webp" alt="Refined yacht deck overlooking open water" fill sizes="(max-width: 800px) 100vw, 52vw" />
+          <Image src="/images/charterx-yacht-deck.webp" alt="Luxury motor yacht deck overlooking open water" fill sizes="(max-width: 800px) 100vw, 52vw" />
           <p><span>Precision ashore</span><span>Freedom on the water</span></p>
         </div>
         <div className="cx-proof-copy reveal-item">

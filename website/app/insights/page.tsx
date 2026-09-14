@@ -7,11 +7,11 @@ import { insights } from "@/data/site";
 import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
-  title: "Yacht Growth Insights & Resources",
-  description: "Practical resources on yacht OTA management, listing performance, enquiry conversion, websites, pricing, availability, and revenue growth.",
+  title: "Yacht Business Growth Insights",
+  description: "Read practical yacht business growth insights on OTA performance, pricing, enquiries, websites and direct bookings. Explore the CharterX library.",
   alternates: { canonical: "/insights" },
-  openGraph: { title: "Yacht Growth Insights & Resources", description: "A clearer view of yacht business growth.", url: "/insights", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Yacht Growth Insights", description: "Practical thinking for yacht owners and operators.", images: [twitterImage] },
+  openGraph: { title: "CharterX Yacht Growth Insights", description: "Practical commercial thinking for yacht owners and charter operators.", url: "/insights", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "CharterX Yacht Growth Insights", description: "Practical commercial thinking for yacht owners and charter operators.", images: [twitterImage] },
 };
 
 export default function InsightsPage() {

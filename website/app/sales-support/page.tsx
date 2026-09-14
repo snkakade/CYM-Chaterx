@@ -4,12 +4,14 @@ import { PageHero } from "@/components/PageHero";
 import { SectionLabel } from "@/components/SectionLabel";
 import { socialImage, twitterImage } from "@/data/metadata";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cymcharterx.com";
+
 export const metadata: Metadata = {
-  title: "Yacht Sales & Customer Enquiry Support",
-  description: "Professional enquiry handling, guest response, follow-up, quote coordination, and CRM-style support for yacht owners and charter operators.",
+  title: "Yacht Enquiry Handling & Sales Support",
+  description: "Improve yacht enquiry handling, follow-up and quote coordination with professional sales support. Discuss your current enquiry process.",
   alternates: { canonical: "/sales-support" },
-  openGraph: { title: "Yacht Sales & Customer Enquiry Support", description: "Turn more serious enquiries into real conversations.", url: "/sales-support", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Yacht Sales & Enquiry Support", description: "Turn more serious enquiries into real conversations.", images: [twitterImage] },
+  openGraph: { title: "Every Serious Yacht Enquiry Deserves a Response", description: "Structured guest communication, follow-up and booking support for owners and operators.", url: "/sales-support", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "Every Serious Yacht Enquiry Deserves a Response", description: "Structured guest communication, follow-up and booking support for owners and operators.", images: [twitterImage] },
 };
 
 const supportIncludes = [
@@ -26,6 +28,14 @@ const supportIncludes = [
 ];
 
 export default function SalesSupportPage() {
+  const serviceJson = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebPage", "@id": `${siteUrl}/sales-support#webpage`, url: `${siteUrl}/sales-support`, name: "Yacht Enquiry Handling & Sales Support | CharterX", isPartOf: { "@id": `${siteUrl}/#website` }, mainEntity: { "@id": `${siteUrl}/sales-support#service` }, inLanguage: "en-GB" },
+      { "@type": "Service", "@id": `${siteUrl}/sales-support#service`, name: "Yacht Enquiry Support", serviceType: "Yacht sales and customer enquiry handling", url: `${siteUrl}/sales-support`, description: "Professional enquiry handling, guest response, follow-up, quote coordination and CRM-style support for yacht owners and charter operators.", provider: { "@id": `${siteUrl}/#organization` }, areaServed: "Worldwide", audience: [{ "@type": "BusinessAudience", name: "Yacht owners" }, { "@type": "BusinessAudience", name: "Charter operators" }] },
+      { "@type": "BreadcrumbList", "@id": `${siteUrl}/sales-support#breadcrumbs`, itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/` }, { "@type": "ListItem", position: 2, name: "Services", item: `${siteUrl}/services` }, { "@type": "ListItem", position: 3, name: "Sales Support", item: `${siteUrl}/sales-support` }] },
+    ],
+  };
   return (
     <>
       <PageHero
@@ -34,7 +44,7 @@ export default function SalesSupportPage() {
         italic="real conversations."
         description="We help manage guest communication, response quality, follow-up, and booking handover so owners do not lose warm leads to slow or unclear replies."
         image="/images/sales-support.webp"
-        imageAlt="Team member providing premium yacht sales support ashore"
+        imageAlt="Yacht charter enquiry management and guest follow-up"
         video="/videos/charterx-ocean-texture-uhd.mp4"
         videoMobile="/videos/charterx-ocean-texture-uhd.mp4"
         videoPosition="center center"
@@ -70,6 +80,7 @@ export default function SalesSupportPage() {
         </div>
       </section>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJson) }} />
       <FinalCTA />
     </>
   );

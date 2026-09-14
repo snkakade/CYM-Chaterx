@@ -7,10 +7,10 @@ import { socialImage, twitterImage } from "@/data/metadata";
 
 export const metadata: Metadata = {
   title: "Request a Yacht Growth Review",
-  description: "Tell us about your yacht, current booking setup, platforms, website, and growth goals. Request a review of your yacht business commercial setup.",
+  description: "Request a yacht growth review covering listings, pricing, website performance and enquiry flow. Tell CharterX about your current setup.",
   alternates: { canonical: "/contact" },
-  openGraph: { title: "Request a Yacht Growth Review", description: "Tell us about your yacht, current booking setup, platforms, website, and growth goals. Request a review of your yacht business commercial setup.", url: "/contact", images: [socialImage] },
-  twitter: { card: "summary_large_image", title: "Request a Yacht Growth Review", description: "Tell us about your yacht, current booking setup, platforms, website, and growth goals. Request a review of your yacht business commercial setup.", images: [twitterImage] },
+  openGraph: { title: "Request a CharterX Yacht Growth Review", description: "Share your yacht, market and current booking setup for a focused commercial review.", url: "/contact", images: [socialImage] },
+  twitter: { card: "summary_large_image", title: "Request a CharterX Yacht Growth Review", description: "Share your yacht, market and current booking setup for a focused commercial review.", images: [twitterImage] },
 };
 
 export default function ContactPage() {

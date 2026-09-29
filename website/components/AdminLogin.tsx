@@ -1,12 +1,14 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { ArrowIcon } from "./ArrowIcon";
 import { CharterXWordmark } from "./CharterXWordmark";
 
 export function AdminLogin() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,7 +42,21 @@ export function AdminLogin() {
         <p>Sign in to manage enquiries, follow-ups, invoices, and commercial activity.</p>
         <form onSubmit={submit}>
           <label><span>Email address</span><input name="email" type="email" autoComplete="username" required /></label>
-          <label><span>Password</span><input name="password" type="password" autoComplete="current-password" minLength={12} required /></label>
+          <div className="admin-password-field">
+            <label htmlFor="admin-password">Password</label>
+            <div className="admin-password-input">
+              <input id="admin-password" name="password" type={showPassword ? "text" : "password"} autoComplete="current-password" minLength={12} required />
+              <button
+                type="button"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
+                title={showPassword ? "Hide password" : "Show password"}
+                onClick={() => setShowPassword((visible) => !visible)}
+              >
+                {showPassword ? <EyeOff aria-hidden="true" /> : <Eye aria-hidden="true" />}
+              </button>
+            </div>
+          </div>
           {error && <p className="admin-form-error" role="alert">{error}</p>}
           <button type="submit" disabled={busy}>{busy ? "Checking access…" : "Sign in securely"}<ArrowIcon direction="right" /></button>
         </form>

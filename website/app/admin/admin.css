@@ -349,6 +349,24 @@ body:has(.admin-page) { background: var(--admin-bg); }
 .admin-security-note { border-color: #dcd9cf; }
 .admin-security-note p { color: #66736f; }
 .admin-legal { z-index: 2; color: rgba(255,255,255,.5); }
+.admin-password-field { display: grid; gap: .45rem; }
+.admin-password-field > label { font-size: .72rem; font-weight: 700; }
+.admin-password-input { position: relative; }
+.admin-password-input input { padding-right: 3.5rem; }
+.admin-password-input button {
+  position: absolute;
+  inset-block: 0;
+  right: .35rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--brand-muted);
+  cursor: pointer;
+}
+.admin-password-input button:hover { color: var(--brand-ink); }
+.admin-password-input button svg { width: 1.2rem; height: 1.2rem; }
 
 .admin-dashboard { background: var(--admin-bg); }
 .admin-sidebar {

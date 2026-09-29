@@ -45,7 +45,7 @@ export function AdminLogin() {
           <div className="admin-password-field">
             <label htmlFor="admin-password">Password</label>
             <div className="admin-password-input">
-              <input id="admin-password" name="password" type={showPassword ? "text" : "password"} autoComplete="current-password" minLength={12} required />
+              <input id="admin-password" name="password" type={showPassword ? "text" : "password"} autoComplete="current-password" required />
               <button
                 type="button"
                 aria-label={showPassword ? "Hide password" : "Show password"}

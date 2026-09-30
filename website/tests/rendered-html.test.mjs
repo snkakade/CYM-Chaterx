@@ -27,7 +27,7 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /Less drift/);
   assert.match(html, /Check your growth score/);
   assert.match(html, /application\/ld\+json/);
-  assert.match(html, /Collaborative Yacht Management Limited/);
+  assert.match(html, /Collaborative Yacht Management LLP/);
   assert.match(html, /Designed by Shreyash K/);
   assert.match(html, /href="https:\/\/shreyashkakade\.com\/websites"/);
   assert.match(html, /og:image/);
@@ -54,6 +54,7 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   const layout = await readFile(new URL("../app/admin/layout.tsx", import.meta.url), "utf8");
   const dashboard = await readFile(new URL("../components/AdminDashboard.tsx", import.meta.url), "utf8");
   const wordmark = await readFile(new URL("../components/CharterXWordmark.tsx", import.meta.url), "utf8");
+  const legacyWordmark = await readFile(new URL("../components/CharterXWordmarkLegacy.tsx", import.meta.url), "utf8");
   const publicLogo = await readFile(new URL("../components/Logo.tsx", import.meta.url), "utf8");
   const invoice = await readFile(new URL("../app/admin/invoices/[id]/page.tsx", import.meta.url), "utf8");
   const adminStyles = await readFile(new URL("../app/admin/admin.css", import.meta.url), "utf8");
@@ -79,11 +80,12 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   assert.match(dashboard, /CharterXWordmark/);
   assert.match(wordmark, /brand-logotype/);
   assert.match(wordmark, /brand-text-charter/);
-  assert.match(wordmark, /brand-strike/);
+  assert.doesNotMatch(wordmark, /brand-strike/);
+  assert.match(legacyWordmark, /brand-strike/);
   assert.match(publicLogo, /<CharterXWordmark/);
   assert.match(invoice, /CharterXWordmark/);
   assert.match(invoice, /connect@cymcharterx\.com/);
-  assert.match(invoice, /Collaborative Yacht Management Limited/);
+  assert.match(invoice, /Collaborative Yacht Management LLP/);
   assert.doesNotMatch(adminStyles, /\.invoice-document header span\s*\{/);
   assert.match(adminStyles, /\.invoice-identity>span:last-child/);
   assert.match(adminData, /weightedPipeline/);
@@ -202,6 +204,7 @@ test("repository design contract protects shared brand decisions", async () => {
   assert.match(tokens, /--brand-logo-gold: #c4a467/);
   assert.match(tokens, /--brand-max-width: 1440px/);
   assert.match(globals, /@import "\.\/design-tokens\.css"/);
+  assert.match(globals, /\.brand-text-x\s*\{[^}]*font-size: 1\.2em/s);
 });
 
 test("growth score carries diagnostic answers into the enquiry form", async () => {

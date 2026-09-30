@@ -270,7 +270,7 @@ body:has(.admin-page) { background: #edf1ef; }
   letter-spacing: .25em;
 }
 .admin-wordmark .brand-text-x {
-  font-size: inherit;
+  font-size: 1.2em;
   font-weight: 800;
   letter-spacing: normal;
 }
@@ -309,10 +309,11 @@ body:has(.admin-page) { background: var(--admin-bg); }
   align-items: center;
   gap: 1.1rem;
 }
+.admin-login-brand .brand-logotype { color: var(--brand-ink); }
 .admin-login-brand small {
   padding-left: 1.1rem;
-  border-left: 1px solid rgba(255,255,255,.25);
-  color: rgba(255,255,255,.6);
+  border-left: 1px solid var(--brand-line);
+  color: var(--brand-muted);
 }
 .admin-login-card {
   align-self: center;
@@ -443,6 +444,8 @@ body:has(.admin-page) { background: var(--admin-bg); }
 @media(max-width:900px) {
   .admin-login-page { grid-template-columns: 1fr; padding: 7rem 1.5rem 5rem; }
   .admin-login-page:before { inset: 0; opacity: .28; }
+  .admin-login-brand .brand-logotype { color: var(--brand-paper); }
+  .admin-login-brand small { border-left-color: rgba(255,255,255,.25); color: rgba(255,255,255,.6); }
   .admin-login-card { width: min(100%, 35rem); }
 }
 @media(max-width:700px) {

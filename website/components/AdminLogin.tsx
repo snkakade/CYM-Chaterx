@@ -62,7 +62,7 @@ export function AdminLogin() {
         </form>
         <div className="admin-security-note"><p>Protected access. Attempts are rate-limited and sessions expire automatically.</p></div>
       </section>
-      <p className="admin-legal">Collaborative Yacht Management Limited · Trading as CharterX</p>
+      <p className="admin-legal">Collaborative Yacht Management LLP · Trading as CharterX</p>
     </div>
   );
 }

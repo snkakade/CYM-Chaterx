@@ -2,7 +2,7 @@
 
 Before making visual or content changes, read the mandatory [`DESIGN.md`](DESIGN.md) contract. Repository-level agent instructions are in [`AGENTS.md`](AGENTS.md).
 
-CharterX is a premium yacht growth and management website for Collaborative Yacht Management Limited.
+CharterX is a premium yacht growth and management website for Collaborative Yacht Management LLP.
 
 The complete application lives in [`website/`](website/). GSAP core and ScrollTrigger are installed through the website package and are the only animation dependencies retained.
 

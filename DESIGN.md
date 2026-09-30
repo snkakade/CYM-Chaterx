@@ -35,8 +35,8 @@ The logo is the word `CHARTERX` in Montserrat with:
 
 - `CHARTER` at weight 300;
 - letter spacing of `0.25em`;
-- a horizontal champagne strike through `CHARTER` at 50% height;
-- `X` at weight 800 in champagne;
+- no strike through `CHARTER`;
+- `X` at weight 800 in champagne and 20% larger than `CHARTER`;
 - no icon, crest, route line, alternate lettering or improvised lock-up.
 
 The only approved implementation is:
@@ -44,13 +44,16 @@ The only approved implementation is:
 - `website/components/CharterXWordmark.tsx` for the mark itself;
 - `website/components/Logo.tsx` for the linked website logo.
 
-Every header, footer, login, CRM panel, invoice and future asset must use that component. Context may change only scale and light/dark contrast. It may not change letter spacing, strike position, typeface, weights or X colour.
+The previous struck-through implementation is archived, but not rendered, in
+`website/components/CharterXWordmarkLegacy.tsx` for possible future restoration.
+
+Every header, footer, login, CRM panel, invoice and future asset must use that component. Context may change only overall scale and light/dark contrast. It may not change letter spacing, typeface, weights, X scale or X colour.
 
 Logo colours:
 
 - dark text: `--brand-ink`;
 - light text: `--brand-paper`;
-- strike and X: `--brand-logo-gold`.
+- X: `--brand-logo-gold`.
 
 ## 3. Design tokens
 
@@ -137,7 +140,7 @@ Rules:
 - Use British English for general copy: enquiries, optimisation and organised.
 - Use “yacht” or “vessel” precisely; do not scatter nautical metaphors.
 - The approved contact email is `connect@cymcharterx.com`.
-- The legal name is `Collaborative Yacht Management Limited`, trading as CharterX.
+- The legal name is `Collaborative Yacht Management LLP`, trading as CharterX.
 
 ## 10. Motion and interaction
 

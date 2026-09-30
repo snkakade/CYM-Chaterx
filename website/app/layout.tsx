@@ -75,7 +75,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@graph": [
-                { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "CharterX", legalName: "Collaborative Yacht Management Limited", url: `${siteUrl}/`, email: "connect@cymcharterx.com", slogan: "More bookings. Less drift.", knowsAbout: ["Yacht OTA management", "Yacht listing optimisation", "Yacht revenue management", "Yacht charter marketing", "Yacht enquiry handling", "Yacht website conversion"] },
+                { "@type": "Organization", "@id": `${siteUrl}/#organization`, name: "CharterX", legalName: "Collaborative Yacht Management LLP", url: `${siteUrl}/`, email: "connect@cymcharterx.com", slogan: "More bookings. Less drift.", knowsAbout: ["Yacht OTA management", "Yacht listing optimisation", "Yacht revenue management", "Yacht charter marketing", "Yacht enquiry handling", "Yacht website conversion"] },
                 { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: "CharterX", publisher: { "@id": `${siteUrl}/#organization` }, inLanguage: "en-GB" },
                 { "@type": "WebPage", "@id": `${siteUrl}/#webpage`, url: `${siteUrl}/`, name: "Yacht Business Growth & Booking Strategy | CharterX", isPartOf: { "@id": `${siteUrl}/#website` }, about: { "@id": `${siteUrl}/#organization` }, inLanguage: "en-GB" },
               ],

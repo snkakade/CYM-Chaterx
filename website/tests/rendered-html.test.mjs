@@ -204,7 +204,7 @@ test("repository design contract protects shared brand decisions", async () => {
   assert.match(tokens, /--brand-logo-gold: #c4a467/);
   assert.match(tokens, /--brand-max-width: 1440px/);
   assert.match(globals, /@import "\.\/design-tokens\.css"/);
-  assert.match(globals, /\.brand-text-x\s*\{[^}]*font-size: 1\.2em/s);
+  assert.match(globals, /\.brand-text-x\s*\{[^}]*font-size: 1\.5em/s);
 });
 
 test("growth score carries diagnostic answers into the enquiry form", async () => {

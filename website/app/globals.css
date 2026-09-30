@@ -286,11 +286,14 @@ h1 em {
   z-index: 2;
 }
 .brand-text-x {
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: 800;
   line-height: 1;
   color: var(--champagne-500);
   z-index: 1;
+}
+.charterx-wordmark--legacy .brand-text-x {
+  font-size: 1em;
 }
 .brand-copy small {
   margin-top: 0.25rem;

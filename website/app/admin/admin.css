@@ -270,7 +270,7 @@ body:has(.admin-page) { background: #edf1ef; }
   letter-spacing: .25em;
 }
 .admin-wordmark .brand-text-x {
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: 800;
   letter-spacing: normal;
 }
@@ -302,18 +302,27 @@ body:has(.admin-page) { background: var(--admin-bg); }
   mask-image: none;
 }
 .admin-login-brand {
+  position: static;
   z-index: 2;
-  top: 3rem;
-  left: 3.5rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
-  gap: 1.1rem;
+  justify-content: start;
+  gap: 1.5rem 1.1rem;
+  margin-bottom: 1.8rem;
 }
 .admin-login-brand .brand-logotype { color: var(--brand-ink); }
 .admin-login-brand small {
   padding-left: 1.1rem;
   border-left: 1px solid var(--brand-line);
   color: var(--brand-muted);
+}
+.admin-login-brand:after {
+  grid-column: 1 / -1;
+  width: 3.5rem;
+  height: 1px;
+  background: var(--admin-gold);
+  content: "";
 }
 .admin-login-card {
   align-self: center;
@@ -324,12 +333,7 @@ body:has(.admin-page) { background: var(--admin-bg); }
   box-shadow: 0 38px 100px rgba(0,0,0,.28);
 }
 .admin-login-card:before {
-  display: block;
-  width: 3.5rem;
-  height: 1px;
-  margin-bottom: 2.2rem;
-  background: var(--admin-gold);
-  content: "";
+  display: none;
 }
 .admin-login-card h1 {
   max-width: 9ch;
@@ -442,14 +446,11 @@ body:has(.admin-page) { background: var(--admin-bg); }
 .invoice-document>footer { color: #68746f; }
 
 @media(max-width:900px) {
-  .admin-login-page { grid-template-columns: 1fr; padding: 7rem 1.5rem 5rem; }
+  .admin-login-page { grid-template-columns: 1fr; padding: 1.5rem; }
   .admin-login-page:before { inset: 0; opacity: .28; }
-  .admin-login-brand .brand-logotype { color: var(--brand-paper); }
-  .admin-login-brand small { border-left-color: rgba(255,255,255,.25); color: rgba(255,255,255,.6); }
   .admin-login-card { width: min(100%, 35rem); }
 }
 @media(max-width:700px) {
-  .admin-login-brand { top: 1.8rem; left: 1.5rem; }
   .admin-login-brand .brand-logotype { font-size: 1.35rem; }
   .admin-login-card { padding: 2.3rem 1.5rem; }
   .invoice-page { padding: 0; }

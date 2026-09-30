@@ -32,11 +32,11 @@ export function AdminLogin() {
 
   return (
     <div className="admin-login-page admin-page">
-      <div className="admin-login-brand">
-        <CharterXWordmark tone="light" />
-        <small>CYM Operations</small>
-      </div>
       <section className="admin-login-card" aria-labelledby="admin-login-title">
+        <div className="admin-login-brand">
+          <CharterXWordmark />
+          <small>CYM Operations</small>
+        </div>
         <p className="admin-eyebrow">Private operations portal</p>
         <h1 id="admin-login-title">Welcome back ashore.</h1>
         <p>Sign in to manage enquiries, follow-ups, invoices, and commercial activity.</p>

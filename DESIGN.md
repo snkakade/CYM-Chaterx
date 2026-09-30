@@ -36,7 +36,7 @@ The logo is the word `CHARTERX` in Montserrat with:
 - `CHARTER` at weight 300;
 - letter spacing of `0.25em`;
 - no strike through `CHARTER`;
-- `X` at weight 800 in champagne and 50% larger than `CHARTER`;
+- `X` at weight 800 in champagne and twice the size of `CHARTER`;
 - no icon, crest, route line, alternate lettering or improvised lock-up.
 
 The only approved implementation is:

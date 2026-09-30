@@ -270,7 +270,7 @@ body:has(.admin-page) { background: #edf1ef; }
   letter-spacing: .25em;
 }
 .admin-wordmark .brand-text-x {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: 800;
   letter-spacing: normal;
 }

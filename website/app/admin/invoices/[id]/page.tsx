@@ -24,7 +24,7 @@ export default async function InvoicePage({ params }: { params: Promise<{ id: st
           <div><p>Invoice</p><strong>{invoice.invoice_number}</strong><span className={`admin-status status-${invoice.status}`}>{invoice.status}</span></div>
         </header>
         <section className="invoice-meta">
-          <div><span>Issued by</span><strong>Collaborative Yacht Management LLP</strong><p>Trading as CharterX<br />United Kingdom<br />connect@cymcharterx.com</p></div>
+          <div><span>Issued by</span><strong>Collaborative Yacht Management LLP</strong><p>Trading as CharterX<br />Pune, India<br />connect@cymcharterx.com</p></div>
           <div><span>Prepared for</span><strong>{invoice.client_name}</strong><p>{invoice.client_email}<br />{invoice.client_address}</p></div>
           <div><span>Invoice details</span><p>Issue date <strong>{date(invoice.issue_date)}</strong><br />Due date <strong>{date(invoice.due_date)}</strong><br />Currency <strong>{invoice.currency}</strong></p></div>
         </section>

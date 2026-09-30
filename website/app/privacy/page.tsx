@@ -26,6 +26,7 @@ export default function PrivacyPage() {
           <p>Data controller</p>
           <strong>Collaborative Yacht Management LLP</strong>
           <span>Trading as CharterX</span>
+          <span>Pune, India</span>
         </aside>
         <div className="privacy-content">
           <section><h2>Information we collect</h2><p>When you submit an enquiry, we collect the details you choose to provide, such as your name, contact information, vessel details, market, booking setup, website address, commercial goals, and message. We also receive limited technical information needed to deliver and secure the website.</p></section>

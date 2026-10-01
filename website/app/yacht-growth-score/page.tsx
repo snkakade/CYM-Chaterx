@@ -43,7 +43,7 @@ export default function YachtGrowthScorePage() {
 
       <YachtGrowthScore />
 
-      <section className="faq-section section-shell">
+      <section className="faq-section faq-section--score section-shell">
         <div className="faq-heading reveal-item">
           <SectionLabel index="02">Frequently Asked</SectionLabel>
           <h2>Yacht Growth Score, <em>clearly explained.</em></h2>

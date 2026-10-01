@@ -1207,6 +1207,44 @@ h1 em {
   color: var(--slate-500);
 }
 
+/* Give the diagnostic a definite close before its supporting questions. */
+.faq-section--score {
+  display: block;
+  padding: clamp(6rem, 9vw, 9rem)
+    max(var(--page-pad), calc((100vw - var(--max)) / 2 + var(--page-pad)));
+  border-top: 1px solid var(--brand-champagne);
+  background: var(--brand-paper);
+}
+.faq-section--score .faq-heading,
+.faq-section--score .faq-list {
+  width: min(100%, 68rem);
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+}
+.faq-section--score .faq-heading h2 {
+  max-width: 52rem;
+  margin: 2rem 0 0;
+}
+.faq-section--score .faq-list {
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+.faq-section--score .faq-item button {
+  min-height: 5.5rem;
+  padding: 1.5rem 0;
+}
+.faq-section--score .faq-item button > span {
+  max-width: 52rem;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+.faq-section--score .faq-answer p {
+  max-width: 54rem;
+  padding-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
 /* Revenue + digital */
 .revenue-dashboard {
   padding-top: 2rem;
@@ -4862,6 +4900,10 @@ main section[id] {
     padding-left: 0;
   }
 
+  .faq-section--score {
+    padding: clamp(5rem, 12vw, 6.5rem) var(--page-pad);
+  }
+
   .page-hero .hero-actions {
     margin-top: 1.5rem;
   }
@@ -4872,6 +4914,26 @@ main section[id] {
     max-width: 100%;
     font-size: clamp(2.2rem, 11vw, 3rem);
     overflow-wrap: break-word;
+  }
+
+  .faq-section--score .faq-list {
+    margin-top: 3rem;
+  }
+
+  .faq-section--score .faq-item button {
+    min-height: 0;
+    padding: 1.35rem 0;
+  }
+
+  .faq-section--score .faq-item button > span {
+    align-items: flex-start;
+    gap: 0.85rem;
+    font-size: 0.94rem;
+  }
+
+  .faq-section--score .faq-answer p {
+    padding: 0 1.75rem 1.5rem;
+    font-size: 0.94rem;
   }
 
   .page-hero .page-hero-inner,

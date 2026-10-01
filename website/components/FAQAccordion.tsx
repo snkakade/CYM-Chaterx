@@ -28,7 +28,7 @@ export function FAQAccordion({ items }: { items: readonly (readonly [string, str
           <div className={`faq-item ${isOpen ? "is-open" : ""}`} key={question}>
             <h3>
               <button id={`faq-question-${index}`} type="button" aria-expanded={isOpen} aria-controls={`faq-answer-${index}`} onClick={() => toggle(index)}>
-                <span><i aria-hidden="true">0{index + 1}</i>{question}</span>
+                <span><i aria-hidden="true">{String(index + 1).padStart(2, "0")}</i>{question}</span>
                 <b aria-hidden="true">{isOpen ? "−" : "+"}</b>
               </button>
             </h3>

@@ -4652,20 +4652,30 @@ h2 em {
   color: var(--slate-500);
 }
 
-/* --- MINIMALISM OVERRIDES --- */
+/* Shared editorial bands retain the approved deep-petrol treatment. */
 .optimization-loop,
 .search-journey,
 .how-we-work,
 .strategy-call {
-  background: var(--ivory-100) !important;
-  color: var(--navy-950) !important;
+  background: var(--brand-deep) !important;
+  color: var(--brand-paper) !important;
 }
 
 .optimization-copy > p,
 .search-copy > p,
 .how-we-work-copy > p,
 .strategy-call p {
-  color: var(--slate-500) !important;
+  color: rgba(251, 250, 247, 0.72) !important;
+}
+
+.working-principles,
+.working-principles article,
+.search-path li {
+  border-color: rgba(251, 250, 247, 0.16);
+}
+
+.working-principles p {
+  color: rgba(251, 250, 247, 0.68);
 }
 
 .score-meta span {
@@ -4828,16 +4838,28 @@ main section[id] {
 
   .page-hero .page-hero-inner,
   .page-hero--revamp .page-hero-inner {
-    padding-top: clamp(3.75rem, 10vw, 5.25rem);
-    padding-bottom: clamp(2.75rem, 8vw, 4rem);
+    padding-top: clamp(2.75rem, 7vw, 3.5rem);
+    padding-bottom: clamp(2rem, 5vw, 2.75rem);
   }
 
   .page-hero h1,
   .page-hero.page-hero--revamp h1,
   .page-hero.page-hero--compact h1 {
     margin: 1.25rem 0 1.4rem;
-    font-size: clamp(2.65rem, 10vw, 5rem) !important;
-    line-height: 1 !important;
+    font-size: clamp(2.2rem, 6.8vw, 3.25rem) !important;
+    line-height: 1.02 !important;
+  }
+
+  .page-hero .hero-media {
+    height: clamp(13rem, 32vw, 16rem);
+    min-height: 0;
+  }
+
+  .faq-heading,
+  .faq-list {
+    min-width: 0;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .page-hero .hero-actions {
@@ -4846,6 +4868,30 @@ main section[id] {
 }
 
 @media (max-width: 620px) {
+  #main-content h2 {
+    max-width: 100%;
+    font-size: clamp(2.2rem, 11vw, 3rem);
+    overflow-wrap: break-word;
+  }
+
+  .page-hero .page-hero-inner,
+  .page-hero--revamp .page-hero-inner {
+    padding-top: 2.25rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .page-hero h1,
+  .page-hero.page-hero--revamp h1,
+  .page-hero.page-hero--compact h1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 10vw, 2.5rem) !important;
+  }
+
+  .page-hero .hero-media {
+    height: 10rem;
+  }
+
   .page-hero .hero-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -4853,6 +4899,22 @@ main section[id] {
 
   .page-hero .hero-actions .button {
     width: 100%;
+  }
+
+  .working-principles article {
+    min-height: 11rem;
+  }
+
+  .insights-grid,
+  .insight-card,
+  .insight-card > a,
+  .insight-card-copy {
+    min-width: 0;
+  }
+
+  .insight-card-copy > div {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }
 

@@ -1,5 +1,6 @@
 import { getDatabase, recordAudit } from "./database";
 import type { AdminRole } from "./auth";
+import type { ExpenseCurrency } from "./finance";
 
 export const leadStatuses = ["new", "contacted", "qualified", "proposal", "won", "lost"] as const;
 export const invoiceStatuses = ["draft", "sent", "received", "overdue", "void"] as const;
@@ -76,7 +77,7 @@ export type ExpenseRecord = {
   category: typeof expenseCategories[number];
   description: string;
   reference_number: string;
-  currency: typeof currencies[number];
+  currency: ExpenseCurrency;
   subtotal_cents: number;
   gst_rate_bps: number;
   gst_cents: number;

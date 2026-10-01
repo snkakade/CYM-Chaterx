@@ -475,6 +475,19 @@ body:has(.admin-page) { background: var(--admin-bg); }
 .admin-archive { margin-top: 1rem; border-top: 2px solid var(--admin-gold); }
 .admin-activity p small { margin-top: .2rem; color: var(--admin-muted); font-size: .5rem; line-height: 1.45; }
 
+@media(max-width:700px) {
+  .admin-login-card {
+    min-width: 0;
+    width: calc(100vw - 3rem);
+  }
+  .admin-login-card h1 {
+    max-width: 100%;
+    font-size: clamp(2.5rem, 12vw, 3.4rem);
+    letter-spacing: 0;
+    overflow-wrap: break-word;
+  }
+}
+
 /* The saved invoice is intentionally plain white for screen and print. */
 .invoice-page { padding: 2.5rem; background: #fff; }
 .invoice-document {

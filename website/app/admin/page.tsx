@@ -8,6 +8,6 @@ export const dynamic = "force-dynamic";
 export default async function AdminPage() {
   const session = await getAdminSession();
   if (!session) redirect("/admin/login");
-  const data = await getDashboardData();
-  return <AdminDashboard data={data} adminEmail={session.email} />;
+  const data = await getDashboardData(session.role);
+  return <AdminDashboard data={data} adminEmail={session.email} adminRole={session.role} />;
 }

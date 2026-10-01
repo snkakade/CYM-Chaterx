@@ -50,6 +50,9 @@ export const schemaStatements = [
     notes TEXT NOT NULL DEFAULT '',
     line_items_json TEXT NOT NULL,
     lead_id TEXT,
+    deleted_at TEXT,
+    deletion_remark TEXT NOT NULL DEFAULT '',
+    deleted_by TEXT NOT NULL DEFAULT '',
     FOREIGN KEY (lead_id) REFERENCES leads(id) ON DELETE SET NULL
   )`,
   `CREATE INDEX IF NOT EXISTS idx_invoices_status_created_at
@@ -70,7 +73,11 @@ export const schemaStatements = [
     action TEXT NOT NULL,
     entity_type TEXT NOT NULL,
     entity_id TEXT NOT NULL DEFAULT '',
-    detail TEXT NOT NULL DEFAULT ''
+    detail TEXT NOT NULL DEFAULT '',
+    ip_address TEXT NOT NULL DEFAULT '',
+    device TEXT NOT NULL DEFAULT '',
+    location TEXT NOT NULL DEFAULT '',
+    user_agent TEXT NOT NULL DEFAULT ''
   )`,
   `CREATE INDEX IF NOT EXISTS idx_audit_events_created_at
     ON audit_events(created_at DESC)`,
@@ -80,4 +87,26 @@ export const schemaStatements = [
     window_started_at INTEGER NOT NULL,
     blocked_until INTEGER NOT NULL DEFAULT 0
   )`,
+  `CREATE TABLE IF NOT EXISTS expenses (
+    id TEXT PRIMARY KEY,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL,
+    expense_date TEXT NOT NULL,
+    vendor_name TEXT NOT NULL,
+    vendor_gstin TEXT NOT NULL DEFAULT '',
+    category TEXT NOT NULL,
+    description TEXT NOT NULL,
+    reference_number TEXT NOT NULL DEFAULT '',
+    currency TEXT NOT NULL DEFAULT 'INR',
+    subtotal_cents INTEGER NOT NULL,
+    gst_rate_bps INTEGER NOT NULL DEFAULT 0,
+    gst_cents INTEGER NOT NULL DEFAULT 0,
+    total_cents INTEGER NOT NULL,
+    payment_method TEXT NOT NULL DEFAULT '',
+    notes TEXT NOT NULL DEFAULT ''
+  )`,
+  `CREATE INDEX IF NOT EXISTS idx_expenses_date
+    ON expenses(expense_date DESC)`,
+  `CREATE INDEX IF NOT EXISTS idx_expenses_category
+    ON expenses(category, expense_date DESC)`,
 ] as const;

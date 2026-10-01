@@ -1,8 +1,10 @@
 import { getDatabase, recordAudit } from "./database";
+import type { AdminRole } from "./auth";
 
 export const leadStatuses = ["new", "contacted", "qualified", "proposal", "won", "lost"] as const;
-export const invoiceStatuses = ["draft", "sent", "paid", "overdue", "void"] as const;
-export const currencies = ["USD", "EUR", "GBP"] as const;
+export const invoiceStatuses = ["draft", "sent", "received", "overdue", "void"] as const;
+export const currencies = ["USD", "EUR", "GBP", "INR"] as const;
+export const expenseCategories = ["marketing", "software", "professional_services", "travel", "office", "banking", "tax_and_compliance", "contractors", "other"] as const;
 
 export type LeadStatus = typeof leadStatuses[number];
 export type InvoiceStatus = typeof invoiceStatuses[number];
@@ -50,7 +52,7 @@ export type InvoiceRecord = {
   client_email: string;
   client_address: string;
   vessel_name: string;
-  currency: "GBP" | "EUR" | "USD";
+  currency: typeof currencies[number];
   subtotal_cents: number;
   tax_rate_bps: number;
   tax_cents: number;
@@ -59,6 +61,28 @@ export type InvoiceRecord = {
   notes: string;
   line_items_json: string;
   lead_id: string | null;
+  deleted_at: string | null;
+  deletion_remark: string;
+  deleted_by: string;
+};
+
+export type ExpenseRecord = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  expense_date: string;
+  vendor_name: string;
+  vendor_gstin: string;
+  category: typeof expenseCategories[number];
+  description: string;
+  reference_number: string;
+  currency: typeof currencies[number];
+  subtotal_cents: number;
+  gst_rate_bps: number;
+  gst_cents: number;
+  total_cents: number;
+  payment_method: string;
+  notes: string;
 };
 
 export type AuditRecord = {
@@ -69,18 +93,25 @@ export type AuditRecord = {
   entity_type: string;
   entity_id: string;
   detail: string;
+  ip_address: string;
+  device: string;
+  location: string;
+  user_agent: string;
 };
 
-export async function getDashboardData() {
+export async function getDashboardData(role: AdminRole = "admin") {
   const database = await getDatabase();
-  const [leadsResult, invoicesResult, auditResult] = await Promise.all([
+  const [leadsResult, invoicesResult, expenseResult, auditResult] = await Promise.all([
     database.prepare("SELECT id, created_at, updated_at, name, email, phone, vessel_type, location, platforms, website, challenge, monthly_goal, message, source, status, priority, follow_up_at, internal_notes, estimated_value_cents, probability, next_action, lost_reason, last_contact_at FROM leads ORDER BY created_at DESC LIMIT 200").all<LeadRecord>(),
-    database.prepare("SELECT * FROM invoices ORDER BY created_at DESC LIMIT 200").all<InvoiceRecord>(),
+    database.prepare(`SELECT * FROM invoices ${role === "superadmin" ? "" : "WHERE deleted_at IS NULL"} ORDER BY created_at DESC LIMIT 200`).all<InvoiceRecord>(),
+    database.prepare("SELECT * FROM expenses ORDER BY expense_date DESC, created_at DESC LIMIT 500").all<ExpenseRecord>(),
     database.prepare("SELECT * FROM audit_events ORDER BY created_at DESC LIMIT 20").all<AuditRecord>(),
   ]);
 
-  const leads = leadsResult.results;
-  const invoices = invoicesResult.results;
+  const leads = leadsResult.results as LeadRecord[];
+  const invoices = invoicesResult.results as InvoiceRecord[];
+  const activeInvoices = invoices.filter((invoice) => !invoice.deleted_at);
+  const expenses = expenseResult.results as ExpenseRecord[];
   const now = new Date();
   const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1)).toISOString();
   const openLeads = leads.filter((lead) => !["won", "lost"].includes(lead.status));
@@ -90,26 +121,29 @@ export async function getDashboardData() {
   return {
     leads,
     invoices,
-    activity: auditResult.results,
+    expenses,
+    activity: auditResult.results as AuditRecord[],
     metrics: {
       newLeads: leads.filter((lead) => lead.status === "new").length,
       activePipeline: leads.filter((lead) => ["contacted", "qualified", "proposal"].includes(lead.status)).length,
       followUpsDue: leads.filter((lead) => lead.follow_up_at && new Date(lead.follow_up_at) <= now && !["won", "lost"].includes(lead.status)).length,
-      outstandingInvoices: invoices.filter((invoice) => ["sent", "overdue"].includes(invoice.status)).length,
-      paidThisMonth: invoices.filter((invoice) => invoice.status === "paid" && invoice.updated_at >= monthStart).length,
+      outstandingInvoices: activeInvoices.filter((invoice) => ["sent", "overdue"].includes(invoice.status)).length,
+      receivedThisMonth: activeInvoices.filter((invoice) => invoice.status === "received" && invoice.updated_at >= monthStart).length,
       responseQueue: openLeads.filter((lead) => lead.status === "new" || (lead.follow_up_at && new Date(lead.follow_up_at) <= now)).length,
       pipelineValue: openLeads.reduce((total, lead) => total + lead.estimated_value_cents, 0),
       weightedPipeline: openLeads.reduce((total, lead) => total + Math.round(lead.estimated_value_cents * lead.probability / 100), 0),
-      outstandingValue: invoices.filter((invoice) => ["sent", "overdue"].includes(invoice.status)).reduce((total, invoice) => total + invoice.total_cents, 0),
-      paidThisMonthValue: invoices.filter((invoice) => invoice.status === "paid" && invoice.updated_at >= monthStart).reduce((total, invoice) => total + invoice.total_cents, 0),
+      outstandingValue: activeInvoices.filter((invoice) => ["sent", "overdue"].includes(invoice.status)).reduce((total, invoice) => total + invoice.total_cents, 0),
+      receivedThisMonthValue: activeInvoices.filter((invoice) => invoice.status === "received" && invoice.updated_at >= monthStart).reduce((total, invoice) => total + invoice.total_cents, 0),
+      expenseThisMonthValue: expenses.filter((expense) => expense.expense_date >= monthStart.slice(0, 10) && expense.currency === "INR").reduce((total, expense) => total + expense.total_cents, 0),
+      gstInputThisMonthValue: expenses.filter((expense) => expense.expense_date >= monthStart.slice(0, 10) && expense.currency === "INR").reduce((total, expense) => total + expense.gst_cents, 0),
       conversionRate: closedLeads.length ? Math.round(wonLeads.length / closedLeads.length * 100) : 0,
     },
   };
 }
 
-export async function getInvoiceById(id: string) {
+export async function getInvoiceById(id: string, role: AdminRole = "admin") {
   const database = await getDatabase();
-  return database.prepare("SELECT * FROM invoices WHERE id = ?").bind(id).first<InvoiceRecord>();
+  return database.prepare(`SELECT * FROM invoices WHERE id = ? ${role === "superadmin" ? "" : "AND deleted_at IS NULL"}`).bind(id).first<InvoiceRecord>();
 }
 
 export async function updateLead(
@@ -141,7 +175,7 @@ export async function createInvoice(input: {
   clientEmail: string;
   clientAddress: string;
   vesselName: string;
-  currency: "GBP" | "EUR" | "USD";
+  currency: typeof currencies[number];
   issueDate: string;
   dueDate: string;
   taxRateBps: number;
@@ -169,10 +203,75 @@ export async function createInvoice(input: {
 
 export async function updateInvoiceStatus(id: string, status: InvoiceStatus, actorEmail: string) {
   const database = await getDatabase();
-  const changed = await database.prepare("UPDATE invoices SET status = ?, updated_at = ? WHERE id = ?").bind(status, new Date().toISOString(), id).run();
+  const changed = await database.prepare("UPDATE invoices SET status = ?, updated_at = ? WHERE id = ? AND deleted_at IS NULL").bind(status, new Date().toISOString(), id).run();
   if (!changed.meta.changes) return false;
   await recordAudit(actorEmail, "invoice_status_changed", "invoice", id, status);
   return true;
+}
+
+type InvoiceInput = {
+  clientName: string;
+  clientEmail: string;
+  clientAddress: string;
+  vesselName: string;
+  currency: typeof currencies[number];
+  issueDate: string;
+  dueDate: string;
+  taxRateBps: number;
+  notes: string;
+  leadId: string | null;
+  items: InvoiceLineItem[];
+};
+
+export async function updateDraftInvoice(id: string, input: InvoiceInput, actorEmail: string) {
+  const database = await getDatabase();
+  const subtotalCents = input.items.reduce((total, item) => total + Math.round(item.quantity * item.unitCents), 0);
+  const taxCents = Math.round(subtotalCents * input.taxRateBps / 10_000);
+  const totalCents = subtotalCents + taxCents;
+  const changed = await database.prepare(
+    `UPDATE invoices SET issue_date = ?, due_date = ?, client_name = ?, client_email = ?, client_address = ?, vessel_name = ?, currency = ?, subtotal_cents = ?, tax_rate_bps = ?, tax_cents = ?, total_cents = ?, notes = ?, line_items_json = ?, lead_id = ?, updated_at = ? WHERE id = ? AND status = 'draft' AND deleted_at IS NULL`,
+  ).bind(input.issueDate, input.dueDate, input.clientName, input.clientEmail, input.clientAddress, input.vesselName, input.currency, subtotalCents, input.taxRateBps, taxCents, totalCents, input.notes, JSON.stringify(input.items), input.leadId, new Date().toISOString(), id).run();
+  if (!changed.meta.changes) return false;
+  await recordAudit(actorEmail, "invoice_draft_updated", "invoice", id, `${input.currency} ${(totalCents / 100).toFixed(2)}`);
+  return true;
+}
+
+export async function softDeleteVoidInvoice(id: string, remark: string, actorEmail: string) {
+  const database = await getDatabase();
+  const now = new Date().toISOString();
+  const changed = await database.prepare(
+    "UPDATE invoices SET deleted_at = ?, deletion_remark = ?, deleted_by = ?, updated_at = ? WHERE id = ? AND status = 'void' AND deleted_at IS NULL",
+  ).bind(now, remark.slice(0, 1000), actorEmail, now, id).run();
+  if (!changed.meta.changes) return false;
+  await recordAudit(actorEmail, "invoice_deleted", "invoice", id, remark);
+  return true;
+}
+
+type ExpenseInput = Omit<ExpenseRecord, "id" | "created_at" | "updated_at" | "gst_cents" | "total_cents">;
+
+export async function createExpense(input: ExpenseInput, actorEmail: string) {
+  const database = await getDatabase();
+  const id = crypto.randomUUID();
+  const now = new Date().toISOString();
+  const gstCents = Math.round(input.subtotal_cents * input.gst_rate_bps / 10_000);
+  const totalCents = input.subtotal_cents + gstCents;
+  await database.prepare(
+    `INSERT INTO expenses(id, created_at, updated_at, expense_date, vendor_name, vendor_gstin, category, description, reference_number, currency, subtotal_cents, gst_rate_bps, gst_cents, total_cents, payment_method, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  ).bind(id, now, now, input.expense_date, input.vendor_name, input.vendor_gstin, input.category, input.description, input.reference_number, input.currency, input.subtotal_cents, input.gst_rate_bps, gstCents, totalCents, input.payment_method, input.notes).run();
+  await recordAudit(actorEmail, "expense_created", "expense", id, `${input.vendor_name} · ${input.currency} ${(totalCents / 100).toFixed(2)}`);
+  return database.prepare("SELECT * FROM expenses WHERE id = ?").bind(id).first<ExpenseRecord>();
+}
+
+export async function updateExpense(id: string, input: ExpenseInput, actorEmail: string) {
+  const database = await getDatabase();
+  const gstCents = Math.round(input.subtotal_cents * input.gst_rate_bps / 10_000);
+  const totalCents = input.subtotal_cents + gstCents;
+  const changed = await database.prepare(
+    `UPDATE expenses SET expense_date = ?, vendor_name = ?, vendor_gstin = ?, category = ?, description = ?, reference_number = ?, currency = ?, subtotal_cents = ?, gst_rate_bps = ?, gst_cents = ?, total_cents = ?, payment_method = ?, notes = ?, updated_at = ? WHERE id = ?`,
+  ).bind(input.expense_date, input.vendor_name, input.vendor_gstin, input.category, input.description, input.reference_number, input.currency, input.subtotal_cents, input.gst_rate_bps, gstCents, totalCents, input.payment_method, input.notes, new Date().toISOString(), id).run();
+  if (!changed.meta.changes) return null;
+  await recordAudit(actorEmail, "expense_updated", "expense", id, `${input.vendor_name} · ${input.currency} ${(totalCents / 100).toFixed(2)}`);
+  return database.prepare("SELECT * FROM expenses WHERE id = ?").bind(id).first<ExpenseRecord>();
 }
 
 export function parseInvoiceItems(value: string): InvoiceLineItem[] {

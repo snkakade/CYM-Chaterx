@@ -60,6 +60,9 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   const adminStyles = await readFile(new URL("../app/admin/admin.css", import.meta.url), "utf8");
   const adminData = await readFile(new URL("../lib/admin-data.ts", import.meta.url), "utf8");
   const migration = await readFile(new URL("../drizzle/0002_admin_crm_intelligence.sql", import.meta.url), "utf8");
+  const financeMigration = await readFile(new URL("../drizzle/0003_admin_finance_workflow.sql", import.meta.url), "utf8");
+  const invoiceApi = await readFile(new URL("../app/api/admin/invoices/[id]/route.ts", import.meta.url), "utf8");
+  const expenseApi = await readFile(new URL("../app/api/admin/expenses/route.ts", import.meta.url), "utf8");
   assert.match(login, /Private operations portal/);
   assert.match(login, /Sign in securely/);
   assert.match(layout, /index: false/);
@@ -91,6 +94,18 @@ test("admin login and commercial CRM intelligence are production-wired", async (
   assert.match(adminData, /weightedPipeline/);
   assert.match(adminData, /estimated_value_cents/);
   assert.match(migration, /idx_leads_attention/);
+  assert.match(adminData, /\["sent", "overdue"\]/);
+  assert.match(adminData, /status === "received"/);
+  assert.match(dashboard, /Save and open invoice/);
+  assert.match(dashboard, /Deleted invoice archive/);
+  assert.match(dashboard, /Expenses and input GST/);
+  assert.match(adminData, /status = 'draft'/);
+  assert.match(invoiceApi, /softDeleteVoidInvoice/);
+  assert.match(expenseApi, /vendorGstin/);
+  assert.match(financeMigration, /UPDATE invoices SET status = 'received' WHERE status = 'paid'/);
+  assert.match(financeMigration, /CREATE TABLE IF NOT EXISTS expenses/);
+  assert.match(adminStyles, /\.invoice-screen-status\s*\{\s*display: none !important;/s);
+  assert.match(adminStyles, /\.invoice-document\s*\{[^}]*background: #fff;/s);
 });
 
 test("contact concierge is restrained, accessible, and connected to the lead pipeline", async () => {

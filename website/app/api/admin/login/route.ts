@@ -1,4 +1,4 @@
-import { clearLoginFailures, createSession, isLoginBlocked, isSameOrigin, loginThrottleKey, registerLoginFailure, sessionCookie, verifyPassword } from "@/lib/auth";
+import { clearLoginFailures, createSession, isLoginBlocked, isSameOrigin, loginThrottleKey, recordSuccessfulLogin, registerLoginFailure, sessionCookie, verifyPassword, type AdminRole } from "@/lib/auth";
 import { getRuntimeEnv } from "@/lib/database";
 
 export const dynamic = "force-dynamic";
@@ -24,15 +24,22 @@ export async function POST(request: Request) {
     return Response.json({ error: "Too many attempts. Try again in 15 minutes." }, { status: 429, headers: { "cache-control": "no-store" } });
   }
 
-  const correctPassword = password ? await verifyPassword(password, config.ADMIN_PASSWORD_HASH) : false;
-  const correctEmail = email === config.ADMIN_EMAIL.toLowerCase();
+  const superadminConfigured = Boolean(config.SUPERADMIN_EMAIL && config.SUPERADMIN_PASSWORD_HASH);
+  const credentials: Array<{ email: string; hash: string; role: AdminRole }> = [
+    { email: config.ADMIN_EMAIL, hash: config.ADMIN_PASSWORD_HASH, role: superadminConfigured ? "admin" : "superadmin" },
+  ];
+  if (superadminConfigured) credentials.push({ email: config.SUPERADMIN_EMAIL!, hash: config.SUPERADMIN_PASSWORD_HASH!, role: "superadmin" });
+  const credential = credentials.find((entry) => entry.email.toLowerCase() === email);
+  const correctPassword = password && credential ? await verifyPassword(password, credential.hash) : false;
+  const correctEmail = Boolean(credential);
   if (!correctEmail || !correctPassword) {
     await registerLoginFailure(throttleKey);
     return Response.json({ error: "Email or password is incorrect." }, { status: 401, headers: { "cache-control": "no-store" } });
   }
 
-  await clearLoginFailures(throttleKey, config.ADMIN_EMAIL);
-  const token = await createSession(config.ADMIN_EMAIL);
+  await clearLoginFailures(throttleKey);
+  await recordSuccessfulLogin(credential!.email, credential!.role, request);
+  const token = await createSession(credential!.email, credential!.role);
   return Response.json({ ok: true }, {
     headers: {
       "set-cookie": sessionCookie(token, request),

@@ -11,7 +11,7 @@ const date = (value: string) => new Intl.DateTimeFormat("en-GB", { day: "2-digit
 export default async function InvoicePage({ params }: { params: Promise<{ id: string }> }) {
   const session = await getAdminSession();
   if (!session) redirect("/admin/login");
-  const invoice = await getInvoiceById((await params).id);
+  const invoice = await getInvoiceById((await params).id, session.role);
   if (!invoice) notFound();
   const items = parseInvoiceItems(invoice.line_items_json);
 
@@ -21,12 +21,12 @@ export default async function InvoicePage({ params }: { params: Promise<{ id: st
       <article className="invoice-document">
         <header>
           <div className="invoice-identity"><CharterXWordmark /><span>Yacht Growth &amp; Management</span></div>
-          <div><p>Invoice</p><strong>{invoice.invoice_number}</strong><span className={`admin-status status-${invoice.status}`}>{invoice.status}</span></div>
+          <div className="invoice-reference"><p>Invoice</p><strong>{invoice.invoice_number}</strong><span className={`admin-status invoice-screen-status status-${invoice.status}`}>{invoice.status === "received" ? "Payment received" : invoice.status}</span></div>
         </header>
         <section className="invoice-meta">
           <div><span>Issued by</span><strong>Collaborative Yacht Management LLP</strong><p>Trading as CharterX<br />Pune, India<br />connect@cymcharterx.com</p></div>
-          <div><span>Prepared for</span><strong>{invoice.client_name}</strong><p>{invoice.client_email}<br />{invoice.client_address}</p></div>
-          <div><span>Invoice details</span><p>Issue date <strong>{date(invoice.issue_date)}</strong><br />Due date <strong>{date(invoice.due_date)}</strong><br />Currency <strong>{invoice.currency}</strong></p></div>
+          <div><span>Prepared for</span><strong>{invoice.client_name}</strong><p>{invoice.client_email}{invoice.client_address && <><br />{invoice.client_address}</>}</p></div>
+          <div><span>Invoice details</span><dl><div><dt>Issue date</dt><dd>{date(invoice.issue_date)}</dd></div><div><dt>Due date</dt><dd>{date(invoice.due_date)}</dd></div><div><dt>Currency</dt><dd>{invoice.currency}</dd></div></dl></div>
         </section>
         {invoice.vessel_name && <p className="invoice-project"><span>Yacht / project</span>{invoice.vessel_name}</p>}
         <table><thead><tr><th>Description</th><th>Qty</th><th>Unit price</th><th>Amount</th></tr></thead><tbody>{items.map((item, index) => <tr key={`${item.description}-${index}`}><td>{item.description}</td><td>{item.quantity}</td><td>{money(item.unitCents, invoice.currency)}</td><td>{money(Math.round(item.quantity * item.unitCents), invoice.currency)}</td></tr>)}</tbody></table>

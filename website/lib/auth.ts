@@ -6,8 +6,11 @@ const SESSION_SECONDS = 60 * 60 * 8;
 const PBKDF2_ITERATIONS = 100_000;
 const encoder = new TextEncoder();
 
-type AdminSession = {
+export type AdminRole = "admin" | "superadmin";
+
+export type AdminSession = {
   email: string;
+  role: AdminRole;
   issuedAt: number;
   expiresAt: number;
 };
@@ -48,11 +51,11 @@ export async function verifyPassword(password: string, storedHash: string) {
   return constantTimeEqual(actual, expected);
 }
 
-export async function createSession(email: string) {
+export async function createSession(email: string, role: AdminRole) {
   const secret = getRuntimeEnv().SESSION_SECRET;
   if (!secret || secret.length < 32) throw new Error("SESSION_SECRET must be at least 32 characters.");
   const issuedAt = Math.floor(Date.now() / 1000);
-  const payload: AdminSession = { email, issuedAt, expiresAt: issuedAt + SESSION_SECONDS };
+  const payload: AdminSession = { email, role, issuedAt, expiresAt: issuedAt + SESSION_SECONDS };
   const encoded = base64UrlEncode(encoder.encode(JSON.stringify(payload)));
   const signature = base64UrlEncode(await hmac(encoded, secret));
   return `${encoded}.${signature}`;
@@ -70,8 +73,10 @@ export async function verifySession(token: string | undefined): Promise<AdminSes
     const supplied = base64UrlDecode(signatureText);
     if (!constantTimeEqual(expected, supplied)) return null;
     const payload = JSON.parse(new TextDecoder().decode(base64UrlDecode(encoded))) as AdminSession;
-    if (!payload.email || payload.expiresAt <= Math.floor(Date.now() / 1000)) return null;
-    if (payload.email.toLowerCase() !== getRuntimeEnv().ADMIN_EMAIL?.toLowerCase()) return null;
+    if (!payload.email || !["admin", "superadmin"].includes(payload.role) || payload.expiresAt <= Math.floor(Date.now() / 1000)) return null;
+    const config = getRuntimeEnv();
+    const allowedEmails = [config.ADMIN_EMAIL, config.SUPERADMIN_EMAIL].filter(Boolean).map((email) => email!.toLowerCase());
+    if (!allowedEmails.includes(payload.email.toLowerCase())) return null;
     return payload;
   } catch {
     return null;
@@ -130,8 +135,26 @@ export async function registerLoginFailure(key: string) {
   ).bind(key, count, existing && existing.window_started_at >= windowStart ? existing.window_started_at : now, blockedUntil).run();
 }
 
-export async function clearLoginFailures(key: string, email: string) {
+export async function clearLoginFailures(key: string) {
   const database = await getDatabase();
   await database.prepare("DELETE FROM login_attempts WHERE attempt_key = ?").bind(key).run();
-  await recordAudit(email, "signed_in", "session");
+}
+
+function loginContext(request: Request) {
+  const userAgent = request.headers.get("user-agent") ?? "";
+  const os = /iPhone/i.test(userAgent) ? "iPhone" : /iPad/i.test(userAgent) ? "iPad" : /Macintosh|Mac OS X/i.test(userAgent) ? "Mac" : /Windows/i.test(userAgent) ? "Windows" : /Android/i.test(userAgent) ? "Android" : /Linux/i.test(userAgent) ? "Linux" : "Unknown device";
+  const browser = /Edg\//i.test(userAgent) ? "Edge" : /Firefox\//i.test(userAgent) ? "Firefox" : /Chrome\//i.test(userAgent) ? "Chrome" : /Safari\//i.test(userAgent) ? "Safari" : "Unknown browser";
+  const cf = (request as Request & { cf?: { city?: string; region?: string; country?: string; timezone?: string } }).cf;
+  const location = [cf?.city, cf?.region, cf?.country ?? request.headers.get("cf-ipcountry")].filter(Boolean).join(", ");
+  return {
+    ipAddress: (request.headers.get("cf-connecting-ip") ?? request.headers.get("x-forwarded-for")?.split(",")[0] ?? "local").trim(),
+    device: `${os} · ${browser}`,
+    location: location || "Location unavailable",
+    userAgent,
+  };
+}
+
+export async function recordSuccessfulLogin(email: string, role: AdminRole, request: Request) {
+  if (role === "superadmin") return;
+  await recordAudit(email, "signed_in", "session", "", "Successful admin login", loginContext(request));
 }

@@ -155,7 +155,7 @@ Rules:
 - These interfaces use the same logo, fonts and palette as the public site.
 - Operational density may increase, but the visual character must remain quiet and premium.
 - Default CRM and invoice currency is USD. Existing records retain their saved currency.
-- Invoice documents use warm paper, deep-petrol rules and restrained champagne labels.
+- Invoice documents use a plain white background, deep-petrol rules and restrained champagne labels.
 - Invoice metadata styles must never target or alter descendants of the logo component.
 - Printed invoices must retain logo proportions, readable tables and clear totals.
 

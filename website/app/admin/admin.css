@@ -461,6 +461,8 @@ body:has(.admin-page) { background: var(--admin-bg); }
 }
 
 /* Finance workflow */
+.admin-form-grid { align-items: start; }
+.admin-form-grid > label { align-content: start; }
 .status-received { background: #dff2ea; color: #1c7456; }
 .admin-row-actions { display: flex; align-items: center; gap: .45rem; }
 .admin-row-actions a,

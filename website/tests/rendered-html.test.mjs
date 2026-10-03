@@ -47,6 +47,7 @@ test("ambient video recovers from iOS autoplay and source selection failures", a
   assert.match(source, /webkit-playsinline/);
   assert.match(source, /mobileViewport\.matches \? mobileSrc : src/);
   assert.match(source, /data-mobile-src=\{mobileSrc\}/);
+  assert.match(source, /src=\{mobileSrc \?\? src\}/);
   assert.doesNotMatch(source, /<source\s/);
   assert.match(source, /document\.addEventListener\("pointerdown", retryPlayback/);
   assert.doesNotMatch(source, /ambient-video-play|Play background video/);
@@ -75,6 +76,8 @@ test("server-renders the finished CharterX homepage", async () => {
   assert.match(html, /gtag\('consent', 'default'/);
   assert.match(html, /analytics_storage: charterxConsent === 'accepted' \? 'granted' : 'denied'/);
   assert.match(html, /charterx-sailing-hero-uhd\.mp4/);
+  assert.match(html, /src="\/videos\/charterx-sailing\.mp4"/);
+  assert.match(html, /preload="auto"/);
   assert.match(html, /charterx-sunset-yacht\.webp/);
   assert.match(html, /charterx-yacht-deck\.webp/);
   assert.match(html, /Loading CharterX/);

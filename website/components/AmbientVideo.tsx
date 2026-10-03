@@ -11,7 +11,7 @@ type AmbientVideoProps = {
   className?: string;
   position?: string;
   mobilePosition?: string;
-  preload?: "none" | "metadata";
+  preload?: "none" | "metadata" | "auto";
 };
 
 export function AmbientVideo({
@@ -137,6 +137,7 @@ export function AmbientVideo({
       className={`ambient-video ${className}`.trim()}
       data-desktop-src={src}
       data-mobile-src={mobileSrc}
+      src={mobileSrc ?? src}
       autoPlay
       muted
       loop

@@ -55,6 +55,7 @@ export default function Home() {
             mobileSrc="/videos/charterx-sailing.mp4"
             poster="/images/charterx-sailing-hero-poster.jpg"
             label="Sailing yacht underway at sea"
+            preload="auto"
           />
         </div>
         <div className="cx-hero-shade" aria-hidden="true" />

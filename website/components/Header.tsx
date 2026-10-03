@@ -27,15 +27,15 @@ const mobilePrimaryLinks = [
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
   { href: "/yacht-growth-score", label: "Growth Score" },
+  { href: "/ota-management", label: "OTA Management" },
+  { href: "/digital-marketing", label: "Digital Marketing" },
+  { href: "/contact", label: "Contact" },
 ];
 
 const mobileSecondaryLinks = [
-  { href: "/ota-management", label: "OTA Management" },
   { href: "/revenue-growth", label: "Revenue Growth" },
-  { href: "/digital-marketing", label: "Digital Marketing" },
   { href: "/sales-support", label: "Sales Support" },
   { href: "/insights", label: "Insights" },
-  { href: "/contact", label: "Contact" },
 ];
 
 const mobileMenuImages = [

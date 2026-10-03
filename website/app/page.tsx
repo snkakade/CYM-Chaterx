@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AmbientVideo } from "@/components/AmbientVideo";
+import { ArrowIcon } from "@/components/ArrowIcon";
 import Image from "next/image";
 
 const pillars = [
@@ -48,7 +49,7 @@ export default function Home() {
   return (
     <div className="cx-home">
       <section className="cx-hero" aria-labelledby="home-title">
-        <div className="cx-hero-media" aria-hidden="true">
+        <div className="cx-hero-media">
           <AmbientVideo
             src="/videos/charterx-sailing-hero-uhd.mp4"
             mobileSrc="/videos/charterx-sailing.mp4"
@@ -67,10 +68,10 @@ export default function Home() {
           </p>
           <div className="cx-actions">
             <a className="cx-button cx-button--gold" href="/contact#enquiry-form">
-              Get your growth plan <span aria-hidden="true">↗</span>
+              Get your growth plan <ArrowIcon />
             </a>
             <a className="cx-text-link cx-text-link--light" href="#growth-system">
-              See the system <span aria-hidden="true">↓</span>
+              See the system <ArrowIcon direction="down" />
             </a>
           </div>
         </div>
@@ -85,7 +86,7 @@ export default function Home() {
         <div className="cx-reality-copy reveal-item">
           <p className="cx-lead">Guests do not see disconnected tools. They feel delay, doubt and friction.</p>
           <p>CharterX turns the commercial work around your yacht into one clear operating system. Every channel stays current, every enquiry has an owner and every improvement has a purpose.</p>
-          <a className="cx-text-link" href="/yacht-growth-score">Check your growth score <span aria-hidden="true">↗</span></a>
+          <a className="cx-text-link" href="/yacht-growth-score">Check your growth score <ArrowIcon /></a>
         </div>
       </section>
 
@@ -107,7 +108,7 @@ export default function Home() {
                 </div>
                 <h3>{pillar.title}</h3>
                 <p>{pillar.copy}</p>
-                <a href={pillar.link}>{pillar.linkLabel} <span aria-hidden="true">↗</span></a>
+                <a href={pillar.link}>{pillar.linkLabel} <ArrowIcon /></a>
               </article>
             ))}
           </div>
@@ -163,7 +164,7 @@ export default function Home() {
           <h2>Ready for a yacht business<br />that <em>moves with purpose?</em></h2>
           <p>Start with a focused review of your yacht, market and current booking setup.</p>
           <a className="cx-button cx-button--gold" href="/contact#enquiry-form">
-            Start your review <span aria-hidden="true">↗</span>
+            Start your review <ArrowIcon />
           </a>
           <a className="cx-final-connect" href="/contact#enquiry-form" data-open-concierge data-concierge-mode="whatsapp">WhatsApp or request a callback</a>
         </div>

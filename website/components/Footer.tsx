@@ -1,4 +1,5 @@
 import { Logo } from "./Logo";
+import { ArrowIcon } from "./ArrowIcon";
 
 const serviceLinks = [
   ["OTA management", "/ota-management"],
@@ -35,7 +36,7 @@ export function Footer() {
           <p>Ready to grow?</p>
           <h2>Make your yacht easier to book.</h2>
           <div className="cx-footer-actions">
-            <a href="/contact#enquiry-form">Start your review <span aria-hidden="true">↗</span></a>
+            <a href="/contact#enquiry-form">Start your review <ArrowIcon /></a>
             <a href="/contact#enquiry-form" data-open-concierge data-concierge-mode="whatsapp">WhatsApp or request a call</a>
           </div>
         </div>

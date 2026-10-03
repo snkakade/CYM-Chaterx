@@ -41,6 +41,17 @@ test("video delivery preserves byte ranges for mobile Safari", async () => {
   assert.deepEqual(new Uint8Array(await response.arrayBuffer()), new Uint8Array([2, 3, 4, 5]));
 });
 
+test("ambient video recovers from iOS autoplay and source selection failures", async () => {
+  const source = await readFile(new URL("../components/AmbientVideo.tsx", import.meta.url), "utf8");
+  assert.match(source, /video\.defaultMuted = true/);
+  assert.match(source, /webkit-playsinline/);
+  assert.match(source, /mobileViewport\.matches \? mobileSrc : src/);
+  assert.match(source, /data-mobile-src=\{mobileSrc\}/);
+  assert.doesNotMatch(source, /<source\s/);
+  assert.match(source, /document\.addEventListener\("pointerdown", retryPlayback/);
+  assert.match(source, /className="ambient-video-play"/);
+});
+
 test("server-renders the finished CharterX homepage", async () => {
   const worker = await createWorker();
   const response = await render(worker, "/");
@@ -219,6 +230,20 @@ test("navigation uses resilient document links", async () => {
   const header = await readFile(new URL("../components/Header.tsx", import.meta.url), "utf8");
   assert.match(header, /href=\{link\.href\}/);
   assert.match(header, /href="\/contact#enquiry-form"/);
+  const primaryMenu = header.slice(header.indexOf("const mobilePrimaryLinks"), header.indexOf("const mobileSecondaryLinks"));
+  const secondaryMenu = header.slice(header.indexOf("const mobileSecondaryLinks"), header.indexOf("const mobileMenuImages"));
+  assert.match(primaryMenu, /OTA Management/);
+  assert.match(primaryMenu, /Digital Marketing/);
+  assert.match(primaryMenu, /Contact/);
+  assert.doesNotMatch(secondaryMenu, /OTA Management|Digital Marketing|Contact/);
+});
+
+test("public interface arrows use vector icons instead of emoji-prone glyphs", async () => {
+  const files = ["../app/page.tsx", "../components/Footer.tsx", "../components/ConnectConcierge.tsx"];
+  for (const file of files) {
+    const source = await readFile(new URL(file, import.meta.url), "utf8");
+    assert.doesNotMatch(source, /[↗↘↙↖→←↑↓]/, file);
+  }
 });
 
 test("anchor CTAs align padded sections below the fixed header", async () => {

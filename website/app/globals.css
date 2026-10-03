@@ -4038,6 +4038,25 @@ h2 {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.cx-button .arrow-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.75rem;
+  border-radius: 50%;
+  background: var(--brand-deep);
+  color: var(--brand-paper);
+}
+.cx-hero .cx-button .arrow-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0.62rem;
+}
+.cx-pillar a,
+.cx-footer-actions a:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 .service-index-grid .arrow-icon {
   margin-left: auto;
   color: inherit;
@@ -4301,12 +4320,20 @@ h2 em {
 }
 
 .connect-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0;
   border: 0;
   background: transparent;
   color: #54716b;
   font-size: 0.68rem;
   cursor: pointer;
+}
+.connect-back svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  stroke-width: 1.6;
 }
 
 .connect-eyebrow {
@@ -4568,6 +4595,32 @@ h2 em {
   height: 100%;
   object-fit: cover;
   object-position: var(--video-position, center);
+}
+.ambient-video-play {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background: rgba(7, 19, 21, 0.78);
+  color: var(--white);
+  cursor: pointer;
+  place-items: center;
+  transform: translate(-50%, -50%);
+}
+.ambient-video-play svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 0.12rem;
+}
+.ambient-video-play:focus-visible {
+  outline: 2px solid var(--champagne-400);
+  outline-offset: 3px;
 }
 .page-hero .hero-media .ambient-video {
   filter: saturate(0.78) contrast(1.04);
@@ -5186,15 +5239,16 @@ main section[id] {
   }
 
   .mobile-menu-primary {
-    margin: clamp(2.8rem, 8vh, 4.5rem) 0 auto;
+    margin: 1.5rem 0 auto;
   }
 
   .mobile-nav-link {
-    font-size: clamp(2.3rem, 11vw, 3.4rem);
+    max-width: 100%;
+    font-size: 2rem;
   }
 
   .mobile-menu-footer {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
     padding-bottom: 0.25rem;
   }
 
@@ -5205,11 +5259,12 @@ main section[id] {
 
 @media (max-width: 380px), (max-height: 720px) {
   .mobile-menu-primary {
-    margin: 1.5rem 0 auto;
+    margin: 0.9rem 0 auto;
   }
 
   .mobile-nav-link {
-    font-size: clamp(2rem, 10.5vw, 2.75rem);
+    padding: 0.1rem 0;
+    font-size: 1.7rem;
   }
 
   .mobile-menu-footer {

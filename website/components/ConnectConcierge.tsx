@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
 type View = "choices" | "message" | "whatsapp" | "callback" | "success";
 
@@ -195,7 +196,7 @@ export function ConnectConcierge({ whatsappNumber = "" }: { whatsappNumber?: str
 
           {formView && (
             <form className="connect-form" onSubmit={submit} noValidate>
-              <button className="connect-back" type="button" onClick={() => setView("choices")}>← All contact options</button>
+              <button className="connect-back" type="button" onClick={() => setView("choices")}><ArrowLeft aria-hidden="true" />All contact options</button>
               <p className="connect-eyebrow">{copy[formView].eyebrow}</p>
               <h2>{copy[formView].title}</h2>
               <p>{copy[formView].note}</p>

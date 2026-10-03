@@ -16,6 +16,31 @@ async function render(worker, pathname) {
   );
 }
 
+test("video delivery preserves byte ranges for mobile Safari", async () => {
+  const worker = await createWorker();
+  const video = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
+  const response = await worker.fetch(
+    new Request("http://localhost/videos/hero.mp4", {
+      headers: { range: "bytes=2-5" },
+    }),
+    {
+      ASSETS: {
+        fetch: async () => new Response(video, {
+          status: 200,
+          headers: { "content-type": "video/mp4", "content-length": String(video.byteLength) },
+        }),
+      },
+    },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+
+  assert.equal(response.status, 206);
+  assert.equal(response.headers.get("accept-ranges"), "bytes");
+  assert.equal(response.headers.get("content-range"), "bytes 2-5/8");
+  assert.equal(response.headers.get("content-length"), "4");
+  assert.deepEqual(new Uint8Array(await response.arrayBuffer()), new Uint8Array([2, 3, 4, 5]));
+});
+
 test("server-renders the finished CharterX homepage", async () => {
   const worker = await createWorker();
   const response = await render(worker, "/");

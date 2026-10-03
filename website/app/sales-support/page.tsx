@@ -49,7 +49,7 @@ export default function SalesSupportPage() {
         image="/images/sales-support.webp"
         imageAlt="Yacht charter enquiry management and guest follow-up"
         video="/videos/charterx-ocean-texture-uhd.mp4"
-        videoMobile="/videos/charterx-ocean-texture-uhd.mp4"
+        videoMobile="/videos/charterx-ocean-texture.mp4"
         videoPosition="center center"
         videoMobilePosition="center center"
         primaryLabel="Discuss Support"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AmbientVideo } from "@/components/AmbientVideo";
 import Image from "next/image";
 
 const pillars = [
@@ -48,14 +49,11 @@ export default function Home() {
     <div className="cx-home">
       <section className="cx-hero" aria-labelledby="home-title">
         <div className="cx-hero-media" aria-hidden="true">
-          <video
+          <AmbientVideo
             src="/videos/charterx-sailing-hero-uhd.mp4"
+            mobileSrc="/videos/charterx-sailing.mp4"
             poster="/images/charterx-sailing-hero-poster.jpg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
+            label="Sailing yacht underway at sea"
           />
         </div>
         <div className="cx-hero-shade" aria-hidden="true" />

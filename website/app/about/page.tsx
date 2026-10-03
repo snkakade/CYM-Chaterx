@@ -24,7 +24,7 @@ export default function AboutPage() {
         image="/images/hero-marina-poster.webp"
         imageAlt="Motor yachts moving through a contemporary marina"
         video="/videos/charterx-marina-uhd.mp4"
-        videoMobile="/videos/charterx-marina-uhd.mp4"
+        videoMobile="/videos/charterx-marina-mobile.mp4"
         videoPosition="center center"
         videoMobilePosition="center center"
         primaryLabel="Meet Our Approach"

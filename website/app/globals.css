@@ -5011,3 +5011,213 @@ main section[id] {
 .site-header .button.button--aqua-cta {
   font-size: 0.64rem !important;
 }
+
+/* Mobile navigation: CharterX adaptation of the supplied layered reveal. */
+@media (max-width: 1180px) {
+  .site-header.menu-active,
+  .site-header.header--light-page.menu-active,
+  .site-header.is-solid.menu-active {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .site-header.menu-active .brand-copy strong,
+  .site-header.header--light-page.menu-active .brand-copy strong {
+    color: var(--brand-paper) !important;
+  }
+
+  .site-header.menu-active .menu-toggle {
+    border-color: rgba(251, 250, 247, 0.42) !important;
+  }
+
+  .site-header.menu-active .menu-toggle span {
+    background: var(--brand-paper) !important;
+  }
+
+  .site-header.menu-active .brand {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .site-header.menu-active .header-right {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  body.menu-open .connect-concierge {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-menu {
+    display: none;
+    z-index: 999;
+    inset: 0;
+    flex-direction: row;
+    justify-content: stretch;
+    gap: clamp(1rem, 3vw, 2rem);
+    overflow: hidden;
+    padding: clamp(5.8rem, 9vw, 7rem) clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem);
+    background: var(--brand-deep);
+    color: var(--brand-paper);
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  }
+
+  .mobile-menu-visual {
+    position: relative;
+    flex: 0 0 42%;
+    overflow: hidden;
+    background: var(--brand-ink);
+  }
+
+  .mobile-menu-visual img {
+    object-fit: cover;
+    opacity: 0.22;
+  }
+
+  .mobile-menu-visual img:first-child {
+    opacity: 0.9;
+  }
+
+  .mobile-menu-content {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    padding: clamp(0.75rem, 2vw, 2rem);
+  }
+
+  .mobile-menu-wordmark {
+    overflow: hidden;
+    width: max-content;
+    color: var(--brand-paper);
+  }
+
+  .mobile-menu-wordmark .brand-logotype {
+    font-size: clamp(1rem, 2.2vw, 1.35rem);
+  }
+
+  .mobile-menu-primary {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+  }
+
+  .mobile-nav-link {
+    overflow: hidden;
+    padding: 0.18rem 0;
+    border: 0;
+    color: var(--brand-paper);
+    font-family: var(--font-heading), sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 500;
+    line-height: 0.98;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav-link > span {
+    display: block;
+    color: inherit;
+    font: inherit;
+    white-space: nowrap;
+  }
+
+  .mobile-nav-link.is-active,
+  .mobile-nav-link:hover {
+    color: var(--brand-champagne);
+  }
+
+  .mobile-menu-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(251, 250, 247, 0.16);
+  }
+
+  .mobile-menu-secondary,
+  .mobile-menu-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .mobile-menu-secondary {
+    overflow: hidden;
+  }
+
+  .mobile-menu-secondary a,
+  .mobile-menu-contact > a:not(.button),
+  .mobile-menu-contact > span {
+    color: rgba(251, 250, 247, 0.68);
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .mobile-menu-contact > span {
+    color: var(--brand-champagne);
+    text-transform: uppercase;
+  }
+
+  .mobile-menu-contact .button {
+    margin-top: 0.65rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .mobile-menu {
+    padding: 5.6rem 1rem 1rem;
+  }
+
+  .mobile-menu-visual {
+    display: none;
+  }
+
+  .mobile-menu-content {
+    padding: 0.5rem 0.25rem 0;
+  }
+
+  .mobile-menu-primary {
+    margin: clamp(2.8rem, 8vh, 4.5rem) 0 auto;
+  }
+
+  .mobile-nav-link {
+    font-size: clamp(2.3rem, 11vw, 3.4rem);
+  }
+
+  .mobile-menu-footer {
+    margin-top: 2rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .mobile-menu-contact .button {
+    display: none;
+  }
+}
+
+@media (max-width: 380px), (max-height: 720px) {
+  .mobile-menu-primary {
+    margin: 1.5rem 0 auto;
+  }
+
+  .mobile-nav-link {
+    font-size: clamp(2rem, 10.5vw, 2.75rem);
+  }
+
+  .mobile-menu-footer {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .mobile-menu-contact .button {
+    display: none;
+  }
+}

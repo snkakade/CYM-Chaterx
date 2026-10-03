@@ -66,6 +66,7 @@ export function AmbientVideo({
     <video
       ref={videoRef}
       className={`ambient-video ${className}`.trim()}
+      autoPlay
       muted
       loop
       playsInline

@@ -48,7 +48,7 @@ export default function DigitalMarketingPage() {
         image="/images/hero-yacht-wake-poster.webp"
         imageAlt="Top-down aerial view of a yacht moving through dark blue water"
         video="/videos/charterx-yacht-wake-uhd.mp4"
-        videoMobile="/videos/charterx-yacht-wake-uhd.mp4"
+        videoMobile="/videos/charterx-yacht-wake.mp4"
         videoPosition="35% center"
         videoMobilePosition="35% center"
         primaryLabel="Review My Website"

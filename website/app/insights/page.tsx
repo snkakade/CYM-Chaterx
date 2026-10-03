@@ -24,7 +24,7 @@ export default function InsightsPage() {
         image="/images/hero-ocean-poster.webp"
         imageAlt="Calm open water viewed from above"
         video="/videos/charterx-ocean-texture-uhd.mp4"
-        videoMobile="/videos/charterx-ocean-texture-uhd.mp4"
+        videoMobile="/videos/charterx-ocean-texture.mp4"
         primaryLabel="Explore Latest Insights"
         primaryHref="#insight-library"
         secondaryLabel="Request a Growth Review"

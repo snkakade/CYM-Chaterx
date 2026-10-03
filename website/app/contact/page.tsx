@@ -23,7 +23,7 @@ export default function ContactPage() {
         image="/images/hero-yacht-wake-poster.webp"
         imageAlt="Top-down aerial view of a yacht drawing a curved wake"
         video="/videos/charterx-yacht-wake-uhd.mp4"
-        videoMobile="/videos/charterx-yacht-wake-uhd.mp4"
+        videoMobile="/videos/charterx-yacht-wake.mp4"
         primaryLabel="Start Your Enquiry"
         primaryHref="#enquiry-form"
         secondaryLabel="Book a Strategy Call"

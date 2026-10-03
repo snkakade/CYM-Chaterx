@@ -42,7 +42,7 @@ export default function OTAManagementPage() {
         image="/images/hero-city-yacht-poster.webp"
         imageAlt="Motor yacht passing a waterfront skyline in open blue water"
         video="/videos/charterx-city-yacht-uhd.mp4"
-        videoMobile="/videos/charterx-city-yacht-uhd.mp4"
+        videoMobile="/videos/charterx-city-yacht-mobile.mp4"
         videoPosition="center center"
         videoMobilePosition="center center"
         primaryLabel="Improve My Listings"
@@ -115,4 +115,3 @@ export default function OTAManagementPage() {
     </>
   );
 }
-

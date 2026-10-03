@@ -4596,32 +4596,6 @@ h2 em {
   object-fit: cover;
   object-position: var(--video-position, center);
 }
-.ambient-video-play {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  left: 50%;
-  display: grid;
-  width: 3.5rem;
-  height: 3.5rem;
-  padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 50%;
-  background: rgba(7, 19, 21, 0.78);
-  color: var(--white);
-  cursor: pointer;
-  place-items: center;
-  transform: translate(-50%, -50%);
-}
-.ambient-video-play svg {
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-left: 0.12rem;
-}
-.ambient-video-play:focus-visible {
-  outline: 2px solid var(--champagne-400);
-  outline-offset: 3px;
-}
 .page-hero .hero-media .ambient-video {
   filter: saturate(0.78) contrast(1.04);
 }

@@ -49,7 +49,7 @@ test("ambient video recovers from iOS autoplay and source selection failures", a
   assert.match(source, /data-mobile-src=\{mobileSrc\}/);
   assert.doesNotMatch(source, /<source\s/);
   assert.match(source, /document\.addEventListener\("pointerdown", retryPlayback/);
-  assert.match(source, /className="ambient-video-play"/);
+  assert.doesNotMatch(source, /ambient-video-play|Play background video/);
 });
 
 test("server-renders the finished CharterX homepage", async () => {

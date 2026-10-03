@@ -1,8 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useEffect, useRef, useState } from "react";
-import { Play } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 type AmbientVideoProps = {
   src: string;
@@ -26,7 +25,6 @@ export function AmbientVideo({
   preload = "metadata",
 }: AmbientVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [needsManualPlay, setNeedsManualPlay] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -35,7 +33,6 @@ export function AmbientVideo({
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobileViewport = window.matchMedia("(max-width: 899px)");
     let inView = true;
-    let mounted = true;
     let usingFallback = false;
 
     video.muted = true;
@@ -53,19 +50,17 @@ export function AmbientVideo({
       }
     };
 
-    const syncPlayback = async (manual = false) => {
+    const syncPlayback = async () => {
       if (reducedMotion.matches || !inView) {
         video.pause();
-        if (mounted && reducedMotion.matches) setNeedsManualPlay(true);
         return;
       }
 
       try {
         video.muted = true;
         await video.play();
-        if (mounted) setNeedsManualPlay(false);
       } catch {
-        if (mounted && !manual) setNeedsManualPlay(true);
+        // iOS may still block autoplay in Low Power Mode. Keep the poster visible.
       }
     };
 
@@ -86,7 +81,6 @@ export function AmbientVideo({
         retryPlayback();
         return;
       }
-      if (mounted) setNeedsManualPlay(true);
     };
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -113,7 +107,6 @@ export function AmbientVideo({
     retryPlayback();
 
     return () => {
-      mounted = false;
       observer.disconnect();
       video.removeEventListener("canplay", retryPlayback);
       video.removeEventListener("error", handleError);
@@ -133,39 +126,25 @@ export function AmbientVideo({
     };
   }, [mobileSrc, src]);
 
-  const playManually = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    void video.play().then(() => setNeedsManualPlay(false)).catch(() => setNeedsManualPlay(true));
-  };
-
   const style = {
     "--video-position": position,
     "--video-mobile-position": mobilePosition ?? position,
   } as CSSProperties;
 
   return (
-    <>
-      <video
-        ref={videoRef}
-        className={`ambient-video ${className}`.trim()}
-        data-desktop-src={src}
-        data-mobile-src={mobileSrc}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload={preload}
-        poster={poster}
-        aria-label={label}
-        style={style}
-      />
-      {needsManualPlay && (
-        <button className="ambient-video-play" type="button" onClick={playManually} aria-label={`Play ${label}`}>
-          <Play aria-hidden="true" fill="currentColor" />
-        </button>
-      )}
-    </>
+    <video
+      ref={videoRef}
+      className={`ambient-video ${className}`.trim()}
+      data-desktop-src={src}
+      data-mobile-src={mobileSrc}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload={preload}
+      poster={poster}
+      aria-label={label}
+      style={style}
+    />
   );
 }
